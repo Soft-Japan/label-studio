@@ -30,7 +30,7 @@
 
     if (typeof f === 'undefined') {
       console.log('smart_submit event target', event.target);
-      alert("Closest form not found for smart_submit")
+      alert("{% trans 'Closest form not found for smart_submit' %}")
     }
     console.log('YYYYYYY' +  $(f).serialize());
     var params = {
@@ -48,9 +48,9 @@
         // default error handle
         else {
           if (typeof result.responseText !== 'undefined') {
-            alert("Error: " + message_from_response(result));
+            alert("{% trans 'Error' %}: " + message_from_response(result));
           } else {
-            alert("Request error: " + errorThrown);
+            alert("{% trans 'Request error' %}: " + errorThrown);
           }
           window.location.reload();
         }
@@ -83,7 +83,7 @@
 
     // result is object from XHR, check responseText first, it is always presented
     if (!result.responseText)
-      return 'Critical error on server';
+      return '{% trans 'Critical error on server' %}';
 
     // grab responseJSON detail
     else if (result.responseJSON && result.responseJSON.hasOwnProperty('detail'))
@@ -120,10 +120,10 @@
 
           <div class="controls">
             <button class="lsf-button-ls lsf-button-ls_look_danger" name="delete-avatar" type="button">
-              Delete
+              {% trans "Delete" %}
             </button>
 
-            <input class="file-input" type="file" name="avatar" value="Choose"
+            <input class="file-input" type="file" name="avatar" value="{% trans 'Choose' %}"
                   accept="image/png, image/jpeg, image/jpg"/>
           </div>
       </div>
@@ -153,8 +153,8 @@
 
       </div>
       <footer>
-        <p class="secondary">Registered {{ user.date_joined|date:"M j, Y" }}, user ID {{ user.id }}</p>
-        <button class="lsf-button-ls lsf-button-ls_look_primary" onclick="smart_submit()">Save</button>
+        <p class="secondary">{% blocktrans with date_joined=user.date_joined|date:"M j, Y" user_id=user.id %}Registered {{ date_joined }}, user ID {{ user_id }}{% endblocktrans %}</p>
+        <button class="lsf-button-ls lsf-button-ls_look_primary" onclick="smart_submit()">{% trans "Save" %}</button>
       </footer>
     </form>
 

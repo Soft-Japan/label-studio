@@ -6,20 +6,213 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 
-msgid "Email Address"
-msgstr "メールアドレス"
+msgid "A full-fledged open source solution for data labeling"
+msgstr "データラベリングのための本格的なオープンソースソリューション"
 
-msgid "Password"
-msgstr "パスワード"
+msgid "Access Token"
+msgstr "アクセストークン"
+
+msgid "Account & Settings"
+msgstr "アカウントと設定"
+
+msgid "Already have an account?"
+msgstr "すでにアカウントをお持ちですか？"
+
+msgid "Annotations completed by you"
+msgstr "あなたが完了したアノテーション"
+
+msgid "Brought to you by"
+msgstr "提供元"
+
+msgid "Choose"
+msgstr "選択"
+
+msgid "Closest form not found for smart_submit"
+msgstr "smart_submit の対象フォームが見つかりませんでした"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Create Account"
+msgstr "アカウントを作成"
+
+msgid "Critical error on server"
+msgstr "サーバーで重大なエラーが発生しました"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Did you know?"
+msgstr "ご存じですか？"
+
+msgid "Documentation"
+msgstr "ドキュメント"
 
 msgid "Don't have an account?"
 msgstr "アカウントをお持ちではありませんか？"
 
+msgid "E-mail"
+msgstr "メールアドレス"
+
+msgid "Email"
+msgstr "メールアドレス"
+
+msgid "Email Address"
+msgstr "メールアドレス"
+
+msgid "Email and other notifications"
+msgstr "メールなどの通知"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Example fetch projects data:"
+msgstr "プロジェクトデータ取得の例:"
+
+msgid "Failed to load live Heidi tips collection"
+msgstr "Heidi の最新ヒントを読み込めませんでした"
+
+msgid "First Name"
+msgstr "名"
+
+msgid "Get the latest news & tips from Heidi"
+msgstr "Heidi から最新ニュースとヒントを受け取る"
+
+msgid "Get the latest news from Heidi"
+msgstr "Heidi から最新ニュースを受け取る"
+
+msgid "How did you hear about Label Studio?"
+msgstr "Label Studio をどこで知りましたか？"
+
+msgid "Human Signal Logo"
+msgstr "Human Signal ロゴ"
+
+msgid "Incorrect phone number!"
+msgstr "電話番号の形式が正しくありません。"
+
 msgid "Keep me logged in this browser"
 msgstr "このブラウザでログイン状態を保持する"
+
+msgid "Label Studio Logo"
+msgstr "Label Studio ロゴ"
+
+msgid "Label Studio has dozens of pre-built templates for all data types you can use to configure your labeling UI, from image classification to sentiment analysis to supervised LLM fine-tuning. "
+msgstr "Label Studio には、画像分類・感情分析・教師あり LLM ファインチューニングまで、あらゆるデータタイプに対応した事前構築済みテンプレートが多数用意されています。"
+
+msgid "Label Studio now has a Starter Cloud offering optimized for small teams and projects."
+msgstr "Label Studio では、小規模チームやプロジェクト向けに最適化された Starter Cloud プランをご利用いただけます。"
+
+msgid "Last Name"
+msgstr "姓"
+
+msgid "Learn more"
+msgstr "詳しく見る"
+
+msgid "Log In"
+msgstr "ログイン"
 
 msgid "Log in"
 msgstr "ログイン"
 
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Organization ID"
+msgstr "組織 ID"
+
+msgid "Organization created at"
+msgstr "組織の作成日時"
+
+msgid "Organization owner"
+msgstr "組織オーナー"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Personal Information"
+msgstr "個人情報"
+
+msgid "Phone"
+msgstr "電話番号"
+
+msgid "Please elaborate"
+msgstr "詳しく入力してください"
+
+msgid "Projects contributed by you"
+msgstr "あなたが貢献したプロジェクト"
+
+msgid "Registered {{ date_joined }}, user ID {{ user_id }}"
+msgstr "登録日 {{ date_joined }}、ユーザー ID {{ user_id }}"
+
+msgid "Renew"
+msgstr "再生成"
+
+msgid "Request error"
+msgstr "リクエストエラー"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "See all templates"
+msgstr "テンプレート一覧を見る"
+
+msgid "Select an option"
+msgstr "選択してください"
+
+msgid "Sign Up"
+msgstr "新規登録"
+
 msgid "Sign up"
 msgstr "新規登録"
+
+msgid "There's an Enterprise version of Label Studio packed with more features and automation to label data faster while ensuring the highest quality."
+msgstr "Label Studio には、より多くの機能と自動化を備え、高品質を保ちながらラベリングを高速化できる Enterprise 版があります。"
+
+msgid "Use this token to authenticate with our API:"
+msgstr "このトークンを使って API 認証を行ってください:"
+
+msgid "User photo"
+msgstr "ユーザー写真"
+
+msgid "Welcome to Label Studio Community Edition"
+msgstr "Label Studio Community Edition へようこそ"
+
+msgid "You can sync data from all popular cloud storage providers to collect new items for labeling as they are uploaded, and return the annotation results to train and continuously improve models."
+msgstr "主要なクラウドストレージと同期し、アップロードされたデータを自動で収集してラベリングできます。さらに、アノテーション結果を学習に戻して、モデルを継続的に改善できます。"
+
+msgid "Your Avatar"
+msgstr "プロフィール画像"
+
+msgid "Your active organization"
+msgstr "現在のアクティブ組織"
+
+msgid "Your role"
+msgstr "あなたのロール"
+
+
+msgid "Email is too long"
+msgstr "メールアドレスが長すぎます"
+
+msgid "Invalid email"
+msgstr "有効なメールアドレスを入力してください"
+
+msgid "Please enter a display name %(display_name_length)s characters or fewer in length"
+msgstr "表示名は %(display_name_length)s 文字以内で入力してください"
+
+msgid "Please enter a username %(username_max_length)s characters or fewer in length"
+msgstr "ユーザー名は %(username_max_length)s 文字以内で入力してください"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "User with this email already exists"
+msgstr "このメールアドレスはすでに使用されています"
+
+msgid "User with username already exists"
+msgstr "このユーザー名はすでに使用されています"
+
+msgid "Work Email"
+msgstr "勤務先メールアドレス"
+
+msgid "The email and password you entered don't match."
+msgstr "メールアドレスまたはパスワードが正しくありません。"

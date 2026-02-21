@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: label-studio\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+
+msgid "Email Address"
+msgstr "メールアドレス"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Don't have an account?"
+msgstr "アカウントをお持ちではありませんか？"
+
+msgid "Keep me logged in this browser"
+msgstr "このブラウザでログイン状態を保持する"
+
+msgid "Log in"
+msgstr "ログイン"
+
+msgid "Sign up"
+msgstr "新規登録"

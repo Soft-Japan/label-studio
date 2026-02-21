@@ -1,5 +1,5 @@
 {% load filters %}
-
+{% load i18n %}
 <script nonce="{{request.csp_nonce}}">
 
   const SERVER_ID = {{ request.server_id|json_dumps_ensure_ascii|safe }};

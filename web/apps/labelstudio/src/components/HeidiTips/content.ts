@@ -267,4 +267,5 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
   ],
+  authPage: [],
 };

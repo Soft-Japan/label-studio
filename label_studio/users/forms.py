@@ -21,16 +21,15 @@ DISPLAY_NAME_LENGTH_ERR = _('Please enter a display name %(display_name_length)s
 }
 INVALID_USER_ERROR = _("The email and password you entered don't match.")
 
-FOUND_US_ELABORATE = 'Other'
+FOUND_US_ELABORATE = _('Other')
 FOUND_US_OPTIONS = (
-    ('Gi', 'Github'),
-    ('Em', 'Email or newsletter'),
-    ('Se', 'Search engine'),
-    ('Fr', 'Friend or coworker'),
-    ('Ad', 'Ad'),
+    ('Gi', _('Github')),
+    ('Em', _('Email or newsletter')),
+    ('Se', _('Search engine')),
+    ('Fr', _('Friend or coworker')),
+    ('Ad', _('Ad')),
     ('Ot', FOUND_US_ELABORATE),
 )
-
 logger = logging.getLogger(__name__)
 
 

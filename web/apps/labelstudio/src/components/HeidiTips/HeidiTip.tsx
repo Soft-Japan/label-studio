@@ -47,8 +47,7 @@ export const HeidiTip: FC<HeidiTipProps> = ({ tip, onDismiss, onLinkClick }) => 
           )}
         </div>
         <div className={cn("heidy-tip").elem("text").toClassName()}>
-          {tip.content}
-          <HeidiLink link={tip.link} onClick={onLinkClick} />
+          {tip.content ?? tip.description} <HeidiLink link={tip.link} onClick={onLinkClick} />
         </div>
       </div>
       <div className={cn("heidy-tip").elem("heidi").toClassName()}>

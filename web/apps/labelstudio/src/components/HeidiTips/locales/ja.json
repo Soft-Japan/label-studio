@@ -1,0 +1,132 @@
+{
+  "heidiTips": {
+    "projectCreation": {
+      "newStorageConnector": {
+        "title": "新しいストレージコネクタ",
+        "content": "Label Studio Enterprise を Databricks Unity Catalog（UC）Volumes に接続すると、ファイルをタスクとして取り込み、アノテーションをエクスポートできます。",
+        "linkLabel": "詳細を見る"
+      },
+      "starterCloud": {
+        "title": "ご存じですか？",
+        "content": "小規模チームや小規模プロジェクト向けに最適化された Label Studio Starter Cloud をお試しください。",
+        "linkLabel": "詳細を見る"
+      },
+      "accessControl": {
+        "title": "ご存じですか？",
+        "content": "Label Studio Enterprise では、社内メンバーや外部アノテーター向けに、プロジェクトとワークスペース単位でアクセス制御を行えます。",
+        "linkLabel": "詳細を見る"
+      },
+      "genaiTemplates": {
+        "title": "生成 AI 向けラベリング",
+        "content": "Label Studio には、教師あり LLM ファインチューニング、RAG の検索ランキング、RLHF、チャットボット評価などに対応したテンプレートがあります。",
+        "linkLabel": "テンプレートを見る"
+      }
+    },
+    "organizationPage": {
+      "teamGrowth": {
+        "title": "チームが拡大してきましたね！",
+        "content": "Label Studio Enterprise でチームにロールを割り当て、プロジェクト・ワークスペース単位で機密データへのアクセスを管理できます。",
+        "linkLabel": "詳細を見る"
+      },
+      "enableSso": {
+        "title": "ログインをもっと簡単かつ安全にしませんか？",
+        "content": "Label Studio Enterprise では、SAML・SCIM2・LDAP によるシングルサインオン（SSO）を有効化できます。",
+        "linkLabel": "詳細を見る"
+      },
+      "starterCloud": {
+        "title": "ご存じですか？",
+        "content": "Label Studio では、小規模チームと小規模プロジェクト向けに最適化された Starter Cloud を提供しています。",
+        "linkLabel": "詳細を見る"
+      },
+      "communitySlack": {
+        "title": "コミュニティで知見を共有しましょう",
+        "content": "質問やヒントはありますか？最新情報を得るには、Label Studio コミュニティの Slack チャンネルに参加してください。",
+        "linkLabel": "コミュニティに参加"
+      },
+      "integrations": {
+        "title": "ご存じですか？",
+        "content": "Label Studio はクラウドストレージ、機械学習モデル、各種ツールとの多様な連携に対応し、ML パイプラインの自動化を支援します。",
+        "linkLabel": "連携ディレクトリを見る"
+      },
+      "compliance": {
+        "title": "コンプライアンス要件はありますか？",
+        "content": "Label Studio Enterprise は SOC 2 と HIPAA に準拠しています。さらに高い統制が必要な場合は、オンプレミス導入で柔軟に運用できます。",
+        "linkLabel": "お問い合わせ"
+      }
+    },
+    "projectSettings": {
+      "awsMarketplace": {
+        "title": "AWS 予算を Label Studio Enterprise に活用",
+        "content": "Label Studio Enterprise は AWS Marketplace で利用できるため、コミット済み予算を活用してデータラベリング業務を効率化できます。",
+        "linkLabel": "詳細を見る"
+      },
+      "autoLabeling": {
+        "title": "自動ラベリングで時間を短縮",
+        "content": "Enterprise プラットフォームでは、品質を損なうことなく大規模データセットを即座に自動ラベリングできます。",
+        "linkLabel": "詳細を見る"
+      },
+      "starterCloud": {
+        "title": "ご存じですか？",
+        "content": "小規模チームや小規模プロジェクト向けに最適化された Label Studio Starter Cloud をお試しください。",
+        "linkLabel": "詳細を見る"
+      },
+      "evals": {
+        "title": "生成 AI モデルを評価",
+        "content": "自動化と人手による監督を組み合わせ、Enterprise プラットフォームで LLM 品質を評価・担保できます。",
+        "linkLabel": "詳細を見る"
+      },
+      "connectMl": {
+        "title": "ご存じですか？",
+        "content": "バックエンド SDK で ML モデルを接続すると、事前ラベリングやアクティブラーニングによる作業時間短縮が可能です。",
+        "linkLabel": "詳細を見る"
+      },
+      "nativePdf": {
+        "title": "ネイティブ PDF サポートを提供予定",
+        "content": "Label Studio Enterprise はネイティブ PDF サポートを提供します。",
+        "linkLabel": "先行アクセスをリクエスト"
+      }
+    },
+    "authPage": {
+      "wrappedEvent": {
+        "title": "12月10日 ライブイベント",
+        "description": "今年の主要リリースを、Label Studio プロダクトチームがテンポよくご紹介します。",
+        "linkLabel": "2025年12月10日 9:00 PST"
+      },
+      "promptsAutoLabeling": {
+        "title": "Prompts による自動ラベリング",
+        "description": "LLM を活用して、数千件のタスクを高精度予測で即座に事前ラベリングできます。",
+        "linkLabel": "詳細を見る"
+      },
+      "behindBenchmark": {
+        "title": "ベンチマーク開発の舞台裏",
+        "description": "Legalbenchmarks.ai が、LLM-as-a-judge と Label Studio Enterprise の人手レビューを組み合わせ、実務的な契約ドラフティング向けベンチマークを構築・拡張した方法をご紹介します。",
+        "linkLabel": "詳細を見る"
+      },
+      "chatFeature": {
+        "title": "新しい Enterprise 機能！",
+        "description": "チャット会話がネイティブデータ型として利用可能になり、Label Studio でチャット型 AI 体験の構築・評価が行えます。",
+        "linkLabel": "詳細を見る"
+      },
+      "starterCloud": {
+        "title": "ご存じですか？",
+        "description": "小規模チームや小規模プロジェクト向けに最適化された Label Studio Starter Cloud をお試しください。",
+        "linkLabel": "詳細を見る"
+      },
+      "enterpriseVersion": {
+        "title": "ご存じですか？",
+        "description": "より多くの機能と自動化を備えた Label Studio Enterprise を利用すれば、最高品質を維持しながら、より迅速にデータラベリングできます。",
+        "linkLabel": "詳細を見る"
+      },
+      "syncCloudData": {
+        "title": "ご存じですか？",
+        "description": "主要なクラウドストレージからデータを同期し、アップロードされた新規アイテムをラベリング対象として取り込み、アノテーション結果をモデルの継続的な改善に活用できます。",
+        "linkLabel": "詳細を見る"
+      },
+      "templates": {
+        "title": "ご存じですか？",
+        "description": "Label Studio には、画像分類・感情分析・教師あり LLM ファインチューニングなど、さまざまなデータタイプに対応した事前構築テンプレートが多数用意されています。",
+        "linkLabel": "すべてのテンプレートを見る"
+      }
+    }
+  }
+}

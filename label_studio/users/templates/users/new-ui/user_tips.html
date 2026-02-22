@@ -66,6 +66,146 @@
     ],
   };
 
+  const localizedAuthTipsByLanguage = {
+    en: {
+      "heidiTips.authPage.wrappedEvent": {
+        title: "Live Event Dec 10th",
+        description: "Join the Label Studio product team for a fast-paced tour of this year's biggest releases",
+        linkLabel: "December 10, 2025 9am PST",
+      },
+      "heidiTips.authPage.promptsAutoLabeling": {
+        title: "Auto-labeling with Prompts",
+        description: "Use LLMs to instantly pre-label thousands of tasks with accurate predictions.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.behindBenchmark": {
+        title: "Behind the benchmark",
+        description: "Learn how Legalbenchmarks.ai built and scaled a benchmark for practical contract drafting tasks using LLM-as-a-judge and human review in Label Studio Enterprise.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.chatFeature": {
+        title: "New Enterprise Feature!",
+        description: "Chat conversations are now a native data type for creating and evaluating chat-based AI experiences in Label Studio.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.starterCloud": {
+        title: "Did you know?",
+        description: "Try Label Studio Starter Cloud, optimized for small teams and projects.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.enterpriseVersion": {
+        title: "Did you know?",
+        description: "There's an Enterprise version of Label Studio packed with more features and automation to label data faster while ensuring the highest quality.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.syncCloudData": {
+        title: "Did you know?",
+        description: "You can sync data from all popular cloud storage providers to collect new items for labeling as they are uploaded, and return the annotation results to train and continuously improve models.",
+        linkLabel: "Learn more",
+      },
+      "heidiTips.authPage.templates": {
+        title: "Did you know?",
+        description: "Label Studio has dozens of pre-built templates for all data types you can use to configure your labeling UI, from image classification to sentiment analysis to supervised LLM fine-tuning.",
+        linkLabel: "See all templates",
+      },
+    },
+    ja: {
+      "heidiTips.authPage.wrappedEvent": {
+        title: "12月10日 ライブイベント",
+        description: "今年の主要リリースを、Label Studio プロダクトチームがテンポよくご紹介します。",
+        linkLabel: "2025年12月10日 9:00 PST",
+      },
+      "heidiTips.authPage.promptsAutoLabeling": {
+        title: "Prompts による自動ラベリング",
+        description: "LLM を活用して、数千件のタスクを高精度予測で即座に事前ラベリングできます。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.behindBenchmark": {
+        title: "ベンチマーク開発の舞台裏",
+        description: "Legalbenchmarks.ai が、LLM-as-a-judge と Label Studio Enterprise の人手レビューを組み合わせ、実務的な契約ドラフティング向けベンチマークを構築・拡張した方法をご紹介します。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.chatFeature": {
+        title: "新しい Enterprise 機能！",
+        description: "チャット会話がネイティブデータ型として利用可能になり、Label Studio でチャット型 AI 体験の構築・評価が行えます。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.starterCloud": {
+        title: "ご存じですか？",
+        description: "小規模チームや小規模プロジェクト向けに最適化された Label Studio Starter Cloud をお試しください。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.enterpriseVersion": {
+        title: "ご存じですか？",
+        description: "より多くの機能と自動化を備えた Label Studio Enterprise を利用すれば、最高品質を維持しながら、より迅速にデータラベリングできます。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.syncCloudData": {
+        title: "ご存じですか？",
+        description: "主要なクラウドストレージからデータを同期し、アップロードされた新規アイテムをラベリング対象として取り込み、アノテーション結果をモデルの継続的な改善に活用できます。",
+        linkLabel: "詳細を見る",
+      },
+      "heidiTips.authPage.templates": {
+        title: "ご存じですか？",
+        description: "Label Studio には、画像分類・感情分析・教師あり LLM ファインチューニングなど、さまざまなデータタイプに対応した事前構築テンプレートが多数用意されています。",
+        linkLabel: "すべてのテンプレートを見る",
+      },
+    },
+  };
+
+
+  const authTipI18nKeyByTreatment = {
+    wrapped_webinar_2025_live: "heidiTips.authPage.wrappedEvent",
+    prompts_auto_labeling_live: "heidiTips.authPage.promptsAutoLabeling",
+    legalbench_live: "heidiTips.authPage.behindBenchmark",
+    chat_live: "heidiTips.authPage.chatFeature",
+    starter_cloud_live: "heidiTips.authPage.starterCloud",
+    enterprise_platform_live: "heidiTips.authPage.enterpriseVersion",
+    sync_cloud_data: "heidiTips.authPage.syncCloudData",
+    enterprise_platform: "heidiTips.authPage.enterpriseVersion",
+    templates: "heidiTips.authPage.templates",
+    starter_cloud: "heidiTips.authPage.starterCloud",
+  };
+
+  function getTipI18nKey(tip) {
+    if (tip?.i18nKey) return tip.i18nKey;
+
+    return authTipI18nKeyByTreatment[tip?.link?.params?.treatment];
+  }
+
+  function getCurrentLanguageCode() {
+    const languageCookie = document.cookie
+      .split(";")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith("django_language="))
+      ?.split("=")[1];
+
+    const htmlLanguage = document.documentElement?.lang;
+    const rawLanguage = languageCookie || htmlLanguage || "en";
+
+    return rawLanguage.toLowerCase().startsWith("ja") ? "ja" : "en";
+  }
+
+  function resolveLocalizedTip(tip) {
+    const languageCode = getCurrentLanguageCode();
+    const localizedAuthTips = localizedAuthTipsByLanguage[languageCode] ?? localizedAuthTipsByLanguage.en;
+    const tipI18nKey = getTipI18nKey(tip);
+    const localizedTip = tipI18nKey ? localizedAuthTips[tipI18nKey] : undefined;
+
+    if (!localizedTip) return tip;
+
+    return {
+      ...tip,
+      title: localizedTip.title ?? tip.title,
+      content: localizedTip.content ?? tip.content,
+      description: localizedTip.description ?? tip.description,
+      link: {
+        ...tip.link,
+        label: localizedTip.linkLabel ?? tip.link?.label,
+      },
+    };
+  }
+  
   function createURL(url, params) {
     const base = new URL(url);
 
@@ -175,7 +315,7 @@
     const _title = document.querySelector('.tips .title');
     const _description = document.querySelector('.tips .description');
 
-    const selectedTip = getRandomTip();
+    const selectedTip = resolveLocalizedTip(getRandomTip());
     if (!selectedTip) {
       // Remove the tips container if there are no tips to show
       _container.remove();

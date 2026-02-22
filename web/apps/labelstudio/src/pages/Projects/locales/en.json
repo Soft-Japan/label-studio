@@ -1,0 +1,27 @@
+{
+  "projects": {
+    "meta": {
+      "title": "Projects"
+    },
+    "pagination": {
+      "label": "Projects"
+    },
+    "empty": {
+      "imageAlt": "Heidi looking for projects",
+      "title": "Heidi doesn't see any projects here!",
+      "description": "Create one and start labeling your data.",
+      "cta": "Create Project",
+      "createAriaLabel": "Create new project"
+    },
+    "card": {
+      "untitled": "New project",
+      "settings": "Settings",
+      "label": "Label",
+      "optionsAriaLabel": "Project options"
+    },
+    "context": {
+      "create": "Create",
+      "createAriaLabel": "Create new project"
+    }
+  }
+}

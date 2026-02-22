@@ -12,6 +12,7 @@ import { DataManagerPage } from "../DataManager/DataManager";
 import { SettingsPage } from "../Settings";
 import { EmptyProjectsList, ProjectsList } from "./ProjectsList";
 import { useAbortController, useUpdatePageTitle } from "@humansignal/core";
+import { getProjectsT, useProjectsI18n } from "./i18n";
 import "./Projects.scss";
 
 const getCurrentPage = () => {
@@ -22,6 +23,15 @@ const getCurrentPage = () => {
 
 export const ProjectsPage = () => {
   const api = React.useContext(ApiContext);
+  const runtimeLanguage =
+    document.cookie
+      .split(";")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith("django_language="))
+      ?.split("=")[1] ??
+    window.APP_SETTINGS?.language_code ??
+    document.documentElement.lang;
+  const { t } = useProjectsI18n(runtimeLanguage);
   const abortController = useAbortController();
   const [projectsList, setProjectsList] = React.useState([]);
   const [networkState, setNetworkState] = React.useState(null);
@@ -130,9 +140,10 @@ export const ProjectsPage = () => {
               totalItems={totalItems}
               loadNextPage={loadNextPage}
               pageSize={defaultPageSize}
+              t={t}
             />
           ) : (
-            <EmptyProjectsList openModal={openModal} />
+            <EmptyProjectsList openModal={openModal} t={t} />
           )}
           {modal && <CreateProject onClose={closeModal} />}
         </div>
@@ -141,7 +152,7 @@ export const ProjectsPage = () => {
   );
 };
 
-ProjectsPage.title = "Projects";
+ProjectsPage.title = APP_SETTINGS?.language_code?.toLowerCase().startsWith("ja") ? "プロジェクト" : "Projects";
 ProjectsPage.path = "/projects";
 ProjectsPage.exact = true;
 ProjectsPage.routes = ({ store }) => [
@@ -161,10 +172,21 @@ ProjectsPage.routes = ({ store }) => [
   },
 ];
 ProjectsPage.context = ({ openModal, showButton }) => {
+  const runtimeLanguage =
+    document.cookie
+      .split(";")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith("django_language="))
+      ?.split("=")[1] ??
+    window.APP_SETTINGS?.language_code ??
+    document.documentElement.lang;
+  const t = getProjectsT(runtimeLanguage);
+
   if (!showButton) return null;
+
   return (
-    <Button onClick={openModal} size="small" aria-label="Create new project">
-      Create
+    <Button onClick={openModal} size="small" aria-label={t("projects.context.createAriaLabel")}>
+      {t("projects.context.create")}
     </Button>
   );
 };

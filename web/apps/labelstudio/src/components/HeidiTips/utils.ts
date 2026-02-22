@@ -9,31 +9,55 @@ const CACHE_FETCHED_AT_KEY = "heidi_live_tips_collection_fetched_at";
 const CACHE_STALE_TIME = 1000 * 60 * 60; // 1 hour
 const MAX_TIMEOUT = 5000; // 5 seconds
 
-const AUTH_TREATMENT_TO_I18N_KEY: Record<string, string> = {
-  wrapped_webinar_2025_live: "heidiTips.authPage.wrappedEvent",
-  prompts_auto_labeling_live: "heidiTips.authPage.promptsAutoLabeling",
-  legalbench_live: "heidiTips.authPage.behindBenchmark",
-  chat_live: "heidiTips.authPage.chatFeature",
-  starter_cloud_live: "heidiTips.authPage.starterCloud",
-  enterprise_platform_live: "heidiTips.authPage.enterpriseVersion",
-  sync_cloud_data: "heidiTips.authPage.syncCloudData",
-  enterprise_platform: "heidiTips.authPage.enterpriseVersion",
-  templates: "heidiTips.authPage.templates",
-  starter_cloud: "heidiTips.authPage.starterCloud",
+const TREATMENT_TO_I18N_BY_COLLECTION: Partial<Record<keyof TipsCollection, Record<string, string>>> = {
+  projectCreation: {
+    databricks_uc_live: "heidiTips.projectCreation.newStorageConnector",
+    starter_cloud_live: "heidiTips.projectCreation.starterCloud",
+    access_to_projects_live: "heidiTips.projectCreation.accessControl",
+    genai_templates_live: "heidiTips.projectCreation.genaiTemplates",
+  },
+  organizationPage: {
+    team_growing_live: "heidiTips.organizationPage.teamGrowth",
+    enable_sso_live: "heidiTips.organizationPage.enableSso",
+    starter_cloud_live: "heidiTips.organizationPage.starterCloud",
+    share_knowledge_live: "heidiTips.organizationPage.communitySlack",
+    integration_points_live: "heidiTips.organizationPage.integrations",
+    compliance_live: "heidiTips.organizationPage.compliance",
+  },
+  projectSettings: {
+    aws_marketplace: "heidiTips.projectSettings.awsMarketplace",
+    auto_labeling_live: "heidiTips.projectSettings.autoLabeling",
+    starter_cloud_live: "heidiTips.projectSettings.starterCloud",
+    evals_live: "heidiTips.projectSettings.evals",
+    connect_ml_models_live: "heidiTips.projectSettings.connectMl",
+    lse_pdf_live: "heidiTips.projectSettings.nativePdf",
+    auto_labeling: "heidiTips.projectSettings.autoLabeling",
+    evals: "heidiTips.projectSettings.evals",
+    connect_ml_models: "heidiTips.projectSettings.connectMl",
+    starter_cloud: "heidiTips.projectSettings.starterCloud",
+  },
+  authPage: {
+    wrapped_webinar_2025_live: "heidiTips.authPage.wrappedEvent",
+    prompts_auto_labeling_live: "heidiTips.authPage.promptsAutoLabeling",
+    legalbench_live: "heidiTips.authPage.behindBenchmark",
+    chat_live: "heidiTips.authPage.chatFeature",
+    starter_cloud_live: "heidiTips.authPage.starterCloud",
+    enterprise_platform_live: "heidiTips.authPage.enterpriseVersion",
+    sync_cloud_data: "heidiTips.authPage.syncCloudData",
+    enterprise_platform: "heidiTips.authPage.enterpriseVersion",
+    templates: "heidiTips.authPage.templates",
+    starter_cloud: "heidiTips.authPage.starterCloud",
+  },
 };
 
 function getTipI18nKey(collection: keyof TipsCollection, rawTip: RawTip) {
   if (rawTip.i18nKey) return rawTip.i18nKey;
 
-  if (collection === "authPage") {
-    const treatment = rawTip.link.params?.treatment;
+  const treatment = rawTip.link.params?.treatment;
 
-    if (treatment) {
-      return AUTH_TREATMENT_TO_I18N_KEY[treatment];
-    }
-  }
+  if (!treatment) return undefined;
 
-  return undefined;
+  return TREATMENT_TO_I18N_BY_COLLECTION[collection]?.[treatment];
 }
 
 
@@ -58,6 +82,7 @@ export function getTipEvent(collection: string, tip: Tip, event: string) {
 
   return getTipCollectionEvent(collection, event);
 }
+
 
 function resolveTip(collection: keyof TipsCollection, rawTip: RawTip): Tip {
   const key = getTipI18nKey(collection, rawTip);

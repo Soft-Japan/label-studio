@@ -42,6 +42,24 @@ const LeftContextMenu = ({ className }) => (
   </StaticContent>
 );
 
+const isJapaneseLocale = () => document.documentElement.lang?.toLowerCase().startsWith("ja");
+
+const menuLabels = {
+  accountSettings: { en: "Account & Settings", ja: "アカウントと設定" },
+  logout: { en: "Log Out", ja: "ログアウト" },
+  home: { en: "Home", ja: "ホーム" },
+  projects: { en: "Projects", ja: "プロジェクト" },
+  organization: { en: "Organization", ja: "組織" },
+  api: { en: "API", ja: "API" },
+  docs: { en: "Docs", ja: "ドキュメント" },
+  github: { en: "GitHub", ja: "GitHub" },
+  slackCommunity: { en: "Slack Community", ja: "Slack コミュニティ" },
+  pinMenu: { en: "Pin menu", ja: "メニューを固定" },
+  unpinMenu: { en: "Unpin menu", ja: "メニューの固定を解除" },
+};
+
+const getMenuLabel = (labelKey) => (isJapaneseLocale() ? menuLabels[labelKey].ja : menuLabels[labelKey].en);
+
 const RightContextMenu = ({ className, ...props }) => {
   const { ContextComponent, contextProps } = useContextComponent();
 
@@ -183,11 +201,11 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
               <Menu>
                 <Menu.Item
                   icon={<IconPersonInCircle />}
-                  label="Account &amp; Settings"
+                  label={getMenuLabel("accountSettings")}
                   href={pages.AccountSettingsPage.path}
                 />
                 {/* <Menu.Item label="Dark Mode"/> */}
-                <Menu.Item icon={<IconDoor />} label="Log Out" href={absoluteURL("/logout")} data-external />
+                <Menu.Item icon={<IconDoor />} label={getMenuLabel("logout")} href={absoluteURL("/logout")} data-external />
                 {showNewsletterDot && (
                   <>
                     <Menu.Divider />
@@ -220,30 +238,30 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
               style={{ width: 240 }}
             >
               <Menu>
-                {isFF(FF_HOMEPAGE) && <Menu.Item label="Home" to="/" icon={<IconHome />} data-external exact />}
-                <Menu.Item label="Projects" to="/projects" icon={<IconFolder />} data-external exact />
-                <Menu.Item label="Organization" to="/organization" icon={<IconPeople />} data-external exact />
+                {isFF(FF_HOMEPAGE) && <Menu.Item label={getMenuLabel("home")} to="/" icon={<IconHome />} data-external exact />}
+                <Menu.Item label={getMenuLabel("projects")} to="/projects" icon={<IconFolder />} data-external exact />
+                <Menu.Item label={getMenuLabel("organization")} to="/organization" icon={<IconPeople />} data-external exact />
 
                 <Menu.Spacer />
 
                 <VersionNotifier showNewVersion />
 
                 <Menu.Item
-                  label="API"
+                  label={getMenuLabel("api")}
                   href="https://api.labelstud.io/api-reference/introduction/getting-started"
                   icon={<IconTerminal />}
                   target="_blank"
                 />
-                <Menu.Item label="Docs" href="https://labelstud.io/guide" icon={<IconBook />} target="_blank" />
+                <Menu.Item label={getMenuLabel("docs")} href="https://labelstud.io/guide" icon={<IconBook />} target="_blank" />
                 <Menu.Item
-                  label="GitHub"
+                  label={getMenuLabel("github")}
                   href="https://github.com/HumanSignal/label-studio"
                   icon={<IconGithub />}
                   target="_blank"
                   rel="noreferrer"
                 />
                 <Menu.Item
-                  label="Slack Community"
+                  label={getMenuLabel("slackCommunity")}
                   href="https://slack.labelstud.io/?source=product-menu"
                   icon={<IconSlack />}
                   target="_blank"
@@ -260,7 +278,7 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
                   onClick={sidebarPin}
                   active={sidebarPinned}
                 >
-                  {sidebarPinned ? "Unpin menu" : "Pin menu"}
+                  {sidebarPinned ? getMenuLabel("unpinMenu") : getMenuLabel("pinMenu")}
                 </Menu.Item>
               </Menu>
             </Dropdown>

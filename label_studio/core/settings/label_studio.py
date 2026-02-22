@@ -88,6 +88,11 @@ from label_studio.core.utils.common import collect_versions
 
 versions = collect_versions()
 
+# Use frontend HMR by default in local development so Python runserver
+# serves the same up-to-date localized bundle as `yarn` dev server.
+FRONTEND_HMR = get_bool_env('FRONTEND_HMR', True)
+FRONTEND_HOSTNAME = get_env('FRONTEND_HOSTNAME', 'http://localhost:8010' if FRONTEND_HMR else HOSTNAME)
+
 # in Label Studio Community version, feature flags are always ON
 FEATURE_FLAGS_DEFAULT_VALUE = True
 # or if file is not set, default is using offline mode

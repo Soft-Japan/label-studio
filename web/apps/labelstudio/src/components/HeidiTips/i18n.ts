@@ -10,16 +10,6 @@ const resources = {
 
 export const DEFAULT_HEIDI_LANGUAGE = "en";
 
-if (!i18n.isInitialized) {
-  i18n.use(initReactI18next).init({
-    resources,
-    lng: DEFAULT_HEIDI_LANGUAGE,
-    fallbackLng: DEFAULT_HEIDI_LANGUAGE,
-    interpolation: { escapeValue: false },
-    returnObjects: true,
-  });
-}
-
 function readDjangoLanguageCookie() {
   if (typeof document === "undefined") return undefined;
 
@@ -28,6 +18,18 @@ function readDjangoLanguageCookie() {
     .map((item) => item.trim())
     .find((item) => item.startsWith("django_language="))
     ?.split("=")[1];
+}
+
+function readHtmlLanguage() {
+  if (typeof document === "undefined") return undefined;
+
+  return document.documentElement.lang;
+}
+
+function readAppSettingsLanguage() {
+  if (typeof window === "undefined") return undefined;
+
+  return (window as { APP_SETTINGS?: { language_code?: string } }).APP_SETTINGS?.language_code;
 }
 
 export function normalizeHeidiLanguage(language?: string) {
@@ -40,9 +42,29 @@ export function getDefaultHeidiLanguage() {
   const djangoLanguage = readDjangoLanguageCookie();
 
   if (djangoLanguage) return normalizeHeidiLanguage(djangoLanguage);
+
+  const appSettingsLanguage = readAppSettingsLanguage();
+
+  if (appSettingsLanguage) return normalizeHeidiLanguage(appSettingsLanguage);
+
+  const htmlLanguage = readHtmlLanguage();
+
+  if (htmlLanguage) return normalizeHeidiLanguage(htmlLanguage);
   if (typeof navigator === "undefined") return DEFAULT_HEIDI_LANGUAGE;
 
   return normalizeHeidiLanguage(navigator.language);
+}
+
+if (!i18n.isInitialized) {
+  const defaultLanguage = getDefaultHeidiLanguage();
+
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: defaultLanguage,
+    fallbackLng: DEFAULT_HEIDI_LANGUAGE,
+    interpolation: { escapeValue: false },
+    returnObjects: true,
+  });
 }
 
 export function setHeidiTipsLanguage(language: "en" | "ja") {

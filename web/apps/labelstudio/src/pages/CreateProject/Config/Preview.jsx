@@ -5,6 +5,7 @@ import "./Config.scss";
 import { EMPTY_CONFIG } from "./Template";
 import { API_CONFIG } from "../../../config/ApiConfig";
 import { useAPI } from "../../../providers/ApiProvider";
+import { useCreateProjectI18n } from "../i18n";
 
 const configClass = cn("configure");
 
@@ -19,6 +20,7 @@ const loadDependencies = async () => {
 };
 
 export const Preview = ({ config, data, error, loading, project }) => {
+  const { t } = useCreateProjectI18n();
   // @see comment about dependencies above
   loadDependencies();
 
@@ -141,7 +143,7 @@ export const Preview = ({ config, data, error, loading, project }) => {
 
   return (
     <div className={configClass.elem("preview")}>
-      <h3>Preview</h3>
+      <h3>{t("createProject.config.preview.title", "Preview")}</h3>
       {error && (
         <div className={configClass.elem("preview-error")}>
           <h2>

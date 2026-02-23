@@ -108,6 +108,15 @@
         "ranking_and_scoring": "ランキングとスコアリング"
       },
       "templates": {
+        "speaker_segmentation": "スピーカー分割",
+        "speech_transcription": "音声転写",
+        "intent_classification_and_slot_filling": "インテント分類とスロットフィリング",
+        "video_object_tracking": "動画物体追跡",
+        "supervised_language_model_fine_tuning": "教師あり言語モデルファインチューニング",
+        "human_preference_collection_for_rlhf": "RLHFのための人間嗜好収集",
+        "chat_model_assessment": "チャットモデル評価",
+        "llm_reranker": "LLM再ランキング",
+        "conversational_analysis": "会話分析",
         "semantic_segmentation_with_polygons": "ポリゴンによるセマンティックセグメンテーション",
         "semantic_segmentation_with_masks": "マスクによるセマンティックセグメンテーション",
         "object_detection_with_bounding_boxes": "バウンディングボックスによる物体検出",
@@ -168,7 +177,7 @@
         "object_detection_with_bounding_boxes_for_traffic_monitoring": "交通監視向けバウンディングボックス物体検出",
         "object_detection_with_bounding_boxes_for_urban_planning": "都市計画向けバウンディングボックス物体検出",
         "object_detection_with_ellipses": "楕円による物体検出",
-        "optical_character_recognition_ocr": "光学文字認識（OCR）",
+        "optical_character_recognition": "光学文字認識",
         "optical_character_recognition_for_document_digitization": "文書デジタル化向けOCR",
         "optical_character_recognition_for_educational_assessment": "教育評価向けOCR",
         "optical_character_recognition_for_license_plate_recognition": "ナンバープレート認識向けOCR",
@@ -187,7 +196,7 @@
         "semantic_segmentation_with_polygons_for_medical_image_analysis": "医用画像解析向けポリゴンセマンティックセグメンテーション",
         "semantic_segmentation_with_polygons_for_sports_analytics": "スポーツ分析向けポリゴンセマンティックセグメンテーション",
         "semantic_segmentation_with_polygons_for_wildlife_conservation": "野生動物保護向けポリゴンセマンティックセグメンテーション",
-        "sentiment_analysis_text_classification": "感情分析テキスト分類",
+        "text_classification": "感情分析テキスト分類",
         "side_by_side_llm_output_comparison": "LLM出力の並列比較",
         "signal_quality": "信号品質",
         "signal_quality_detection": "信号品質検出",
@@ -212,6 +221,61 @@
         "visual_ranker": "ビジュアルランカー",
         "voice_activity_detection": "音声アクティビティ検出",
         "website_rating": "ウェブサイト評価"
+      },
+      "configureSettings": "設定を構成",
+      "settingsOptions": {
+        "width_of_region_borders": "領域の境界線の幅",
+        "allow_image_zoom_ctrlwheel": "画像ズームを許可（Ctrl + ホイール）",
+        "show_controls_to_zoom_in_and_out": "ズームイン・ズームアウトのコントロールを表示",
+        "show_controls_to_rotate_image": "画像回転のコントロールを表示",
+        "select_text_by_words": "単語単位でテキストを選択",
+        "display_labels": "ラベル表示:",
+        "add_filter_for_long_list_of_labels": "長いラベル一覧にフィルターを追加",
+        "allow_image_zoom_ctrl_wheel": "画像ズームを許可（Ctrl + ホイール）"
+      },
+      "labelingInterface": "ラベリングインターフェース",
+      "browseTemplates": "テンプレートを参照",
+      "modes": {
+        "code": "コード",
+        "visual": "ビジュアル"
+      },
+      "actions": {
+        "saving": "保存中...",
+        "updatingPreview": "プレビューを更新中...",
+        "updatePreview": "プレビューを更新"
+      },
+      "tagsLink": {
+        "prefix": "タグを使ってラベリングインターフェースを設定します。",
+        "link": "すべてのタグを見る"
+      },
+      "empty": {
+        "title": "ラベリング設定が空です。データにラベルを付けるには設定が必要です。",
+        "descriptionPrefix": "定義済みテンプレートから開始するか、Codeパネルで独自の設定を作成してください。ラベリング設定はXMLベースで、",
+        "descriptionLink": "ドキュメントで利用可能なタグを確認できます"
+      },
+      "labels": {
+        "addChoices": "選択肢を追加",
+        "addLabelNames": "ラベル名を追加",
+        "addHint": "複数ラベルを追加するには改行で区切ってください",
+        "addAria": "ラベルを追加",
+        "add": "追加",
+        "choices": "選択肢",
+        "labels": "ラベル"
+      },
+      "data": {
+        "configureData": "データを設定",
+        "moreDataRequired": "このテンプレートには現在のデータより多くのデータが必要です",
+        "uploadDataHint": "どのフィールドにラベルを付けるか選択するには、先にデータをアップロードする必要があります。代わりにCodeモードで指定することもできます。",
+        "useObject": "使用",
+        "for": "対象",
+        "from": "から",
+        "field": "フィールド",
+        "importedFile": "<インポート済みファイル>",
+        "setManually": "<手動で設定>"
+      },
+      "preview": {
+        "title": "プレビュー",
+        "defaultInstruction": "ラベルを選択して画像をクリックすると開始します"
       }
     }
   }

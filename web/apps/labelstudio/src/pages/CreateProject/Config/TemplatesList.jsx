@@ -123,7 +123,7 @@ export const TemplatesList = ({ selectedGroup, selectedRecipe, onCustomTemplate,
           className="w-full"
           aria-label={translate("createProject.config.customTemplateAria", "Create custom template")}
         >
-          Custom template
+          {translate("createProject.config.customTemplateAria", "Create custom template")}
         </Button>
       </aside>
       <main>

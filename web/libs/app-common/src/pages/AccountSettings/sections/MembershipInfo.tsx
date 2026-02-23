@@ -5,12 +5,14 @@ import { getApiInstance } from "@humansignal/core";
 import { useMemo } from "react";
 import type { WrappedResponse } from "@humansignal/core/lib/api-proxy/types";
 import { useAuth } from "@humansignal/core/providers/AuthProvider";
+import { useAccountSettingsI18n } from "../i18n";
 
 function formatDate(date?: string) {
   return format(new Date(date ?? ""), "dd MMM yyyy, KK:mm a");
 }
 
 export const MembershipInfo = () => {
+  const { t } = useAccountSettingsI18n();
   const { user } = useAuth();
   const dateJoined = useMemo(() => {
     if (!user?.date_joined) return null;
@@ -36,29 +38,29 @@ export const MembershipInfo = () => {
 
       const annotationCount = response?.annotations_count;
       const contributions = response?.contributed_projects_count;
-      let role = "Owner";
+      let role = t("accountSettings.membershipInfo.roles.owner");
 
       switch (response.role) {
         case "OW":
-          role = "Owner";
+          role = t("accountSettings.membershipInfo.roles.owner");
           break;
         case "DI":
-          role = "Deactivated";
+          role = t("accountSettings.membershipInfo.roles.deactivated");
           break;
         case "AD":
-          role = "Administrator";
+          role = t("accountSettings.membershipInfo.roles.administrator");
           break;
         case "MA":
-          role = "Manager";
+          role = t("accountSettings.membershipInfo.roles.manager");
           break;
         case "AN":
-          role = "Annotator";
+          role = t("accountSettings.membershipInfo.roles.annotator");
           break;
         case "RE":
-          role = "Reviewer";
+          role = t("accountSettings.membershipInfo.roles.reviewer");
           break;
         case "NO":
-          role = "Pending";
+          role = t("accountSettings.membershipInfo.roles.pending");
           break;
       }
 
@@ -101,22 +103,22 @@ export const MembershipInfo = () => {
   return (
     <div className={styles.membershipInfo} id="membership-info">
       <div className="flex gap-2 w-full justify-between">
-        <div>User ID</div>
+        <div>{t("accountSettings.membershipInfo.userId")}</div>
         <div>{user?.id}</div>
       </div>
 
       <div className="flex gap-2 w-full justify-between">
-        <div>Registration date</div>
+        <div>{t("accountSettings.membershipInfo.registrationDate")}</div>
         <div>{dateJoined}</div>
       </div>
 
       <div className="flex gap-2 w-full justify-between">
-        <div>Annotations Submitted</div>
+        <div>{t("accountSettings.membershipInfo.annotationsSubmitted")}</div>
         <div>{membership.data?.annotationCount}</div>
       </div>
 
       <div className="flex gap-2 w-full justify-between">
-        <div>Projects contributed to</div>
+        <div>{t("accountSettings.membershipInfo.projectsContributedTo")}</div>
         <div>{membership.data?.contributions}</div>
       </div>
 
@@ -124,33 +126,33 @@ export const MembershipInfo = () => {
 
       {user?.active_organization_meta && (
         <div className="flex gap-2 w-full justify-between">
-          <div>Organization</div>
+          <div>{t("accountSettings.membershipInfo.organization")}</div>
           <div>{user.active_organization_meta.title}</div>
         </div>
       )}
 
       {membership.data?.role && (
         <div className="flex gap-2 w-full justify-between">
-          <div>My role</div>
+          <div>{t("accountSettings.membershipInfo.myRole")}</div>
           <div>{membership.data.role}</div>
         </div>
       )}
 
       <div className="flex gap-2 w-full justify-between">
-        <div>Organization ID</div>
+        <div>{t("accountSettings.membershipInfo.organizationId")}</div>
         <div>{user?.active_organization}</div>
       </div>
 
       {user?.active_organization_meta && (
         <div className="flex gap-2 w-full justify-between">
-          <div>Owner</div>
+          <div>{t("accountSettings.membershipInfo.owner")}</div>
           <div>{user.active_organization_meta.email}</div>
         </div>
       )}
 
       {organization.data?.createdAt && (
         <div className="flex gap-2 w-full justify-between">
-          <div>Created</div>
+          <div>{t("accountSettings.membershipInfo.created")}</div>
           <div>{organization.data?.createdAt}</div>
         </div>
       )}

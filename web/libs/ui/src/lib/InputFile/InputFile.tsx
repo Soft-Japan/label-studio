@@ -26,10 +26,14 @@ export const InputFile = forwardRef(({ name, className, text, onChange, ...props
     },
     [ref],
   );
+
+  const isJapanese = window.APP_SETTINGS?.language_code?.toLowerCase().startsWith("ja");
+  const uploadImageText = isJapanese ? "画像をアップロード" : "Upload Image";
+
   return (
     <label className={clsx(styles.inputWrapper, className)} onKeyDown={wrapperKeyDownHandler}>
       <span className={styles.labelContent}>
-        <IconUpload className={styles.icon} /> {text ?? <>Upload Image</>}
+        <IconUpload className={styles.icon} /> {text ?? <>{uploadImageText}</>}
       </span>
       <input
         ref={ref}

@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import { settingsAtom } from "./atoms";
 import { useAuth } from "@humansignal/core/providers/AuthProvider";
+import { useAccountSettingsI18n } from "./i18n";
 
 /**
  * FIXME: This is legacy imports. We're not supposed to use such statements
@@ -18,6 +19,7 @@ import { SidebarMenu } from "apps/labelstudio/src/components/SidebarMenu/Sidebar
 
 const AccountSettingsSection = () => {
   const { user, permissions } = useAuth();
+  const { t } = useAccountSettingsI18n();
   const { sectionId } = useParams<{ sectionId: string }>();
   const settings = useAtomValue(settingsAtom);
   const contentClassName = clsx(styles.accountSettings__content, {
@@ -25,8 +27,8 @@ const AccountSettingsSection = () => {
   });
 
   const resolvedSections = useMemo(() => {
-    return settings.data && !("error" in settings.data) ? accountSettingsSections(settings.data, permissions) : [];
-  }, [settings.data, user]);
+    return settings.data && !("error" in settings.data) ? accountSettingsSections(settings.data, permissions, t) : [];
+  }, [settings.data, user, t]);
 
   const currentSection = useMemo(
     () => resolvedSections.find((section) => section.id === sectionId),
@@ -35,11 +37,11 @@ const AccountSettingsSection = () => {
 
   // Update page title to reflect the current section
   const pageTitleText = useMemo(() => {
-    if (!currentSection) return "My Account";
+    if (!currentSection) return t("accountSettings.title");
 
     // If title is a string, use it directly
     if (typeof currentSection.title === "string") {
-      return createTitleFromSegments([currentSection.title, "My Account"]);
+      return createTitleFromSegments([currentSection.title, t("accountSettings.title")]);
     }
 
     // For non-string titles (like JSX elements), derive from the section ID
@@ -48,8 +50,8 @@ const AccountSettingsSection = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
 
-    return createTitleFromSegments([titleFromId, "My Account"]);
-  }, [currentSection]);
+    return createTitleFromSegments([titleFromId, t("accountSettings.title")]);
+  }, [currentSection, t]);
 
   useUpdatePageTitle(pageTitleText);
 
@@ -94,9 +96,10 @@ const AccountSettingsPage = () => {
   const match = useRouteMatch();
   const { sectionId } = useParams<{ sectionId: string }>();
   const { user, permissions } = useAuth();
+  const { t } = useAccountSettingsI18n();
   const resolvedSections = useMemo(() => {
-    return settings.data && !("error" in settings.data) ? accountSettingsSections(settings.data, permissions) : [];
-  }, [settings.data, user]);
+    return settings.data && !("error" in settings.data) ? accountSettingsSections(settings.data, permissions, t) : [];
+  }, [settings.data, user, t]);
 
   const menuItems = useMemo(
     () =>
@@ -123,12 +126,12 @@ const AccountSettingsPage = () => {
   );
 };
 
-AccountSettingsPage.title = "My Account";
+AccountSettingsPage.title = APP_SETTINGS?.language_code?.toLowerCase().startsWith("ja") ? "マイアカウント" : "My Account";
 AccountSettingsPage.path = "/user/account";
 AccountSettingsPage.exact = false;
 AccountSettingsPage.routes = () => [
   {
-    title: () => "My Account",
+    title: () => (APP_SETTINGS?.language_code?.toLowerCase().startsWith("ja") ? "マイアカウント" : "My Account"),
     path: "/account",
     component: () => <Redirect to={AccountSettingsPage.path} />,
   },

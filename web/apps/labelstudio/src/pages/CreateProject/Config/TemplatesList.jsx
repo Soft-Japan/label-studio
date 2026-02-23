@@ -5,6 +5,7 @@ import { cn } from "../../../utils/bem";
 import "./Config.scss";
 import { IconInfo } from "@humansignal/icons";
 import { Button, EnterpriseBadge } from "@humansignal/ui";
+import { useCreateProjectI18n } from "../i18n";
 
 const listClass = cn("templates-list");
 
@@ -15,30 +16,50 @@ const Arrow = () => (
   </svg>
 );
 
-const TemplatesInGroup = ({ templates, group, onSelectRecipe, isEdition }) => {
+const slugify = (value) =>
+  String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/[&/]/g, " and ")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+
+const TemplatesInGroup = ({ templates, group, onSelectRecipe, isEdition, t }) => {
   const picked = templates
     .filter((recipe) => recipe.group === group)
     // templates without `order` go to the end of the list
     .sort((a, b) => (a.order ?? Number.POSITIVE_INFINITY) - (b.order ?? Number.POSITIVE_INFINITY));
 
   const isCommunityEdition = isEdition === "Community";
+  const translate = (key, fallback) => {
+    const value = t(key);
+
+    return value && value !== key ? value : fallback;
+  };
 
   return (
     <ul>
       {picked.map((recipe) => {
         const isEnterpriseTemplate = recipe.type === "enterprise";
         const isDisabled = isCommunityEdition && isEnterpriseTemplate;
-
+        const templateTitle = translate(`createProject.config.templates.${slugify(recipe.title)}`, recipe.title);
         return (
           <li
             key={recipe.title}
             onClick={() => !isDisabled && onSelectRecipe(recipe)}
             className={listClass.elem("template").mod({ disabled: isDisabled })}
-            title={isDisabled ? "Enterprise feature - Available in Label Studio Enterprise" : ""}
+            title={
+              isDisabled
+                ? translate(
+                    "createProject.config.enterpriseOnly",
+                    "Enterprise feature - Available in Label Studio Enterprise",
+                  )
+                : ""
+            }
           >
             <img src={recipe.image} alt={""} />
             <div className="flex flex-col items-center w-full">
-              <h3 className="flex flex-1 justify-center text-center w-full">{recipe.title}</h3>
+              <h3 className="flex flex-1 justify-center text-center w-full">{templateTitle}</h3>
               {isEnterpriseTemplate && isCommunityEdition && <EnterpriseBadge className="mb-base" />}
             </div>
           </li>
@@ -53,6 +74,12 @@ export const TemplatesList = ({ selectedGroup, selectedRecipe, onCustomTemplate,
   const [templates, setTemplates] = React.useState();
   const api = useAPI();
   const isEdition = window?.APP_SETTINGS?.version_edition;
+  const { t } = useCreateProjectI18n();
+  const translate = (key, fallback) => {
+    const value = t(key);
+
+    return value && value !== key ? value : fallback;
+  };
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -82,7 +109,7 @@ export const TemplatesList = ({ selectedGroup, selectedRecipe, onCustomTemplate,
                 selected: selectedRecipe?.group === group,
               })}
             >
-              {group}
+              {translate(`createProject.config.groups.${slugify(group)}`, group)}
               <Arrow />
             </li>
           ))}
@@ -94,7 +121,7 @@ export const TemplatesList = ({ selectedGroup, selectedRecipe, onCustomTemplate,
           size="small"
           onClick={onCustomTemplate}
           className="w-full"
-          aria-label="Create custom template"
+          aria-label={translate("createProject.config.customTemplateAria", "Create custom template")}
         >
           Custom template
         </Button>
@@ -106,14 +133,15 @@ export const TemplatesList = ({ selectedGroup, selectedRecipe, onCustomTemplate,
           group={selected}
           onSelectRecipe={onSelectRecipe}
           isEdition={isEdition}
+          t={t}
         />
       </main>
       <footer className="flex items-center justify-center gap-1">
         <IconInfo className={listClass.elem("info-icon")} width="20" height="20" />
         <span>
-          See the documentation to{" "}
+          {translate("createProject.config.contributePrefix", "See the documentation to")} {" "}
           <a href="https://labelstud.io/guide" target="_blank" rel="noreferrer">
-            contribute a template
+            {translate("createProject.config.contributeLink", "contribute a template")}
           </a>
           .
         </span>

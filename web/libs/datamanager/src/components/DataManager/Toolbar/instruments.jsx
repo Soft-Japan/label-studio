@@ -8,6 +8,7 @@ import { Icon } from "../../Common/Icon/Icon";
 import { Interface } from "../../Common/Interface";
 import { ExportButton, ImportButton } from "../../Common/SDKButtons";
 import { Tooltip } from "@humansignal/ui";
+import { useTranslation } from "react-i18next";
 import { ActionsButton } from "./ActionsButton";
 import { DensityToggle } from "./DensityToggle";
 import { GridWidthButton } from "./GridWidthButton";
@@ -27,7 +28,8 @@ const style = {
  * If expired it renders disabled Import button with a tooltip.
  */
 const ImportButtonWithChecks = ({ size }) => {
-  const simpleButton = <ImportButton size={size}>Import</ImportButton>;
+  const { t } = useTranslation();
+  const simpleButton = <ImportButton size={size}>{t("datamanager.toolbar.import", "Import")}</ImportButton>;
   const isOpenSource = !window.APP_SETTINGS.billing;
   // Check if user is on Starter Cloud plan
   const isStarterCloud = isStarterCloudPlan();
@@ -51,7 +53,7 @@ const ImportButtonWithChecks = ({ size }) => {
   // Disabled buttons ignore hover, so we use wrapper to properly handle a tooltip
   return (
     <Tooltip
-      title="You must upgrade your plan to import data"
+      title={t("datamanager.toolbar.upgradeToImport", "You must upgrade your plan to import data")}
       style={{
         maxWidth: 200,
         textAlign: "center",
@@ -59,7 +61,7 @@ const ImportButtonWithChecks = ({ size }) => {
     >
       <div className={cn("button-wrapper").toClassName()}>
         <ImportButton disabled size={size}>
-          Import
+          {t("datamanager.toolbar.import", "Import")}
         </ImportButton>
       </div>
     </Tooltip>
@@ -74,6 +76,7 @@ export const instruments = {
     return <DensityToggle size={size} />;
   },
   columns: ({ size }) => {
+    const { t } = useTranslation();
     const iconProps = {
       style: {
         marginRight: 4,
@@ -84,7 +87,7 @@ export const instruments = {
       <FieldsButton
         wrapper={FieldsButton.Checkbox}
         trailingIcon={<Icon {...iconProps} />}
-        title={"Columns"}
+        title={t("datamanager.toolbar.columns", "Columns")}
         size={size}
         style={style}
         openUpwardForShortViewport={false}
@@ -123,9 +126,11 @@ export const instruments = {
     );
   },
   "export-button": ({ size }) => {
+    const { t } = useTranslation();
+    
     return (
       <Interface name="export">
-        <ExportButton size={size}>Export</ExportButton>
+        <ExportButton size={size}>{t("datamanager.toolbar.export", "Export")}</ExportButton>
       </Interface>
     );
   },

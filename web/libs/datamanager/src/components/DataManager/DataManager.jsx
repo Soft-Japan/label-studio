@@ -10,6 +10,7 @@ import { FiltersSidebar } from "../Filters/FiltersSidebar/FilterSidebar";
 import { DataView } from "../MainView";
 import "./DataManager.scss";
 import { Toolbar } from "./Toolbar/Toolbar";
+import { useTranslation } from "react-i18next";
 
 const tabContentCN = cn("tabs-dm-content");
 
@@ -43,22 +44,24 @@ const switchInjector = inject(({ store }) => {
 });
 
 const ProjectSummary = summaryInjector((props) => {
+  const { t } = useTranslation();
+
   return (
     <Space size="large" style={{ paddingRight: "1em", color: "var(--color-neutral-content-subtle)" }}>
       {props.cloudSync && (
         <Space size="small" style={{ fontSize: 12, fontWeight: 400, opacity: 0.8 }}>
-          Storage sync
+          {t("datamanager.summary.storageSync", "Storage sync")}
           <Spinner size="small" />
         </Space>
       )}
       <span style={{ display: "flex", alignItems: "center", fontSize: 12 }}>
         <Space size="compact">
           <span>
-            Tasks: <span title="Filtered tasks">{props.totalFoundTasks}</span> /{" "}
-            <span title="Total tasks in the project">{props.totalTasks}</span>
+            {t("datamanager.summary.tasks", "Tasks")}: <span title={t("datamanager.summary.filteredTasks", "Filtered tasks")}>{props.totalFoundTasks}</span> /{" "}
+            <span title={t("datamanager.summary.totalTasksInProject", "Total tasks in the project")}>{props.totalTasks}</span>
           </span>
-          <span>Submitted annotations: {props.totalAnnotations}</span>
-          <span>Predictions: {props.totalPredictions}</span>
+          <span>{t("datamanager.summary.submittedAnnotations", "Submitted annotations")}: {props.totalAnnotations}</span>
+          <span>{t("datamanager.summary.predictions", "Predictions")}: {props.totalPredictions}</span>
         </Space>
       </span>
     </Space>

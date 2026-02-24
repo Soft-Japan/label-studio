@@ -8,6 +8,7 @@ import { Dropdown } from "@humansignal/ui";
 import Input from "../Input/Input";
 import "./Tabs.scss";
 import { TabsMenu } from "./TabsMenu";
+import { useTranslation } from "react-i18next";
 
 const TabsContext = createContext();
 export const tabsCN = cn("tabs-dm");
@@ -97,6 +98,7 @@ export const TabsItem = observer(
     virtual = false,
   }) => {
     const { switchTab, selectedTab, lastTab, allowedActions } = useContext(TabsContext);
+    const { t } = useTranslation();
     const [currentTitle, setCurrentTitle] = useState(title);
     const [savedTitle, setSavedTitle] = useState(title); // Track the last saved title
     const [renameMode, setRenameMode] = useState(false);
@@ -167,7 +169,8 @@ export const TabsItem = observer(
       [renameMode, switchTab, tab],
     );
 
-    const tabLabel = virtual ? `${currentTitle} (unsaved)` : currentTitle;
+    const localizedTitle = currentTitle === "Default" ? t("datamanager.tabs.default", "Default") : currentTitle;
+    const tabLabel = virtual ? `${localizedTitle} (${t("datamanager.tabs.unsaved", "unsaved")})` : localizedTitle;
 
     return (
       <div className={tabsCN.elem("item").mod({ active, virtual, menuOpen: isMenuOpen, edit: renameMode }).toString()}>
@@ -189,7 +192,7 @@ export const TabsItem = observer(
           tabIndex={renameMode ? -1 : 0}
           onClick={() => !renameMode && switchTab?.(tab)}
           onKeyDown={handleKeyDown}
-          title={currentTitle}
+          title={localizedTitle}
           data-leave
         >
           {renameMode ? (
@@ -213,7 +216,7 @@ export const TabsItem = observer(
               }}
               aria-hidden="true"
             >
-              {currentTitle}
+              {localizedTitle}
             </span>
           )}
         </div>

@@ -13,6 +13,7 @@ import {
 import { Button, IconExternal, Typography, Tooltip } from "@humansignal/ui";
 import { getDocsUrl } from "../../../../../../editor/src/utils/docs";
 import { ABILITY, useAuth } from "@humansignal/core/providers/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 declare global {
   interface Window {
@@ -162,6 +163,8 @@ const StorageProviderIcons = () => (
 
 // Documentation link component
 const DocumentationLink = () => {
+  const { t } = useTranslation();
+
   if (window.APP_SETTINGS?.whitelabel_is_active) {
     return null;
   }
@@ -175,7 +178,7 @@ const DocumentationLink = () => {
         className="inline-flex items-center gap-1"
         data-testid="dm-docs-data-import-link"
       >
-        See docs on importing data
+        {t("datamanager.emptyState.import.docs", "See docs on importing data")}
         <span className="sr-only"> (opens in a new tab)</span>
         <IconExternal width={20} height={20} />
       </a>
@@ -215,6 +218,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
 }) => {
   const isImportEnabled = Boolean(canImport);
   const { permissions } = useAuth();
+  const { t } = useTranslation();
 
   // If filters are applied, show the filter-specific empty state (regardless of user role)
   if (hasFilters) {
@@ -226,7 +230,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
       description: "Try adjusting or clearing the filters to see more results",
       actions: (
         <Button variant="primary" look="outlined" onClick={onClearFilters} data-testid="dm-clear-filters-button">
-          Clear Filters
+          {t("datamanager.emptyState.filters.clear", "Clear Filters")}
         </Button>
       ),
     });
@@ -289,8 +293,11 @@ export const EmptyState: FC<EmptyStateProps> = ({
   // Default case: show import functionality (existing behavior for Owners/Admins/Managers)
   return renderEmptyStateLayout({
     icon: <IconUpload />,
-    title: "Import data to get your project started",
-    description: "Connect your cloud storage or upload files from your computer",
+    title: t("datamanager.emptyState.import.title", "Import data to get your project started"),
+    description: t(
+      "datamanager.emptyState.import.description",
+      "Connect your cloud storage or upload files from your computer",
+    ),
     testId: "empty-state-label",
     ariaLabelledBy: "dm-empty-title",
     ariaDescribedBy: "dm-empty-desc",
@@ -305,7 +312,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
             onClick={onOpenSourceStorageModal}
             data-testid="dm-connect-source-storage-button"
           >
-            Connect Cloud Storage
+            {t("datamanager.emptyState.import.connectCloudStorage", "Connect Cloud Storage")}
           </Button>
         )}
 
@@ -317,7 +324,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
             onClick={onOpenImportModal}
             data-testid="dm-import-button"
           >
-            Import
+            {t("datamanager.emptyState.import.import", "Import")}
           </Button>
         )}
       </>

@@ -1,0 +1,78 @@
+{
+  "datamanager": {
+    "emptyState": {
+      "import": {
+        "title": "プロジェクトを開始するためにデータをインポートしてください",
+        "description": "クラウドストレージを接続するか、コンピューターからファイルをアップロードしてください",
+        "connectCloudStorage": "クラウドストレージを接続",
+        "import": "インポート",
+        "docs": "データのインポートに関するドキュメントを見る"
+      },
+      "filters": {
+        "clear": "フィルターをクリア"
+      }
+    },
+    "toolbar": {
+      "actions": "アクション",
+      "columns": "列",
+      "default": "デフォルト",
+      "export": "エクスポート",
+      "filters": "フィルター",
+      "import": "インポート",
+      "loadingActions": "アクションを読み込み中...",
+      "orderBy": "並び順",
+      "tasksActions": "タスクのアクション",
+      "upgradeToImport": "データをインポートするにはプランをアップグレードする必要があります"
+    },
+    "summary": {
+      "filteredTasks": "フィルタリング後のタスク",
+      "predictions": "予測",
+      "storageSync": "ストレージ同期",
+      "submittedAnnotations": "提出済みアノテーション",
+      "tasks": "タスク",
+      "totalTasksInProject": "プロジェクト内の総タスク数"
+    },
+    "tabs": {
+      "default": "デフォルト",
+      "unsaved": "未保存"
+    },
+    "page": {
+      "backToProjects": "プロジェクトに戻る",
+      "instructions": "手順",
+      "labeling": "ラベリング",
+      "labelingInstructions": "ラベリング手順",
+      "projectMissing": "プロジェクトは削除されたか、まだ作成されていません",
+      "settings": "設定"
+    },
+    "filters": {
+      "noFiltersApplied": "フィルターは適用されていません",
+      "addFilter": "フィルターを追加",
+      "addAnotherFilter": "別のフィルターを追加",
+      "pinToSidebar": "サイドバーに固定",
+      "pinFiltersToSidebar": "フィルターをサイドバーに固定"
+    },
+    "columns": {
+      "id": "ID",
+      "innerId": "内部ID",
+      "completed": "完了",
+      "annotations": "アノテーション",
+      "cancelled": "キャンセル済み",
+      "predictions": "予測",
+      "annotatedBy": "担当アノテーター",
+      "annotationResults": "アノテーション結果",
+      "annotationIds": "アノテーションID",
+      "predictionScore": "予測スコア",
+      "predictionModelVersions": "予測モデルのバージョン",
+      "predictionResults": "予測結果",
+      "uploadFilename": "アップロードファイル名",
+      "storageFilename": "保存ファイル名",
+      "createdAt": "作成日時",
+      "updatedAt": "更新日時",
+      "updatedBy": "更新者",
+      "leadTime": "リードタイム",
+      "draft": "下書き",
+      "data": "データ",
+      "image": "画像"
+    }
+  }
+}

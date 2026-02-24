@@ -14,6 +14,7 @@ import { isDefined } from "../../utils/helpers";
 import { ImportModal } from "../CreateProject/Import/ImportModal";
 import { ExportPage } from "../ExportPage/ExportPage";
 import { APIConfig } from "./api-config";
+import { useDataManagerI18n } from "./i18n";
 
 import "./DataManager.scss";
 
@@ -70,6 +71,16 @@ export const DataManagerPage = ({ ...props }) => {
   const [loading, setLoading] = useState(!window.DataManager || !window.LabelStudio);
   const dataManagerRef = useRef();
   const projectId = project?.id;
+  const runtimeLanguage =
+    document.cookie
+      .split(";")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith("django_language="))
+      ?.split("=")[1] ??
+    window.APP_SETTINGS?.language_code ??
+    document.documentElement.lang;
+
+  useDataManagerI18n(runtimeLanguage);
 
   const init = useCallback(async () => {
     if (!window.LabelStudio) return;
@@ -214,10 +225,10 @@ export const DataManagerPage = ({ ...props }) => {
 
   return crashed ? (
     <div className={cn("crash").toClassName()}>
-      <div className={cn("crash").elem("info").toClassName()}>Project was deleted or not yet created</div>
+      <div className={cn("crash").elem("info").toClassName()}>{t("datamanager.page.projectMissing", "Project was deleted or not yet created")}</div>
 
-      <Button to="/projects" aria-label="Back to projects">
-        Back to projects
+      <Button to="/projects" aria-label={t("datamanager.page.backToProjects", "Back to projects")}>
+        {t("datamanager.page.backToProjects", "Back to projects")}s
       </Button>
     </div>
   ) : (
@@ -241,9 +252,18 @@ DataManagerPage.pages = {
 DataManagerPage.context = ({ dmRef }) => {
   const { project } = useProject();
   const [mode, setMode] = useState(dmRef?.mode ?? "explorer");
+  const runtimeLanguage =
+    document.cookie
+      .split(";")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith("django_language="))
+      ?.split("=")[1] ??
+    window.APP_SETTINGS?.language_code ??
+    document.documentElement.lang;
+  const { t } = useDataManagerI18n(runtimeLanguage);
 
   const links = {
-    "/settings": "Settings",
+    "/settings": t("datamanager.page.settings", "Settings"),
   };
 
   const updateCrumbs = (currentMode) => {
@@ -254,7 +274,7 @@ DataManagerPage.context = ({ dmRef }) => {
     } else {
       addCrumb({
         key: "dm-crumb",
-        title: "Labeling",
+        title: t("datamanager.page.labeling", "Labeling"),
       });
     }
   };
@@ -265,7 +285,7 @@ DataManagerPage.context = ({ dmRef }) => {
 
     if (isLabelStream && show_instruction && expert_instruction) {
       modal({
-        title: "Labeling Instructions",
+        title: t("datamanager.page.labelingInstructions", "Labeling Instructions"),
         body: <div dangerouslySetInnerHTML={{ __html: expert_instruction }} />,
         style: { width: 680 },
       });
@@ -296,7 +316,7 @@ DataManagerPage.context = ({ dmRef }) => {
           look="outlined"
           onClick={() => {
             modal({
-              title: "Instructions",
+              title: t("datamanager.page.instructions", "Instructions"),
               body: () => (
                 <div
                   dangerouslySetInnerHTML={{
@@ -307,7 +327,7 @@ DataManagerPage.context = ({ dmRef }) => {
             });
           }}
         >
-          Instructions
+          {t("datamanager.page.instructions", "Instructions")}
         </Button>
       )}
 

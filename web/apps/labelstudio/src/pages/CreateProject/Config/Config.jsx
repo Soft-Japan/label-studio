@@ -788,6 +788,7 @@ export const ConfigPage = ({
   show = true,
   hasChanges,
 }) => {
+  const { t } = useCreateProjectI18n();
   const [config, _setConfig] = React.useState("");
   const [mode, setMode] = React.useState("list"); // view | list
   const [selectedGroup, _setSelectedGroup] = React.useState(null);
@@ -811,19 +812,35 @@ export const ConfigPage = ({
     [_setConfig, onUpdate],
   );
 
+  const localizeTemplateConfig = React.useCallback(
+    (rawConfig) => {
+      const defaultHeaderText = t(
+        "createProject.config.preview.defaultInstruction",
+        "Select label and click the image to start",
+      );
+
+      return rawConfig
+        .replace(/Select label and click on image to start/g, defaultHeaderText)
+        .replace(/Select label and click the image to start/g, defaultHeaderText);
+    },
+    [t],
+  );
+
   // setTemplate - handles both config state and Template object creation
   const setTemplate = React.useCallback(
     (newConfig) => {
-      setConfig(newConfig);
+      const localizedConfig = localizeTemplateConfig(newConfig);
+
+      setConfig(localizedConfig);
       try {
-        const tpl = new Template({ config: newConfig });
+        const tpl = new Template({ config: localizedConfig });
         tpl.onConfigUpdate = setConfig;
         setCurrentTemplate(tpl);
       } catch (e) {
         console.error("Template parsing error:", e);
       }
     },
-    [setConfig, setCurrentTemplate],
+    [setConfig, setCurrentTemplate, localizeTemplateConfig],
   );
 
   const [columns, setColumns] = React.useState();

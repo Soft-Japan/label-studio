@@ -275,7 +275,78 @@
       },
       "preview": {
         "title": "プレビュー",
-        "defaultInstruction": "ラベルを選択して画像をクリックすると開始します"
+        "defaultInstruction": "ラベルを選択して画像をクリックすると開始します",
+        "sidePanel": {
+          "tabs": {
+            "regions": "リージョン",
+            "history": "履歴",
+            "relations": "関係",
+            "info": "情報",
+            "comments": "コメント",
+            "custom": "カスタム"
+          },
+          "info": {
+            "empty": {
+              "header": "リージョン詳細を表示",
+              "description": "リージョンを選択すると、そのプロパティ、メタデータ、および利用可能な操作を表示できます"
+            }
+          },
+          "outliner": {
+            "empty": {
+              "header": "ラベル付きリージョンがここに表示されます",
+              "description": "ラベリングを開始して、このパネルで結果を追跡できます"
+            },
+            "group": {
+              "manually": "手動でグループ化",
+              "manual": "手動",
+              "manualGrouping": "手動グループ化",
+              "manuallyGrouped": "手動でグループ化済み",
+              "byLabel": "ラベルでグループ化",
+              "label": "ラベル別",
+              "groupedByLabel": "ラベルでグループ化済み",
+              "byTool": "ツールでグループ化",
+              "tool": "ツール別",
+              "groupedByTool": "ツールでグループ化済み"
+            },
+            "order": {
+              "byTime": "時間で並べ替え",
+              "time": "時間順",
+              "byScore": "スコアで並べ替え",
+              "score": "スコア順",
+              "byMediaStartTime": "メディア開始時刻で並べ替え",
+              "mediaStartTime": "メディア開始時刻順"
+            },
+            "filters": {
+              "allHidden": {
+                "title": "すべてのリージョンが非表示です",
+                "description": "表示するにはフィルターを調整または削除してください"
+              },
+              "hiddenRegions": {
+                "single": "{count} 件の非表示リージョンがあります",
+                "plural": "{count} 件の非表示リージョンがあります",
+                "description": "表示するにはフィルターを調整または削除してください"
+              }
+            }
+          },
+          "learnMore": "詳細を見る",
+          "sections": {
+            "annotationHistory": "アノテーション履歴",
+            "relations": "関係",
+            "comments": "コメント"
+          },
+          "relations": {
+            "empty": {
+              "header": "リージョン間の関係を作成",
+              "description": "リージョンを関連付けて、それらの関係を定義します"
+            }
+          },
+          "history": {
+            "empty": {
+              "header": "アノテーションのアクティビティを表示",
+              "description": "このアノテーションに対するユーザー操作のログを表示します"
+            }
+          }
+        }
       }
     }
   }

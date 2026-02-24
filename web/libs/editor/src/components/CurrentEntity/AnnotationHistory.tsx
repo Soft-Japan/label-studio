@@ -1,5 +1,6 @@
 import { when } from "mobx";
 import { inject, observer } from "mobx-react";
+import { getEnv } from "mobx-state-tree";
 import { type FC, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   IconAnnotationAccepted,
@@ -20,6 +21,7 @@ import { Space } from "../../common/Space/Space";
 import { cn } from "../../utils/bem";
 import { humanDateDiff, userDisplayName } from "../../utils/utilities";
 import { EmptyState } from "../SidePanels/Components/EmptyState";
+import messages from "../../utils/messages";
 import "./AnnotationHistory.scss";
 
 type HistoryItemType =
@@ -119,6 +121,7 @@ const AnnotationHistoryComponent: FC<any> = ({
   const hasChanges = annotation.history.hasChanges;
   const infoIsHidden = annotationStore.store.hasInterface("annotations:hide-info");
   const currentUser = window.APP_SETTINGS?.user;
+  const panelMessages = getEnv(annotationStore.store)?.messages ?? messages;
 
   // if user makes changes at the first time there are no draft yet
   const isDraftSelected =
@@ -133,8 +136,8 @@ const AnnotationHistoryComponent: FC<any> = ({
   const defaultEmptyState = (
     <EmptyState
       icon={<IconHistoryRewind width={24} height={24} />}
-      header="View annotation activity"
-      description={<>See a log of user actions for this annotation</>}
+      header={panelMessages.SIDE_PANEL_HISTORY_EMPTY_HEADER}
+      description={<>{panelMessages.SIDE_PANEL_HISTORY_EMPTY_DESCRIPTION}</>}
     />
   );
 

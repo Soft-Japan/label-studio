@@ -275,7 +275,78 @@
       },
       "preview": {
         "title": "Preview",
-        "defaultInstruction": "Select label and click the image to start"
+        "defaultInstruction": "Select label and click the image to start",
+        "sidePanel": {
+          "tabs": {
+            "regions": "Regions",
+            "history": "History",
+            "relations": "Relations",
+            "info": "Info",
+            "comments": "Comments",
+            "custom": "Custom"
+          },
+          "info": {
+            "empty": {
+              "header": "View region details",
+              "description": "Select a region to view its properties, metadata and available actions"
+            }
+          },
+          "outliner": {
+            "empty": {
+              "header": "Labeled regions will appear here",
+              "description": "Start labeling and track your results using this panel"
+            },
+            "group": {
+              "manually": "Group Manually",
+              "manual": "Manual",
+              "manualGrouping": "Manual Grouping",
+              "manuallyGrouped": "Manually Grouped",
+              "byLabel": "Group by Label",
+              "label": "By Label",
+              "groupedByLabel": "Grouped by Label",
+              "byTool": "Group by Tool",
+              "tool": "By Tool",
+              "groupedByTool": "Grouped by Tool"
+            },
+            "order": {
+              "byTime": "Order by Time",
+              "time": "By Time",
+              "byScore": "Order by Score",
+              "score": "By Score",
+              "byMediaStartTime": "Order by Media Start Time",
+              "mediaStartTime": "By Media Start Time"
+            },
+            "filters": {
+              "allHidden": {
+                "title": "All regions hidden",
+                "description": "Adjust or remove the filters to view"
+              },
+              "hiddenRegions": {
+                "single": "There is {count} hidden region",
+                "plural": "There are {count} hidden regions",
+                "description": "Adjust or remove filters to view"
+              }
+            }
+          },
+          "learnMore": "Learn more",
+          "sections": {
+            "annotationHistory": "Annotation History",
+            "relations": "Relations",
+            "comments": "Comments"
+          },
+          "relations": {
+            "empty": {
+              "header": "Create relations between regions",
+              "description": "Link regions to define relationships between them"
+            }
+          },
+          "history": {
+            "empty": {
+              "header": "View annotation activity",
+              "description": "See a log of user actions for this annotation"
+            }
+          }
+        }
       }
     }
   }

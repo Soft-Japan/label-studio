@@ -11,6 +11,37 @@ export default {
 
   CONFIRM_TO_DELETE_ALL_REGIONS: "Please confirm you want to delete all labeled regions",
 
+  SIDE_PANEL_TAB_REGIONS: "Regions",
+  SIDE_PANEL_TAB_HISTORY: "History",
+  SIDE_PANEL_TAB_RELATIONS: "Relations",
+  SIDE_PANEL_TAB_INFO: "Info",
+  SIDE_PANEL_TAB_COMMENTS: "Comments",
+  SIDE_PANEL_TAB_CUSTOM: "Custom",
+  SIDE_PANEL_EXPAND_BOTTOM_PANEL: "Expand Bottom Panel",
+  SIDE_PANEL_COLLAPSE_BOTTOM_PANEL: "Collapse Bottom Panel",
+  SIDE_PANEL_INFO_EMPTY_HEADER: "View region details",
+  SIDE_PANEL_INFO_EMPTY_DESCRIPTION: "Select a region to view its properties, metadata and available actions",
+  SIDE_PANEL_OUTLINER_EMPTY_HEADER: "Labeled regions will appear here",
+  SIDE_PANEL_OUTLINER_EMPTY_DESCRIPTION: "Start labeling and track your results using this panel",
+  SIDE_PANEL_OUTLINER_GROUP_MANUALLY: "Group Manually",
+  SIDE_PANEL_OUTLINER_MANUAL: "Manual",
+  SIDE_PANEL_OUTLINER_MANUAL_GROUPING: "Manual Grouping",
+  SIDE_PANEL_OUTLINER_MANUALLY_GROUPED: "Manually Grouped",
+  SIDE_PANEL_OUTLINER_GROUP_BY_LABEL: "Group by Label",
+  SIDE_PANEL_OUTLINER_BY_LABEL: "By Label",
+  SIDE_PANEL_OUTLINER_GROUPED_BY_LABEL: "Grouped by Label",
+  SIDE_PANEL_OUTLINER_GROUP_BY_TOOL: "Group by Tool",
+  SIDE_PANEL_OUTLINER_BY_TOOL: "By Tool",
+  SIDE_PANEL_OUTLINER_GROUPED_BY_TOOL: "Grouped by Tool",
+  SIDE_PANEL_OUTLINER_ORDER_BY_TIME: "Order by Time",
+  SIDE_PANEL_OUTLINER_BY_TIME: "By Time",
+  SIDE_PANEL_OUTLINER_ORDER_BY_SCORE: "Order by Score",
+  SIDE_PANEL_OUTLINER_BY_SCORE: "By Score",
+  SIDE_PANEL_OUTLINER_ORDER_BY_MEDIA_START_TIME: "Order by Media Start Time",
+  SIDE_PANEL_OUTLINER_BY_MEDIA_START_TIME: "By Media Start Time",
+  SIDE_PANEL_LEARN_MORE: "Learn more",
+
+
   // Tree validation messages
   ERR_REQUIRED: ({ modelName, field }) => {
     return `Attribute <b>${field}</b> is required for <b>${modelName}</b>`;

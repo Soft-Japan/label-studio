@@ -7,6 +7,8 @@ import "./Tabs.scss";
 import { type BaseProps, Side, type TabProps } from "./types";
 import { determineDroppableArea, determineLeftOrRight } from "./utils";
 import { Button } from "../../../common/Button/Button";
+import { getEnv } from "mobx-state-tree";
+import messages from "../../../utils/messages";
 
 const classAddedTabs: (Element | undefined)[] = [];
 
@@ -205,6 +207,26 @@ export const Tabs = (
     panelHeight?: number;
   },
 ) => {
+  const panelMessages = getEnv(props.currentEntity ?? props.regions)?.messages ?? messages;
+  const getTabTitle = (view: any) => {
+    switch (view.name) {
+      case "regions":
+        return panelMessages.SIDE_PANEL_TAB_REGIONS;
+      case "history":
+        return panelMessages.SIDE_PANEL_TAB_HISTORY;
+      case "relations":
+        return panelMessages.SIDE_PANEL_TAB_RELATIONS;
+      case "info":
+        return panelMessages.SIDE_PANEL_TAB_INFO;
+      case "comments":
+        return panelMessages.SIDE_PANEL_TAB_COMMENTS;
+      case "custom":
+        return panelMessages.SIDE_PANEL_TAB_CUSTOM;
+      default:
+        return view.title;
+    }
+  };  
+  
   const ActiveComponent = props.locked
     ? props.panelViews[props.breakPointActiveTab].component
     : props.panelViews?.find((view) => view.active)?.component;
@@ -215,20 +237,21 @@ export const Tabs = (
         <div className={cn("tabs").elem("tabs-row").toClassName()}>
           {props.panelViews.map((view, index) => {
             const { component: Component } = view;
+            const tabTitle = getTabTitle(view);
 
             return (
               <div
                 className={cn("tabs").elem("tab-container").mod({ active: view.active }).toClassName()}
-                key={`${view.title}-${index}-tab`}
+                key={`${tabTitle}-${index}-tab`}
               >
                 <Tab
                   name={view.name}
                   rootRef={props.root}
-                  key={`${view.title}-tab`}
+                  key={`${tabTitle}-tab`}
                   panelKey={props.name}
                   tabIndex={index}
                   active={view.active}
-                  tabTitle={view.title}
+                  tabTitle={tabTitle}
                   panelWidth={props.width}
                   viewLength={props.panelViews.length}
                   locked={props.locked}
@@ -240,7 +263,7 @@ export const Tabs = (
                   setBreakPointActiveTab={props.setBreakPointActiveTab}
                 >
                   <div className={cn("tabs").elem("content").toClassName()}>
-                    <Component key={`${view.title}-${index}-ghost`} {...props} name={"outliner"} />
+                    <Component key={`${tabTitle}-${index}-ghost`} {...props} name={"outliner"} />
                   </div>
                 </Tab>
               </div>
@@ -268,7 +291,11 @@ export const Tabs = (
                 cursor: "pointer",
               }}
               onClick={() => props.setBottomCollapsed?.(!props.bottomCollapsed)}
-              title={props.bottomCollapsed ? "Expand Bottom Panel" : "Collapse Bottom Panel"}
+              title={
+                props.bottomCollapsed
+                  ? panelMessages.SIDE_PANEL_EXPAND_BOTTOM_PANEL
+                  : panelMessages.SIDE_PANEL_COLLAPSE_BOTTOM_PANEL
+              }
             >
               {props.bottomCollapsed ? <IconExpandSmall /> : <IconCollapseSmall />}
             </Button>

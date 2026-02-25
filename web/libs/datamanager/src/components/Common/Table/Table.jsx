@@ -15,10 +15,11 @@ import { TableRow } from "./TableRow/TableRow";
 import { RowContextMenu } from "./RowContextMenu";
 import { prepareColumns } from "./utils";
 import { cn } from "../../../utils/bem";
-import { FieldsButton } from "../FieldsButton";
+import { FieldsButton, translateColumnTitle } from "../FieldsButton";
 import { FF_LOPS_E_3, isFF } from "../../../utils/feature-flags";
 import { DensityToggle } from "../../DataManager/Toolbar/DensityToggle";
 import { TaskSourceViewer } from "../TaskSourceViewer";
+import { useTranslation } from "react-i18next";
 
 const Decorator = (decoration) => {
   return {
@@ -73,6 +74,7 @@ export const Table = observer(
     const [contextMenu, setContextMenu] = useState(null);
     // Maintain hover appearance on row while its context menu is open for better visual feedback
     const contextMenuRowId = contextMenu?.row?.id ?? null;
+    const { t } = useTranslation();
 
     // Reset virtualizer cache when rowHeight changes
     useEffect(() => {
@@ -287,16 +289,16 @@ export const Table = observer(
           <FieldsButton
             className={cn("table-toolbar").elem("customize-button").toString()}
             wrapper={FieldsButton.Checkbox}
-            title={"Columns"}
+            title={t("datamanager.toolbar.columns", "Columns")}
             size="small"
             trailingIcon={<Icon icon={IconChevronDown} />}
-            tooltip={"Customize Columns"}
+            tooltip={t("datamanager.toolbar.customizeColumns", "Customize Columns")}
             data-testid="columns-picker-quickview"
           />
           <DensityToggle size="small" onChange={onDensityChange} data-testid="density-toggle-quickview" />
         </div>
       );
-    }, [toolbarVisible, onDensityChange]);
+    }, [toolbarVisible, onDensityChange, t]);
 
     const renderTableHeader = useCallback(
       ({ style }) => (

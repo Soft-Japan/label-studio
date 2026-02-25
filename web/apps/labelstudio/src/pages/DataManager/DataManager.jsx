@@ -46,6 +46,7 @@ const initializeDataManager = async (root, props, params) => {
     },
     labelStudio: {
       keymap: window.APP_SETTINGS.editor_keymap,
+      messages: params.localizedEditorMessages,
     },
     ...props,
     ...settings,
@@ -79,8 +80,42 @@ export const DataManagerPage = ({ ...props }) => {
       ?.split("=")[1] ??
     window.APP_SETTINGS?.language_code ??
     document.documentElement.lang;
+  const { t } = useDataManagerI18n(runtimeLanguage);
 
-  useDataManagerI18n(runtimeLanguage);
+  const localizedEditorMessages = useMemo(() => ({
+    SIDE_PANEL_TAB_REGIONS: t("datamanager.editor.sidePanel.tabs.regions", "Regions"),
+    SIDE_PANEL_TAB_HISTORY: t("datamanager.editor.sidePanel.tabs.history", "History"),
+    SIDE_PANEL_TAB_RELATIONS: t("datamanager.editor.sidePanel.tabs.relations", "Relations"),
+    SIDE_PANEL_TAB_INFO: t("datamanager.editor.sidePanel.tabs.info", "Info"),
+    SIDE_PANEL_INFO_EMPTY_HEADER: t("datamanager.editor.sidePanel.info.header", "View region details"),
+    SIDE_PANEL_INFO_EMPTY_DESCRIPTION: t(
+      "datamanager.editor.sidePanel.info.description",
+      "Select a region to view its properties, metadata and available actions",
+    ),
+    SIDE_PANEL_OUTLINER_EMPTY_HEADER: t("datamanager.editor.sidePanel.outliner.header", "Labeled regions will appear here"),
+    SIDE_PANEL_OUTLINER_EMPTY_DESCRIPTION: t(
+      "datamanager.editor.sidePanel.outliner.description",
+      "Start labeling and track your results using this panel",
+    ),
+    SIDE_PANEL_OUTLINER_MANUAL: t("datamanager.editor.sidePanel.outliner.group.manual", "Manual"),
+    SIDE_PANEL_OUTLINER_BY_TIME: t("datamanager.editor.sidePanel.outliner.order.time", "By Time"),
+    SIDE_PANEL_LEARN_MORE: t("datamanager.editor.sidePanel.learnMore", "Learn more"),
+    ANNOTATIONS_COMPARE_ALL: t("datamanager.editor.annotations.compareAll", "Compare All"),
+    ANNOTATIONS_COMPARE_ALL_ARIA: t("datamanager.editor.annotations.compareAllAria", "Compare all annotations"),
+    SUBMIT: t("datamanager.editor.controls.submit", "Submit"),
+    UPDATE: t("datamanager.editor.controls.update", "Update"),
+    SUBMIT_AND_EXIT: t("datamanager.editor.controls.submitAndExit", "Submit and exit"),
+    UPDATE_AND_EXIT: t("datamanager.editor.controls.updateAndExit", "Update and exit"),
+    SUBMIT_CURRENT_ANNOTATION: t("datamanager.editor.controls.submitCurrentAnnotation", "Submit current annotation"),
+    SUBMIT_ANNOTATION: t("datamanager.editor.controls.submitAnnotation", "Submit annotation"),
+    UPDATE_ANNOTATION: t("datamanager.editor.controls.updateAnnotation", "Update annotation"),
+    IMAGE_TOOL_MOVE: t("datamanager.editor.imageTools.move", "Move"),
+    IMAGE_TOOL_PAN_IMAGE: t("datamanager.editor.imageTools.panImage", "Pan Image"),
+    IMAGE_TOOL_ZOOM_IN: t("datamanager.editor.imageTools.zoomIn", "Zoom In"),
+    IMAGE_TOOL_ZOOM_OUT: t("datamanager.editor.imageTools.zoomOut", "Zoom Out"),
+    IMAGE_TOOL_ZOOM_TO_FIT: t("datamanager.editor.imageTools.zoomToFit", "Zoom to fit"),
+    IMAGE_TOOL_ZOOM_TO_ACTUAL_SIZE: t("datamanager.editor.imageTools.zoomToActualSize", "Zoom to actual size"),
+  }), [t]);
 
   const init = useCallback(async () => {
     if (!window.LabelStudio) return;
@@ -101,6 +136,7 @@ export const DataManagerPage = ({ ...props }) => {
         ...params,
         project,
         autoAnnotation: isDefined(interactiveBacked),
+        localizedEditorMessages,
       })));
 
     Object.assign(window, { dataManager });
@@ -203,7 +239,7 @@ export const DataManagerPage = ({ ...props }) => {
     }
 
     setContextProps({ dmRef: dataManager });
-  }, [projectId]);
+  }, [projectId, localizedEditorMessages]);
 
   const destroyDM = useCallback(() => {
     if (dataManagerRef.current) {

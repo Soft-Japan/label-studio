@@ -9,7 +9,21 @@
         "docs": "データのインポートに関するドキュメントを見る"
       },
       "filters": {
-        "clear": "フィルターをクリア"
+        "clear": "フィルターをクリア",
+        "noTasksFound": "タスクが見つかりません",
+        "adjustOrClear": "フィルターを調整するかクリアして、結果を表示してください"
+      },
+      "reviewer": {
+        "noTasksTitle": "レビューまたはラベリング可能なタスクがありません",
+        "noTasksDescription": "このプロジェクトにインポートされたタスクがここに表示されます"
+      },
+      "annotator": {
+        "startTitle": "タスクのラベリングを開始",
+        "startDescription": "ラベリングしたタスクがここに表示されます",
+        "labelAllTasks": "すべてのタスクをラベリング",
+        "noTasksTitle": "利用可能なタスクがありません",
+        "assignedDescription": "あなたに割り当てられたタスクがここに表示されます",
+        "availableDescription": "タスクが利用可能になるとここに表示されます"
       }
     },
     "toolbar": {
@@ -39,7 +53,11 @@
         "increaseColumns": "列数を増やす",
         "fitImagesToWidth": "画像を幅に合わせる",
         "settings": "グリッド設定"
-      }
+      },
+      "customizeColumns": "列をカスタマイズ",
+      "labelAllTasks": "すべてのタスクをラベリング",
+      "labelTasksAsDisplayed": "表示中のタスクをラベリング",
+      "labelTasksCount": "{{count}} 件のタスクをラベリング"
     },
     "summary": {
       "filteredTasks": "フィルタリング後のタスク",
@@ -219,6 +237,52 @@
         "named_entity_recognition": "固有表現認識",
         "speech_recognition": "音声認識",
         "brush_annotations": "ブラシアノテーション"
+      }
+    },
+    "editor": {
+      "sidePanel": {
+        "learnMore": "詳しく見る",
+        "tabs": {
+          "regions": "リージョン",
+          "history": "履歴",
+          "relations": "関係",
+          "info": "情報"
+        },
+        "info": {
+          "header": "リージョンの詳細を表示",
+          "description": "リージョンを選択すると、プロパティ・メタデータ・利用可能な操作を確認できます"
+        },
+        "outliner": {
+          "header": "ラベル付けしたリージョンがここに表示されます",
+          "description": "ラベリングを開始し、このパネルで結果を追跡できます",
+          "group": {
+            "manual": "手動"
+          },
+          "order": {
+            "time": "時間順"
+          }
+        }
+      },
+      "annotations": {
+        "compareAll": "すべて比較",
+        "compareAllAria": "すべてのアノテーションを比較"
+      },
+      "controls": {
+        "submit": "送信",
+        "update": "更新",
+        "submitAndExit": "送信して終了",
+        "updateAndExit": "更新して終了",
+        "submitCurrentAnnotation": "現在のアノテーションを送信",
+        "submitAnnotation": "アノテーションを送信",
+        "updateAnnotation": "アノテーションを更新"
+      },
+      "imageTools": {
+        "move": "移動",
+        "panImage": "画像をパン",
+        "zoomIn": "拡大",
+        "zoomOut": "縮小",
+        "zoomToFit": "画面に合わせる",
+        "zoomToActualSize": "実寸表示"
       }
     }
   },

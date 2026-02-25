@@ -222,12 +222,15 @@ export const EmptyState: FC<EmptyStateProps> = ({
 
   // If filters are applied, show the filter-specific empty state (regardless of user role)
   if (hasFilters) {
-    return renderEmptyStateLayout({
-      icon: <IconSearch />,
-      iconBackground: "bg-warning-background",
-      iconColor: "text-warning-icon",
-      title: "No tasks found",
-      description: "Try adjusting or clearing the filters to see more results",
+      return renderEmptyStateLayout({
+        icon: <IconSearch />,
+        iconBackground: "bg-warning-background",
+        iconColor: "text-warning-icon",
+        title: t("datamanager.emptyState.filters.noTasksFound", "No tasks found"),
+        description: t(
+          "datamanager.emptyState.filters.adjustOrClear",
+          "Try adjusting or clearing the filters to see more results",
+        ),
       actions: (
         <Button variant="primary" look="outlined" onClick={onClearFilters} data-testid="dm-clear-filters-button">
           {t("datamanager.emptyState.filters.clear", "Clear Filters")}
@@ -244,11 +247,10 @@ export const EmptyState: FC<EmptyStateProps> = ({
     if (userRole === "REVIEWER") {
       return renderEmptyStateLayout({
         icon: <IconCheck />,
-        title: "No tasks available for review or labeling",
-        description: "Tasks imported to this project will appear here",
+        title: t("datamanager.emptyState.reviewer.noTasksTitle", "No tasks available for review or labeling"),
+        description: t("datamanager.emptyState.reviewer.noTasksDescription", "Tasks imported to this project will appear here"),
       });
     }
-
     // Annotator empty state
     if (userRole === "ANNOTATOR") {
       const isAutoDistribution = project?.assignment_settings?.label_stream_task_distribution === "auto_distribution";
@@ -257,8 +259,8 @@ export const EmptyState: FC<EmptyStateProps> = ({
       if (isAutoDistribution) {
         return renderEmptyStateLayout({
           icon: <IconLsLabeling />,
-          title: "Start labeling tasks",
-          description: "Tasks you've labeled will appear here",
+          title: t("datamanager.emptyState.annotator.startTitle", "Start labeling tasks"),
+          description: t("datamanager.emptyState.annotator.startDescription", "Tasks you've labeled will appear here"),
           actions: (
             <Button
               variant="primary"
@@ -267,7 +269,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
               onClick={onLabelAllTasks}
               data-testid="dm-label-all-tasks-button"
             >
-              Label All Tasks
+              {t("datamanager.emptyState.annotator.labelAllTasks", "Label All Tasks")}
             </Button>
           ),
         });
@@ -276,16 +278,16 @@ export const EmptyState: FC<EmptyStateProps> = ({
       if (isManualDistribution) {
         return renderEmptyStateLayout({
           icon: <IconInbox />,
-          title: "No tasks available",
-          description: "Tasks assigned to you will appear here",
+          title: t("datamanager.emptyState.annotator.noTasksTitle", "No tasks available"),
+          description: t("datamanager.emptyState.annotator.assignedDescription", "Tasks assigned to you will appear here"),
         });
       }
 
       // Fallback for annotators with unknown distribution setting
       return renderEmptyStateLayout({
         icon: <IconInbox width={40} height={40} />,
-        title: "No tasks available",
-        description: "Tasks will appear here when they become available",
+        title: t("datamanager.emptyState.annotator.noTasksTitle", "No tasks available"),
+        description: t("datamanager.emptyState.annotator.availableDescription", "Tasks will appear here when they become available"),
       });
     }
   }

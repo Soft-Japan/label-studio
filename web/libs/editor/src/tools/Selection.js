@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { types } from "mobx-state-tree";
+import { getEnv, types } from "mobx-state-tree";
 
 import { IconMoveTool } from "@humansignal/icons";
 import { Tool } from "../components/Toolbar/Tool";
@@ -7,14 +7,17 @@ import { AnnotationMixin } from "../mixins/AnnotationMixin";
 import ToolMixin from "../mixins/Tool";
 import { FF_LSDV_4930, isFF } from "../utils/feature-flags";
 import BaseTool from "./Base";
+import messages from "../utils/messages";
 
 const ToolView = observer(({ item }) => {
+  const panelMessages = getEnv(item)?.messages ?? messages;
+
   return (
     <Tool
       ariaLabel="move-tool"
       active={item.selected}
       icon={<IconMoveTool />}
-      label="Move"
+      label={panelMessages.IMAGE_TOOL_MOVE}
       shortcut={item.shortcut}
       extraShortcuts={item.extraShortcuts}
       onClick={() => {

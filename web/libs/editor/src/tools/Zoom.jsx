@@ -1,21 +1,24 @@
 import { Fragment } from "react";
 import { observer } from "mobx-react";
-import { types } from "mobx-state-tree";
+import { getEnv, types } from "mobx-state-tree";
 
 import BaseTool from "./Base";
 import ToolMixin from "../mixins/Tool";
 import { Tool } from "../components/Toolbar/Tool";
 import { FlyoutMenu } from "../components/Toolbar/FlyoutMenu";
 import { IconExpandTool, IconHandTool, IconZoomIn, IconZoomOut } from "@humansignal/icons";
+import messages from "../utils/messages";
 
 const ToolView = observer(({ item }) => {
+  const panelMessages = getEnv(item)?.messages ?? messages;
+
   return (
     <Fragment>
       <Tool
         active={item.selected}
         icon={<IconHandTool />}
         ariaLabel="pan"
-        label="Pan Image"
+        label={panelMessages.IMAGE_TOOL_PAN_IMAGE}
         shortcut="tool:pan-image"
         onClick={() => {
           const sel = item.selected;
@@ -26,7 +29,7 @@ const ToolView = observer(({ item }) => {
       <Tool
         icon={<IconZoomIn />}
         ariaLabel="zoom-in"
-        label="Zoom In"
+        label={panelMessages.IMAGE_TOOL_ZOOM_IN}
         shortcut="tool:zoom-in"
         onClick={() => {
           item.handleZoom(1);
@@ -36,14 +39,14 @@ const ToolView = observer(({ item }) => {
         icon={<IconExpandTool />}
         items={[
           {
-            label: "Zoom to fit",
+            label: panelMessages.IMAGE_TOOL_ZOOM_TO_FIT,
             shortcut: "tool:zoom-to-fit",
             onClick: () => {
               item.sizeToFit();
             },
           },
           {
-            label: "Zoom to actual size",
+            label: panelMessages.IMAGE_TOOL_ZOOM_TO_ACTUAL_SIZE,
             shortcut: "tool:zoom-to-actual",
             onClick: () => {
               item.sizeToOriginal();
@@ -54,7 +57,7 @@ const ToolView = observer(({ item }) => {
       <Tool
         icon={<IconZoomOut />}
         ariaLabel="zoom-out"
-        label="Zoom Out"
+        label={panelMessages.IMAGE_TOOL_ZOOM_OUT}
         shortcut="tool:zoom-out"
         onClick={() => {
           item.handleZoom(-1);

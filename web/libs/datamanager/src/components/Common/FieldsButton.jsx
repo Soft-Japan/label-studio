@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "../../utils/bem";
 import { Menu } from "./Menu/Menu";
 
-const SYSTEM_COLUMN_TITLE_KEYS = {
+export const SYSTEM_COLUMN_TITLE_KEYS = {
   "ID": "datamanager.columns.id",
   "Inner ID": "datamanager.columns.innerId",
   "Completed": "datamanager.columns.completed",
@@ -53,7 +53,7 @@ const SYSTEM_COLUMN_TITLE_KEYS = {
   "Image": "datamanager.columns.image",
 };
 
-const translateColumnTitle = (t, title) => {
+export const translateColumnTitle = (t, title) => {
   const normalizedTitle = String(title);
   const key =
     SYSTEM_COLUMN_TITLE_KEYS[normalizedTitle] ??

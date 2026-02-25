@@ -3,6 +3,7 @@ import { Tooltip, EnterpriseBadge } from "@humansignal/ui";
 import { inject } from "mobx-react";
 import { getRoot } from "mobx-state-tree";
 import { useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useShortcut } from "../../../sdk/hotkeys";
 import { cn } from "../../../utils/bem";
 import { FF_DEV_2536, isFF } from "../../../utils/feature-flags";
@@ -12,6 +13,7 @@ import { Spinner } from "../../Common/Spinner";
 import { Table } from "../../Common/Table/Table";
 import { Tag } from "../../Common/Tag/Tag";
 import { GridView } from "../GridView/GridView";
+import { translateColumnTitle } from "../../Common/FieldsButton";
 import "./Table.scss";
 import { Button } from "@humansignal/ui";
 import { useEffect, useState } from "react";
@@ -85,6 +87,8 @@ export const DataView = injector(
     ...props
   }) => {
     const [datasetStatusID, setDatasetStatusID] = useState(store.SDK.dataset?.status?.id);
+    const { t } = useTranslation();
+    
     const [density, setDensity] = useState(() => {
       return localStorage.getItem(DENSITY_STORAGE_KEY) ?? DENSITY_COMFORTABLE;
     });
@@ -306,7 +310,7 @@ export const DataView = injector(
         return <Tooltip title={column.help ?? col.title}>{column.icon}</Tooltip>;
       }
 
-      return column.title;
+      return translateColumnTitle(t, column.title);
     };
 
     const commonDecoration = useCallback(
@@ -316,7 +320,7 @@ export const DataView = injector(
         style: (col) => ({ width: col.width ?? size, justifyContent: align }),
         help,
       }),
-      [],
+      [t],
     );
 
     const decoration = useMemo(

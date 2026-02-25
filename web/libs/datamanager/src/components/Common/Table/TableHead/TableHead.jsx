@@ -2,6 +2,7 @@ import { observer, useLocalStore } from "mobx-react";
 import { toJS } from "mobx";
 import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import { ViewColumnType, ViewColumnTypeName, ViewColumnTypeShort } from "../../../../stores/Tabs/tab_column";
+import { useTranslation } from "react-i18next";
 import { Button } from "@humansignal/ui";
 import { Dropdown } from "@humansignal/ui";
 import { Menu } from "../../Menu/Menu";
@@ -18,6 +19,7 @@ import { getRoot } from "mobx-state-tree";
 import { AgreementSelected } from "../../../CellViews/AgreementSelected";
 import { IconChevronDown } from "@humansignal/icons";
 import { isActive, FF_AGREEMENT_FILTERED } from "@humansignal/core/lib/utils/feature-flags";
+import { translateColumnTitle } from "../../FieldsButton";
 
 const tableHeadCN = cn("table-head");
 
@@ -125,6 +127,7 @@ const ColumnRenderer = observer(
     onResize,
     onReset,
   }) => {
+    const { t } = useTranslation();
     const { Header, Cell: _, id, ...column } = columnInput;
 
     if (Header instanceof Function) {
@@ -142,7 +145,7 @@ const ColumnRenderer = observer(
     const canOrder = sortingEnabled && column.original?.canOrder;
     const Decoration = decoration?.get?.(column);
     const extra = !isDE && columnHeaderExtra ? columnHeaderExtra(column, Decoration) : null;
-    const content = Decoration?.content ? Decoration.content(column) : column.title;
+    const content = Decoration?.content ? Decoration.content(column) : translateColumnTitle(t, column.title);
     const style = getStyle(cellViews, column, Decoration);
 
     const headContent = (

@@ -40,7 +40,21 @@ export default {
   SIDE_PANEL_OUTLINER_ORDER_BY_MEDIA_START_TIME: "Order by Media Start Time",
   SIDE_PANEL_OUTLINER_BY_MEDIA_START_TIME: "By Media Start Time",
   SIDE_PANEL_LEARN_MORE: "Learn more",
-
+  ANNOTATIONS_COMPARE_ALL: "Compare All",
+  ANNOTATIONS_COMPARE_ALL_ARIA: "Compare all annotations",
+  SUBMIT: "Submit",
+  UPDATE: "Update",
+  SUBMIT_AND_EXIT: "Submit and exit",
+  UPDATE_AND_EXIT: "Update and exit",
+  SUBMIT_CURRENT_ANNOTATION: "Submit current annotation",
+  SUBMIT_ANNOTATION: "Submit annotation",
+  UPDATE_ANNOTATION: "Update annotation",
+  IMAGE_TOOL_MOVE: "Move",
+  IMAGE_TOOL_PAN_IMAGE: "Pan Image",
+  IMAGE_TOOL_ZOOM_IN: "Zoom In",
+  IMAGE_TOOL_ZOOM_OUT: "Zoom Out",
+  IMAGE_TOOL_ZOOM_TO_FIT: "Zoom to fit",
+  IMAGE_TOOL_ZOOM_TO_ACTUAL_SIZE: "Zoom to actual size",
 
   // Tree validation messages
   ERR_REQUIRED: ({ modelName, field }) => {

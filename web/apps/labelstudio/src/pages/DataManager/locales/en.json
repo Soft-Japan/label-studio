@@ -9,7 +9,21 @@
         "docs": "View documentation about importing data"
       },
       "filters": {
-        "clear": "Clear filters"
+        "clear": "Clear filters",
+        "noTasksFound": "No tasks found",
+        "adjustOrClear": "Try adjusting or clearing the filters to see more results"
+      },
+      "reviewer": {
+        "noTasksTitle": "No tasks available for review or labeling",
+        "noTasksDescription": "Tasks imported to this project will appear here"
+      },
+      "annotator": {
+        "startTitle": "Start labeling tasks",
+        "startDescription": "Tasks you've labeled will appear here",
+        "labelAllTasks": "Label All Tasks",
+        "noTasksTitle": "No tasks available",
+        "assignedDescription": "Tasks assigned to you will appear here",
+        "availableDescription": "Tasks will appear here when they become available"
       }
     },
     "toolbar": {
@@ -39,7 +53,11 @@
         "increaseColumns": "Increase columns number",
         "fitImagesToWidth": "Fit images to width",
         "settings": "Grid settings"
-      }
+      },
+      "customizeColumns": "Customize Columns",
+      "labelAllTasks": "Label All Tasks",
+      "labelTasksAsDisplayed": "Label Tasks As Displayed",
+      "labelTasksCount": "Label {{count}} Tasks"
     },
     "summary": {
       "filteredTasks": "Filtered tasks",
@@ -219,6 +237,52 @@
         "named_entity_recognition": "Named entity recognition",
         "speech_recognition": "Speech recognition",
         "brush_annotations": "Brush annotations"
+      }
+    },
+    "editor": {
+      "sidePanel": {
+        "learnMore": "Learn more",
+        "tabs": {
+          "regions": "Regions",
+          "history": "History",
+          "relations": "Relations",
+          "info": "Info"
+        },
+        "info": {
+          "header": "View region details",
+          "description": "Select a region to view its properties, metadata and available actions"
+        },
+        "outliner": {
+          "header": "Labeled regions will appear here",
+          "description": "Start labeling and track your results using this panel",
+          "group": {
+            "manual": "Manual"
+          },
+          "order": {
+            "time": "By Time"
+          }
+        }
+      },
+      "annotations": {
+        "compareAll": "Compare All",
+        "compareAllAria": "Compare all annotations"
+      },
+      "controls": {
+        "submit": "Submit",
+        "update": "Update",
+        "submitAndExit": "Submit and exit",
+        "updateAndExit": "Update and exit",
+        "submitCurrentAnnotation": "Submit current annotation",
+        "submitAnnotation": "Submit annotation",
+        "updateAnnotation": "Update annotation"
+      },
+      "imageTools": {
+        "move": "Move",
+        "panImage": "Pan Image",
+        "zoomIn": "Zoom In",
+        "zoomOut": "Zoom Out",
+        "zoomToFit": "Zoom to fit",
+        "zoomToActualSize": "Zoom to actual size"
       }
     }
   },

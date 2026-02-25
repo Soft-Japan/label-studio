@@ -71,6 +71,77 @@
       "updated_by": "更新者",
       "lead_time": "リードタイム",
       "draft": "下書き"
+    },
+    "export": {
+      "title": "データをエクスポート",
+      "preparing": "ファイルを準備しています。時間がかかる場合があります。",
+      "troubleshoot": "タイムアウトしたり大規模プロジェクトのエクスポートで問題がありますか？",
+      "formatInfo": "データセットは次の形式のいずれかでエクスポートできます:",
+      "aria": {
+        "exportData": "データをエクスポート"
+      },
+      "actions": {
+        "export": "エクスポート"
+      },
+      "feedback": {
+        "title": "目的のエクスポート形式が見つかりませんか？",
+        "prefix": "ぜひ",
+        "slack": "Slack",
+        "middle": "でお知らせいただくか、",
+        "repository": "リポジトリ"
+      },
+      "largeProject": {
+        "title": "大規模プロジェクトを検出（{{count}} タスク）",
+        "prefix": "Community Edition で大規模データセットをエクスポートする際のタイムアウトを避けるには、",
+        "cliSdk": "CLI/SDK のエクスポートオプション",
+        "middle": "を使用するか、",
+        "enterprise": "Enterprise",
+        "suffix": "の導入をご検討ください。大規模なバックグラウンドエクスポートに対応しています。"
+      },
+      "timeout": {
+        "title": "エクスポートがタイムアウトしました",
+        "body": "このエクスポートは Community Edition の UI で同期処理されるため、大規模データセットでは一般的なリバースプロキシのタイムアウト（多くの場合約90秒）を超えることがあります。",
+        "recommended": "推奨オプション:",
+        "exportUsing": "次を使ってエクスポート:",
+        "consoleCommand": "コンソールコマンド",
+        "copyCommand": "コマンドをコピー",
+        "copied": "コピー済み",
+        "copiedWithBang": "コピーしました！",
+        "use": "または",
+        "sdkSnapshots": "SDK 経由のエクスポートスナップショット",
+        "sdkSuffix": "を使って、単一の UI リクエストに依存せずスナップショットを作成・ダウンロードしてください。",
+        "enterprisePrefix": "UI で大規模エクスポートを行う場合は、",
+        "enterprise": "Label Studio Enterprise",
+        "enterpriseSuffix": "の利用をご検討ください。大規模プロジェクトと非同期エクスポート向けに設計されています。",
+        "moreDetails": "詳細はドキュメントをご覧ください:",
+        "communityEdition": "Community Edition のエクスポートタイムアウト"
+      }
     }
-  }
+  },
+  "storage.modal.importDataFromCloud": "クラウドストレージプロバイダーからデータをインポート",
+  "storage.modal.chooseProvider": "クラウドストレージプロバイダーを選択",
+  "storage.modal.selectProviderDescription": "データが保存されているクラウドストレージサービスを選択してください",
+  "storage.modal.storageProvider": "ストレージプロバイダー",
+  "storage.modal.step.selectProvider": "プロバイダーを選択",
+  "storage.modal.step.configureConnection": "接続を設定",
+  "storage.modal.step.importSettingsPreview": "インポート設定とプレビュー",
+  "storage.modal.step.reviewConfirm": "確認と実行",
+  "storage.modal.previous": "前へ",
+  "storage.modal.connectionVerified": "接続を確認済み",
+  "storage.modal.testConnection": "接続テスト",
+  "storage.modal.previewLoaded": "✓ プレビューを読み込み済み",
+  "storage.modal.loadPreview": "プレビューを読み込み",
+  "storage.modal.testConnectionBeforeContinuing": "続行する前に接続テストを実行してください",
+  "storage.modal.providerNotAvailable": "このプロバイダーは現在のバージョンでは利用できません",
+  "storage.modal.next": "次へ",
+  "storage.modal.save": "保存",
+  "storage.modal.saveSync": "保存して同期",
+  "storage.modal.edit": "編集",
+  "storage.modal.connect": "接続",
+  "storage.modal.target": "ターゲット",
+  "storage.modal.source": "ソース",
+  "storage.modal.storage": "ストレージ",
+  "storage.modal.deletingStorage": "ストレージを削除",
+  "storage.modal.deleteStorageConfirm": "この操作は元に戻せません。よろしいですか？",
+  "storage.modal.add": "追加"
 }

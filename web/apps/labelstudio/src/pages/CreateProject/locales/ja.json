@@ -80,6 +80,15 @@
         "addUrl": "URLを追加",
         "uploadFile": "ファイルをアップロード",
         "videoLearnMore": "動画形式サポートの詳細（新しいタブで開きます）"
+      },
+      "modal": {
+        "title": "データをインポート",
+        "cancel": "キャンセル",
+        "import": "インポート",
+        "aria": {
+          "cancelImport": "インポートをキャンセル",
+          "finishImport": "インポートを完了"
+        }
       }
     },
     "config": {

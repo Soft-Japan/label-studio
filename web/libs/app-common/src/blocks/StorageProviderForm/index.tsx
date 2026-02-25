@@ -1,4 +1,5 @@
 import { forwardRef, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useModalControls } from "@humansignal/ui/lib/modal";
 import { Stepper, ProviderSelectionStep, ProviderDetailsStep, PreviewStep, ReviewStep } from "./Steps";
 import { FormHeader } from "./components/form-header";
@@ -32,6 +33,7 @@ export const StorageProviderForm = forwardRef<unknown, StorageProviderFormProps>
     ref,
   ) => {
     const modal = useModalControls();
+    const { t } = useTranslation();
     const [type, setType] = useState<string | undefined>(storage?.type || storage?.provider || "s3");
     const [filesPreview, setFilesPreview] = useState<any[] | null>(null);
     const [connectionChecked, setConnectionChecked] = useState(false);
@@ -60,23 +62,29 @@ export const StorageProviderForm = forwardRef<unknown, StorageProviderFormProps>
     const steps = isEditMode
       ? [
           {
-            title: "Configure Connection",
+            title: t("storage.modal.step.configureConnection", "Configure Connection"),
             schema: getProviderSchema(type || "s3", isEditMode, effectiveTarget),
           },
           // Only include preview and review steps for import storages
           ...(effectiveTarget === "import"
-            ? [{ title: "Import Settings & Preview" }, { title: "Review & Confirm" }]
+            ? [
+                { title: t("storage.modal.step.importSettingsPreview", "Import Settings & Preview") },
+                { title: t("storage.modal.step.reviewConfirm", "Review & Confirm") },
+              ]
             : []),
         ]
       : [
-          { title: "Select Provider", schema: step1Schema },
+          { title: t("storage.modal.step.selectProvider", "Select Provider"), schema: step1Schema },
           {
-            title: "Configure Connection",
+            title: t("storage.modal.step.configureConnection", "Configure Connection"),
             schema: getProviderSchema(type || "s3", isEditMode, effectiveTarget),
           },
           // Only include preview and review steps for import storages
           ...(effectiveTarget === "import"
-            ? [{ title: "Import Settings & Preview" }, { title: "Review & Confirm" }]
+            ? [
+                { title: t("storage.modal.step.importSettingsPreview", "Import Settings & Preview") },
+                { title: t("storage.modal.step.reviewConfirm", "Review & Confirm") },
+              ]
             : []),
         ];
 
@@ -116,27 +124,33 @@ export const StorageProviderForm = forwardRef<unknown, StorageProviderFormProps>
       const newSteps = isEditMode
         ? [
             {
-              title: "Configure Connection",
+              title: t("storage.modal.step.configureConnection", "Configure Connection"),
               schema: getProviderSchema(formData.provider || type || "s3", isEditMode, effectiveTarget),
             },
             // Only include preview and review steps for import storages
             ...(effectiveTarget === "import"
-              ? [{ title: "Import Settings & Preview" }, { title: "Review & Confirm" }]
+              ? [
+                  { title: t("storage.modal.step.importSettingsPreview", "Import Settings & Preview") },
+                  { title: t("storage.modal.step.reviewConfirm", "Review & Confirm") },
+                ]
               : []),
           ]
         : [
-            { title: "Select Provider", schema: step1Schema },
+            { title: t("storage.modal.step.selectProvider", "Select Provider"), schema: step1Schema },
             {
-              title: "Configure Connection",
+              title: t("storage.modal.step.configureConnection", "Configure Connection"),
               schema: getProviderSchema(formData.provider || type || "s3", isEditMode, effectiveTarget),
             },
             // Only include preview and review steps for import storages
             ...(effectiveTarget === "import"
-              ? [{ title: "Import Settings & Preview" }, { title: "Review & Confirm" }]
+              ? [
+                  { title: t("storage.modal.step.importSettingsPreview", "Import Settings & Preview") },
+                  { title: t("storage.modal.step.reviewConfirm", "Review & Confirm") },
+                ]
               : []),
           ];
       setCurrentSteps(newSteps);
-    }, [formData.provider, type, isEditMode, target]);
+    }, [formData.provider, type, isEditMode, target, t]);
 
     // Handle modal hide (including Escape key)
     useEffect(() => {

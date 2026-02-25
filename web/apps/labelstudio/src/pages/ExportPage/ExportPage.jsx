@@ -16,6 +16,7 @@ import { useAPI } from "../../providers/ApiProvider";
 import { useFixedLocation, useParams } from "../../providers/RoutesProvider";
 import { cn } from "../../utils/bem";
 import { isDefined, copyText } from "../../utils/helpers";
+import { useDataManagerI18n } from "../DataManager/i18n";
 import "./ExportPage.scss";
 
 // Community Edition exports run synchronously in a single HTTP request.
@@ -43,12 +44,33 @@ const wait = () => new Promise((resolve) => setTimeout(resolve, 5000));
 
 const isTimeoutLikeStatus = (status) => status === 408 || status === 502 || status === 504;
 
+const localizeTag = (tag, t) => {
+  const slug = String(tag)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  return t(`datamanager.export.tags.${slug}`, tag);
+};
+
+const localizeFormat = (format, t) => {
+  const name = format.name ?? format.title;
+
+  return {
+    title: t(`datamanager.export.formats.${name}.title`, format.title),
+    description: format.description
+      ? t(`datamanager.export.formats.${name}.description`, format.description)
+      : format.description,
+    tags: format.tags?.map?.((tag) => localizeTag(tag, t)) ?? format.tags,
+  };
+};
+
+
 export const ExportPage = () => {
   const history = useHistory();
   const location = useFixedLocation();
   const pageParams = useParams();
   const api = useAPI();
-
+  const { t } = useDataManagerI18n();
   const [previousExports, setPreviousExports] = useState([]);
   const [downloading, setDownloading] = useState(false);
   const [downloadingMessage, setDownloadingMessage] = useState(false);
@@ -161,7 +183,7 @@ export const ExportPage = () => {
 
         history.replace(`${path}${search !== "?" ? search : ""}`);
       }}
-      title="Export data"
+      title={t("datamanager.export.title", "Export data")}
       style={{ width: 720 }}
       closeOnClickOutside={false}
       allowClose={!downloading}
@@ -170,13 +192,16 @@ export const ExportPage = () => {
     >
       <div className={cn("export-page").toClassName()}>
         <FormatInfo
+          t={t}
           availableFormats={availableFormats}
           selected={currentFormat}
           onClick={(format) => setCurrentFormat(format.name)}
         />
 
         <ExportLargeProjectWarning taskCount={projectTaskNumber} />
-        {exportIssue === "timeout" && <ExportTimeoutGuidance projectId={pageParams.id} exportType={currentFormat} />}
+        {exportIssue === "timeout" && (
+          <ExportTimeoutGuidance projectId={pageParams.id} exportType={currentFormat} t={t} />
+        )}
 
         <Form ref={form}>
           <Input type="hidden" name="exportType" value={currentFormat} />
@@ -185,18 +210,23 @@ export const ExportPage = () => {
         <div className={cn("export-page").elem("footer").toClassName()}>
           {downloadingMessage && (
             <div className={cn("export-page").elem("status-message").toClassName()}>
-              Files are being prepared. It might take long time.
+              {t("datamanager.export.preparing", "Files are being prepared. It might take long time.")}
             </div>
           )}
           <Space style={{ width: "100%" }} spread>
             <div className={cn("export-page").elem("recent").toClassName()}>
               <a className="no-go" href={EXPORT_TIMEOUT_DOCS_URL} target="_blank" rel="noreferrer">
-                Having a timeout or trouble exporting large projects?
+                {t("datamanager.export.troubleshoot", "Having a timeout or trouble exporting large projects?")}
               </a>
             </div>
             <div className={cn("export-page").elem("actions").toClassName()}>
-              <Button className="w-[135px]" onClick={proceedExport} waiting={downloading} aria-label="Export data">
-                Export
+              <Button
+                className="w-[135px]"
+                onClick={proceedExport}
+                waiting={downloading}
+                aria-label={t("datamanager.export.aria.exportData", "Export data")}
+              >
+                {t("datamanager.export.actions.export", "Export")}
               </Button>
             </div>
           </Space>
@@ -206,58 +236,64 @@ export const ExportPage = () => {
   );
 };
 
-const FormatInfo = ({ availableFormats, selected, onClick }) => {
+const FormatInfo = ({ availableFormats, selected, onClick, t }) => {
   return (
     <div className={cn("formats").toClassName()}>
       <div className={cn("formats").elem("info").toClassName()}>
-        You can export dataset in one of the following formats:
+        {t("datamanager.export.formatInfo", "You can export dataset in one of the following formats:")}
       </div>
       <div className={cn("formats").elem("list").toClassName()}>
-        {availableFormats.map((format) => (
-          <div
-            key={format.name}
-            className={cn("formats")
-              .elem("item")
-              .mod({
-                active: !format.disabled,
-                selected: format.name === selected,
-              })
-              .toClassName()}
-            onClick={!format.disabled ? () => onClick(format) : null}
-          >
-            <div className={cn("formats").elem("name").toClassName()}>
-              {format.title}
+        {availableFormats.map((format) => {
+          // API provides format metadata in English; localize known titles/descriptions/tags for active locale.
+          // Fall back to backend values for unknown or future formats.
+          const localized = localizeFormat(format, t);
 
-              <Space size="small">
-                {format.tags?.map?.((tag, index) => (
-                  <div key={index} className={cn("formats").elem("tag").toClassName()}>
-                    {tag}
-                  </div>
-                ))}
-              </Space>
+          return (
+            <div
+              key={format.name}
+              className={cn("formats")
+                .elem("item")
+                .mod({
+                  active: !format.disabled,
+                  selected: format.name === selected,
+                })
+                .toClassName()}
+              onClick={!format.disabled ? () => onClick(format) : null}
+            >
+              <div className={cn("formats").elem("name").toClassName()}>
+                {localized.title}
+
+                <Space size="small">
+                  {localized.tags?.map?.((tag, index) => (
+                    <div key={index} className={cn("formats").elem("tag").toClassName()}>
+                      {tag}
+                    </div>
+                  ))}
+                </Space>
+              </div>
+
+              {localized.description && (
+                <div className={cn("formats").elem("description").toClassName()}>{localized.description}</div>
+              )}
             </div>
-
-            {format.description && (
-              <div className={cn("formats").elem("description").toClassName()}>{format.description}</div>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className={cn("formats").elem("feedback").toClassName()}>
-        Can't find an export format?
+        {t("datamanager.export.feedback.title", "Can't find an export format?")}
         <br />
-        Please let us know in{" "}
+        {t("datamanager.export.feedback.prefix", "Please let us know in")}
         <a className="no-go" href="https://slack.labelstud.io/?source=product-export" target="_blank" rel="noreferrer">
-          Slack
+          {t("datamanager.export.feedback.slack", "Slack")}
         </a>{" "}
-        or submit an issue to the{" "}
+        {t("datamanager.export.feedback.middle", "or submit an issue to the")}
         <a
           className="no-go"
           href="https://github.com/HumanSignal/label-studio-converter/issues"
           target="_blank"
           rel="noreferrer"
         >
-          Repository
+          {t("datamanager.export.feedback.repository", "Repository")}
         </a>
       </div>
     </div>
@@ -267,30 +303,35 @@ const FormatInfo = ({ availableFormats, selected, onClick }) => {
 ExportPage.path = "/export";
 ExportPage.modal = true;
 
-const ExportLargeProjectWarning = ({ taskCount }) => {
+const ExportLargeProjectWarning = ({ taskCount, t }) => {
   if (!Number.isFinite(taskCount) || taskCount < LARGE_EXPORT_TASK_THRESHOLD) return null;
 
   return (
     <div className={cn("export-page").elem("warning").toClassName()}>
       <div className={cn("export-page").elem("warning-title").toClassName()}>
-        Large project detected ({taskCount.toLocaleString()} tasks)
+        {t("datamanager.export.largeProject.title", "Large project detected ({{count}} tasks)", {
+          count: taskCount.toLocaleString(),
+        })}
       </div>
       <div className={cn("export-page").elem("warning-body").toClassName()}>
-        To avoid potential timeouts during large dataset exports in the Community Edition, use the{" "}
+        {t(
+          "datamanager.export.largeProject.prefix",
+          "To avoid potential timeouts during large dataset exports in the Community Edition, use the",
+        )}
         <a className="no-go" href={EXPORT_TIMEOUT_DOCS_URL} target="_blank" rel="noreferrer">
-          CLI/SDK export options
+          {t("datamanager.export.largeProject.cliSdk", "CLI/SDK export options")}
         </a>{" "}
-        or consider{" "}
+        {t("datamanager.export.largeProject.middle", "or consider")}
         <a className="no-go" href={ENTERPRISE_URL} target="_blank" rel="noreferrer">
-          Enterprise
+          {t("datamanager.export.largeProject.enterprise", "Enterprise")}
         </a>{" "}
-        for background exports at scale.
+        {t("datamanager.export.largeProject.suffix", "for background exports at scale.")}
       </div>
     </div>
   );
 };
 
-const ExportTimeoutGuidance = ({ projectId, exportType }) => {
+const ExportTimeoutGuidance = ({ projectId, exportType, t }) => {
   const cliCommand = `label-studio export ${projectId} ${exportType} --export-path=<output-path>`;
   const [copied, setCopied] = useState(false);
 
@@ -304,24 +345,30 @@ const ExportTimeoutGuidance = ({ projectId, exportType }) => {
     <div className={cn("export-page").elem("timeout").toClassName()}>
       <div className={cn("export-page").elem("timeout-header").toClassName()}>
         <IconWarningCircleFilled className={cn("export-page").elem("timeout-icon").toClassName()} />
-        <div className={cn("export-page").elem("timeout-title").toClassName()}>Export timed out</div>
+        <div className={cn("export-page").elem("timeout-title").toClassName()}>
+          {t("datamanager.export.timeout.title", "Export timed out")}
+        </div>
       </div>
       <div className={cn("export-page").elem("timeout-body").toClassName()}>
-        This export is processed synchronously in the Community Edition UI and can exceed typical reverse-proxy timeouts
-        (often around 90 seconds) for large datasets.
+        {t(
+          "datamanager.export.timeout.body",
+          "This export is processed synchronously in the Community Edition UI and can exceed typical reverse-proxy timeouts (often around 90 seconds) for large datasets.",
+        )}
       </div>
 
       <div className={cn("export-page").elem("timeout-actions").toClassName()}>
-        <div className={cn("export-page").elem("timeout-actions-title").toClassName()}>Recommended options:</div>
+        <div className={cn("export-page").elem("timeout-actions-title").toClassName()}>
+          {t("datamanager.export.timeout.recommended", "Recommended options:")}
+        </div>
         <ul className={cn("export-page").elem("timeout-actions-list").toClassName()}>
           <li>
             <div className={cn("export-page").elem("timeout-action-item").toClassName()}>
               <IconTerminal className={cn("export-page").elem("timeout-action-icon").toClassName()} />
               <div className={cn("export-page").elem("timeout-action-content").toClassName()}>
                 <span>
-                  Export using the{" "}
+                  {t("datamanager.export.timeout.exportUsing", "Export using the")}
                   <a className="no-go" href={EXPORT_CONSOLE_DOCS_URL} target="_blank" rel="noreferrer">
-                    console command
+                    {t("datamanager.export.timeout.consoleCommand", "console command")}
                     <IconExternal className={cn("export-page").elem("timeout-link-icon").toClassName()} />
                   </a>
                   :
@@ -334,12 +381,18 @@ const ExportTimeoutGuidance = ({ projectId, exportType }) => {
                     type="button"
                     className={cn("export-page").elem("timeout-copy-button").toClassName()}
                     onClick={handleCopy}
-                    aria-label="Copy command"
-                    title={copied ? "Copied!" : "Copy command"}
+                    aria-label={t("datamanager.export.timeout.copyCommand", "Copy command")}
+                    title={
+                      copied
+                        ? t("datamanager.export.timeout.copiedWithBang", "Copied!")
+                        : t("datamanager.export.timeout.copyCommand", "Copy command")
+                    }
                   >
                     <IconCopyOutline className={cn("export-page").elem("timeout-copy-icon").toClassName()} />
                     {copied && (
-                      <span className={cn("export-page").elem("timeout-copy-text").toClassName()}>Copied</span>
+                      <span className={cn("export-page").elem("timeout-copy-text").toClassName()}>
+                        {t("datamanager.export.timeout.copied", "Copied")}
+                      </span>
                     )}
                   </button>
                 </div>
@@ -350,12 +403,15 @@ const ExportTimeoutGuidance = ({ projectId, exportType }) => {
             <div className={cn("export-page").elem("timeout-action-item").toClassName()}>
               <IconCode className={cn("export-page").elem("timeout-action-icon").toClassName()} />
               <div className={cn("export-page").elem("timeout-action-content").toClassName()}>
-                Use{" "}
+                {t("datamanager.export.timeout.use", "Use")}
                 <a className="no-go" href={EXPORT_SNAPSHOT_SDK_URL} target="_blank" rel="noreferrer">
-                  export snapshots via the SDK
+                  {t("datamanager.export.timeout.sdkSnapshots", "export snapshots via the SDK")}
                   <IconExternal className={cn("export-page").elem("timeout-link-icon").toClassName()} />
                 </a>{" "}
-                to create and download a snapshot without relying on a single UI request.
+                {t(
+                  "datamanager.export.timeout.sdkSuffix",
+                  "to create and download a snapshot without relying on a single UI request.",
+                )}
               </div>
             </div>
           </li>
@@ -363,12 +419,15 @@ const ExportTimeoutGuidance = ({ projectId, exportType }) => {
             <div className={cn("export-page").elem("timeout-action-item").toClassName()}>
               <IconWarningCircleFilled className={cn("export-page").elem("timeout-action-icon").toClassName()} />
               <div className={cn("export-page").elem("timeout-action-content").toClassName()}>
-                For large-scale exports in the UI, consider{" "}
+                {t("datamanager.export.timeout.enterprisePrefix", "For large-scale exports in the UI, consider")}
                 <a className="no-go" href={ENTERPRISE_URL} target="_blank" rel="noreferrer">
-                  Label Studio Enterprise
+                  {t("datamanager.export.timeout.enterprise", "Label Studio Enterprise")}
                   <IconExternal className={cn("export-page").elem("timeout-link-icon").toClassName()} />
                 </a>{" "}
-                since it is designed for large-scale projects and asynchronous exports.
+                {t(
+                  "datamanager.export.timeout.enterpriseSuffix",
+                  "since it is designed for large-scale projects and asynchronous exports.",
+                )}
               </div>
             </div>
           </li>
@@ -376,9 +435,9 @@ const ExportTimeoutGuidance = ({ projectId, exportType }) => {
         <div className={cn("export-page").elem("timeout-footer").toClassName()}>
           <IconBook className={cn("export-page").elem("timeout-footer-icon").toClassName()} />
           <span>
-            More details in the documentation:{" "}
+            {t("datamanager.export.timeout.moreDetails", "More details in the documentation:")}
             <a className="no-go" href={EXPORT_TIMEOUT_DOCS_URL} target="_blank" rel="noreferrer">
-              Export timeout in Community Edition
+              {t("datamanager.export.timeout.communityEdition", "Export timeout in Community Edition")}
               <IconExternal className={cn("export-page").elem("timeout-link-icon").toClassName()} />
             </a>
           </span>

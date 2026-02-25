@@ -1,5 +1,6 @@
 import { Label } from "@humansignal/ui";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ProviderGrid } from "../components";
 import type { ProviderConfig } from "../types/provider";
 
@@ -23,6 +24,8 @@ export const ProviderSelectionStep = ({
   handleSelectChange,
   providers,
 }: ProviderSelectionStepProps) => {
+  const { t } = useTranslation();
+
   // Set default provider if none is selected and we have options
   useEffect(() => {
     if (!formData.provider && Object.entries(providers).length > 0) {
@@ -51,13 +54,17 @@ export const ProviderSelectionStep = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold">Choose your cloud storage provider</h2>
-        <p className="text-muted-foreground">Select the cloud storage service where your data is stored</p>
+        <h2 className="text-xl font-semibold">
+          {t("storage.modal.chooseProvider", "Choose your cloud storage provider")}
+        </h2>
+        <p className="text-muted-foreground">
+          {t("storage.modal.selectProviderDescription", "Select the cloud storage service where your data is stored")}
+        </p>
       </div>
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label text="Storage Provider" required />
+          <Label text={t("storage.modal.storageProvider", "Storage Provider")} required />
           <ProviderGrid
             providers={providers}
             selectedProvider={formData.provider}

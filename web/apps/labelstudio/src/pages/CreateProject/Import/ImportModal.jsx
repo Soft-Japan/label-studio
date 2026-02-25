@@ -10,6 +10,7 @@ import { cn } from "../../../utils/bem";
 import { useRefresh } from "../../../utils/hooks";
 import { ImportPage } from "./Import";
 import { useImportPage } from "./useImportPage";
+import { useCreateProjectI18n } from "../i18n";
 
 export const Inner = () => {
   const history = useHistory();
@@ -20,6 +21,7 @@ export const Inner = () => {
   const [waiting, setWaitingStatus] = useState(false);
   const [sample, setSample] = useState(null);
   const api = useAPI();
+  const { t } = useCreateProjectI18n();
 
   const { uploading, uploadDisabled, finishUpload, fileIds, pageProps, uploadSample } = useImportPage(project);
 
@@ -63,7 +65,7 @@ export const Inner = () => {
 
   return (
     <Modal
-      title="Import data"
+      title={t("createProject.import.modal.title", "Import Data")}
       ref={modal}
       onHide={() => backToDM()}
       closeOnClickOutside={false}
@@ -72,7 +74,9 @@ export const Inner = () => {
       bare
     >
       <Modal.Header divided>
-        <div className={cn("modal").elem("title").toClassName()}>Import Data</div>
+        <div className={cn("modal").elem("title").toClassName()}>
+          {t("createProject.import.modal.title", "Import Data")}
+        </div>
 
         <Space>
           <Button
@@ -81,18 +85,18 @@ export const Inner = () => {
             look="outlined"
             waiting={waiting}
             onClick={onCancel}
-            aria-label="Cancel import"
+            aria-label={t("createProject.import.modal.aria.cancelImport", "Cancel import")}
           >
-            Cancel
+            {t("createProject.import.modal.cancel", "Cancel")}
           </Button>
           <Button
             size="small"
             onClick={onFinish}
             waiting={waiting || uploading}
             disabled={uploadDisabled}
-            aria-label="Finish import"
+            aria-label={t("createProject.import.modal.aria.finishImport", "Finish import")}
           >
-            Import
+            {t("createProject.import.modal.import", "Import")}
           </Button>
         </Space>
       </Modal.Header>

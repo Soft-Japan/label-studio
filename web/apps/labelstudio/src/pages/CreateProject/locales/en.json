@@ -80,6 +80,15 @@
         "addUrl": "Add URL",
         "uploadFile": "Upload file",
         "videoLearnMore": "Learn more about video format support (opens in a new tab)"
+      },
+      "modal": {
+        "title": "Import Data",
+        "cancel": "Cancel",
+        "import": "Import",
+        "aria": {
+          "cancelImport": "Cancel import",
+          "finishImport": "Finish import"
+        }
       }
     },
     "config": {

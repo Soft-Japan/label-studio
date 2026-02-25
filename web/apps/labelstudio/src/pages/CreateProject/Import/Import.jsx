@@ -10,6 +10,7 @@ import { useAPI } from "../../../providers/ApiProvider";
 import { cn } from "../../../utils/bem";
 import { unique } from "../../../utils/helpers";
 import { sampleDatasetAtom } from "../utils/atoms";
+import { useCreateProjectI18n } from "../i18n";
 import "./Import.scss";
 import { Button, CodeBlock, SimpleCard, Spinner, Tooltip, Typography } from "@humansignal/ui";
 import truncate from "truncate-middle";
@@ -153,23 +154,24 @@ export const ImportPage = ({
   setCsvHandling,
   addColumns,
   openLabelingConfig,
-  t,
+  t: tProp,
 }) => {
   const [error, setError] = useState();
   const [newlyUploadedFiles, setNewlyUploadedFiles] = useState(new Set());
   const prevUploadedRef = useRef(new Set());
   const api = useAPI();
+  const { t } = useCreateProjectI18n();
   const projectConfigured = project?.label_config !== "<View></View>";
   const sampleConfig = useAtomValue(sampleDatasetAtom);
   const translate = useCallback(
     (key, defaultValue, options = {}) => {
-      const value = t?.(key, options);
+      const value = (tProp ?? t)?.(key, options);
 
       if (value === undefined || value === key || typeof value === "object") return defaultValue;
 
       return String(value);
     },
-    [t],
+    [tProp, t],
   );
 
   const processFiles = (state, action) => {
@@ -427,7 +429,7 @@ export const ImportPage = ({
         <div
           className={importClass.elem("csv-handling").mod({ highlighted: highlightCsvHandling, hidden: !csvHandling })}
         >
-          <span>{translate("createProject.import.csvHandling", "Treat CSV/TSV as")}</span>
+          <span>{translate("createProject.import.csvHandling.label", "Treat CSV/TSV as")}</span>
           <label>
             <input {...csvProps} value="tasks" checked={csvHandling === "tasks"} />{" "}
             {translate("createProject.import.csvHandling.tasks", "List of tasks")}
@@ -475,7 +477,7 @@ export const ImportPage = ({
                         <div className="flex items-center gap-1">
                           {translate("createProject.import.supported.video", "Video")}
                           <Tooltip
-                            title={translate(
+                            title={t(
                               "createProject.import.supported.videoTooltip",
                               "Video format support depends on your browser. Click to learn more.",
                             )}
@@ -485,7 +487,7 @@ export const ImportPage = ({
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center"
-                              aria-label={translate(
+                              aria-label={t(
                                 "createProject.import.aria.videoLearnMore",
                                 "Learn more about video format support (opens in a new tab)",
                               )}
@@ -671,7 +673,7 @@ export const ImportPage = ({
                       </div>
                     ) : sampleConfig.isError ? (
                       <div className="w-[calc(100%-24px)] text-lg text-negative-content bg-negative-background border m-3 rounded-md border-negative-border-subtle p-4">
-                        {translate(
+                        {t(
                           "createProject.import.sampleLoadError",
                           "Something went wrong, the sample data could not be loaded.",
                         )}
@@ -696,7 +698,10 @@ export const ImportPage = ({
                             onClick={openConfig}
                             className="border-none bg-none p-0 m-0 text-primary-content underline"
                           >
-                            {translate("createProject.import.labelingConfig", "labeling configuration")}
+                          {translate(
+                            "createProject.import.previewSuffix",
+                            "first to preview the expected JSON data format",
+                          )}
                           </Button>{" "}
                           {translate("createProject.import.previewSuffix", "first to preview the expected JSON data format")}
                         </div>

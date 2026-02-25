@@ -1,4 +1,5 @@
 import { Button, cnm } from "@humansignal/ui";
+import { useTranslation } from "react-i18next";
 
 interface FormFooterProps {
   currentStep: number;
@@ -43,10 +44,12 @@ export const FormFooter = ({
   target,
   isProviderDisabled = false,
 }: FormFooterProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex items-center justify-between p-wide border-t border-neutral-border bg-neutral-background">
       <Button look="outlined" onClick={onPrevious} disabled={currentStep === 0}>
-        Previous
+        {t("storage.modal.previous", "Previous")}
       </Button>
 
       <div className="flex gap-tight items-center">
@@ -62,14 +65,18 @@ export const FormFooter = ({
               })}
               style={connectionChecked ? { textShadow: "none" } : {}}
             >
-              {connectionChecked ? "Connection Verified" : "Test Connection"}
+              {connectionChecked
+                ? t("storage.modal.connectionVerified", "Connection Verified")
+                : t("storage.modal.testConnection", "Test Connection")}
             </Button>
           </>
         )}
 
         {(isEditMode ? currentStep === 1 : currentStep === 2) && (
           <Button waiting={loadPreview.isLoading} onClick={loadPreview.mutate} disabled={filesPreview !== null}>
-            {filesPreview !== null ? "✓ Preview Loaded" : "Load Preview"}
+            {filesPreview !== null
+              ? t("storage.modal.previewLoaded", "✓ Preview Loaded")
+              : t("storage.modal.loadPreview", "Load Preview")}
           </Button>
         )}
 
@@ -82,18 +89,22 @@ export const FormFooter = ({
           look={currentStep === totalSteps - 1 && target !== "export" ? "outlined" : undefined}
           tooltip={
             currentStep === 1 && !connectionChecked
-              ? "Test connection before continuing"
+              ? t("storage.modal.testConnectionBeforeContinuing", "Test connection before continuing")
               : currentStep === 0 && isProviderDisabled
-                ? "This provider is not available in the current version"
+                ? t("storage.modal.providerNotAvailable", "This provider is not available in the current version")
                 : undefined
           }
         >
-          {currentStep < totalSteps - 1 ? "Next" : target === "export" ? "Save" : "Save & Sync"}
+          {currentStep < totalSteps - 1
+            ? t("storage.modal.next", "Next")
+            : target === "export"
+              ? t("storage.modal.save", "Save")
+              : t("storage.modal.saveSync", "Save & Sync")}
         </Button>
 
         {currentStep === totalSteps - 1 && target !== "export" && onSave && (
           <Button onClick={onSave} waiting={saveStorage?.isLoading}>
-            Save
+            {t("storage.modal.save", "Save")}
           </Button>
         )}
       </div>

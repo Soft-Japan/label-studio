@@ -15,7 +15,7 @@ import {
 } from "@humansignal/icons";
 import { LSLogo } from "../../assets/images";
 import { Button, Userpic, ThemeToggle } from "@humansignal/ui";
-import { useConfig } from "../../providers/ConfigProvider";
+//import { useConfig } from "../../providers/ConfigProvider";
 import { useContextComponent, useFixedLocation } from "../../providers/RoutesProvider";
 import { useAuth } from "@humansignal/core/providers/AuthProvider";
 import { cn } from "../../utils/bem";
@@ -59,6 +59,33 @@ const menuLabels = {
 };
 
 const getMenuLabel = (labelKey) => (isJapaneseLocale() ? menuLabels[labelKey].ja : menuLabels[labelKey].en);
+const getLanguageFromCookie = () =>
+  document.cookie
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith("django_language="))
+    ?.split("=")[1];
+
+const resolveCurrentLanguage = () => {
+  const cookieLanguage = getLanguageFromCookie();
+
+  if (cookieLanguage) {
+    return cookieLanguage.toLowerCase().startsWith("ja") ? "ja" : "en";
+  }
+
+  const htmlLanguage = document.documentElement.lang;
+
+  if (htmlLanguage) {
+    return htmlLanguage.toLowerCase().startsWith("ja") ? "ja" : "en";
+  }
+
+  return "en";
+};
+
+const setLanguageCookie = (language) => {
+  // biome-ignore lint/suspicious/noDocumentCookie: Django reads language preference from this cookie.
+  document.cookie = `django_language=${language}; path=/; max-age=31536000; samesite=lax`;
+};
 
 const RightContextMenu = ({ className, ...props }) => {
   const { ContextComponent, contextProps } = useContextComponent();
@@ -78,8 +105,9 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
   const { user, isLoading } = useAuth();
   const location = useFixedLocation();
 
-  const config = useConfig();
+  //const config = useConfig();
   const [sidebarOpened, setSidebarOpened] = useState(defaultOpened ?? false);
+  const [language, setLanguage] = useState(resolveCurrentLanguage);
   const [sidebarPinned, setSidebarPinned] = useState(defaultPinned ?? false);
   const [PageContext, setPageContext] = useState({
     Component: null,
@@ -150,6 +178,19 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
     }
     useMenuRef?.current?.close();
   }, [location]);
+  const switchLanguage = useCallback(() => {
+    const nextLanguage = language === "ja" ? "en" : "ja";
+
+    setLanguage(nextLanguage);
+    setLanguageCookie(nextLanguage);
+    document.documentElement.lang = nextLanguage;
+
+    if (window.APP_SETTINGS) {
+      window.APP_SETTINGS.language_code = nextLanguage;
+    }
+
+    window.location.reload();
+  }, [language]);
 
   return (
     <div className={contentClass}>
@@ -191,7 +232,17 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
               />
             </div>
           </div>
-
+          <div className={menubarClass.elem("language")}>
+            <Button
+              variant="neutral"
+              look="outlined"
+              size="small"
+              onClick={switchLanguage}
+              tooltip={language === "ja" ? "英語に切り替え" : "Switch to Japanese"}
+            >
+              {language === "ja" ? "EN" : "JP"}
+            </Button>
+          </div>
           {ff.isActive(ff.FF_THEME_TOGGLE) && <ThemeToggle />}
 
           <Dropdown.Trigger
@@ -205,7 +256,12 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
                   href={pages.AccountSettingsPage.path}
                 />
                 {/* <Menu.Item label="Dark Mode"/> */}
-                <Menu.Item icon={<IconDoor />} label={getMenuLabel("logout")} href={absoluteURL("/logout")} data-external />
+                <Menu.Item
+                  icon={<IconDoor />}
+                  label={getMenuLabel("logout")}
+                  href={absoluteURL("/logout")}
+                  data-external
+                />
                 {showNewsletterDot && (
                   <>
                     <Menu.Divider />
@@ -238,9 +294,17 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
               style={{ width: 240 }}
             >
               <Menu>
-                {isFF(FF_HOMEPAGE) && <Menu.Item label={getMenuLabel("home")} to="/" icon={<IconHome />} data-external exact />}
+                {isFF(FF_HOMEPAGE) && (
+                  <Menu.Item label={getMenuLabel("home")} to="/" icon={<IconHome />} data-external exact />
+                )}
                 <Menu.Item label={getMenuLabel("projects")} to="/projects" icon={<IconFolder />} data-external exact />
-                <Menu.Item label={getMenuLabel("organization")} to="/organization" icon={<IconPeople />} data-external exact />
+                <Menu.Item
+                  label={getMenuLabel("organization")}
+                  to="/organization"
+                  icon={<IconPeople />}
+                  data-external
+                  exact
+                />
 
                 <Menu.Spacer />
 
@@ -252,7 +316,12 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
                   icon={<IconTerminal />}
                   target="_blank"
                 />
-                <Menu.Item label={getMenuLabel("docs")} href="https://labelstud.io/guide" icon={<IconBook />} target="_blank" />
+                <Menu.Item
+                  label={getMenuLabel("docs")}
+                  href="https://labelstud.io/guide"
+                  icon={<IconBook />}
+                  target="_blank"
+                />
                 <Menu.Item
                   label={getMenuLabel("github")}
                   href="https://github.com/HumanSignal/label-studio"

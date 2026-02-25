@@ -2,224 +2,250 @@
   "datamanager": {
     "emptyState": {
       "import": {
-        "title": "プロジェクトを開始するためにデータをインポートしてください",
-        "description": "クラウドストレージを接続するか、コンピューターからファイルをアップロードしてください",
-        "connectCloudStorage": "クラウドストレージを接続",
-        "import": "インポート",
-        "docs": "データのインポートに関するドキュメントを見る"
+        "title": "Import data to start the project",
+        "description": "Connect cloud storage or upload files from your computer",
+        "connectCloudStorage": "Connect cloud storage",
+        "import": "Import",
+        "docs": "View documentation about importing data"
       },
       "filters": {
-        "clear": "フィルターをクリア"
+        "clear": "Clear filters"
       }
     },
     "toolbar": {
-      "actions": "アクション",
-      "columns": "列",
-      "default": "デフォルト",
-      "export": "エクスポート",
-      "filters": "フィルター",
-      "import": "インポート",
-      "loadingActions": "アクションを読み込み中...",
-      "orderBy": "並び順",
-      "tasksActions": "タスクのアクション",
-      "upgradeToImport": "データをインポートするにはプランをアップグレードする必要があります"
+      "actions": "Actions",
+      "columns": "Columns",
+      "default": "Default",
+      "export": "Export",
+      "filters": "Filters",
+      "import": "Import",
+      "loadingActions": "Loading actions...",
+      "orderBy": "Order by",
+      "tasksActions": "Task actions",
+      "upgradeToImport": "To import data, you need to upgrade your plan",
+      "density": {
+        "comfortable": "Comfortable density",
+        "compact": "Compact density"
+      },
+      "view": {
+        "list": "List view",
+        "grid": "Grid view",
+        "listAria": "Switch to list view",
+        "gridAria": "Switch to grid view"
+      },
+      "grid": {
+        "columns": "Columns",
+        "decreaseColumns": "Decrease columns number",
+        "increaseColumns": "Increase columns number",
+        "fitImagesToWidth": "Fit images to width",
+        "settings": "Grid settings"
+      }
     },
     "summary": {
-      "filteredTasks": "フィルタリング後のタスク",
-      "predictions": "予測",
-      "storageSync": "ストレージ同期",
-      "submittedAnnotations": "提出済みアノテーション",
-      "tasks": "タスク",
-      "totalTasksInProject": "プロジェクト内の総タスク数"
+      "filteredTasks": "Filtered tasks",
+      "predictions": "Predictions",
+      "storageSync": "Storage sync",
+      "submittedAnnotations": "Submitted annotations",
+      "tasks": "Tasks",
+      "totalTasksInProject": "Total tasks in project"
     },
     "tabs": {
-      "default": "デフォルト",
-      "unsaved": "未保存"
+      "default": "Default",
+      "unsaved": "unsaved"
     },
     "page": {
-      "backToProjects": "プロジェクトに戻る",
-      "instructions": "手順",
-      "labeling": "ラベリング",
-      "labelingInstructions": "ラベリング手順",
-      "projectMissing": "プロジェクトは削除されたか、まだ作成されていません",
-      "settings": "設定"
+      "backToProjects": "Back to projects",
+      "instructions": "Instructions",
+      "labeling": "Labeling",
+      "labelingInstructions": "Labeling Instructions",
+      "projectMissing": "Project was deleted or not yet created",
+      "settings": "Settings"
     },
     "filters": {
-      "noFiltersApplied": "フィルターは適用されていません",
-      "addFilter": "フィルターを追加",
-      "addAnotherFilter": "別のフィルターを追加",
-      "pinToSidebar": "サイドバーに固定",
-      "pinFiltersToSidebar": "フィルターをサイドバーに固定"
+      "noFiltersApplied": "No filters applied",
+      "addFilter": "Add filter",
+      "addAnotherFilter": "Add another filter",
+      "pinToSidebar": "Pin to sidebar",
+      "pinFiltersToSidebar": "Pin filters to sidebar"
     },
     "columns": {
       "id": "ID",
-      "innerId": "内部ID",
-      "completed": "完了",
-      "annotations": "アノテーション",
-      "cancelled": "キャンセル済み",
-      "predictions": "予測",
-      "annotatedBy": "担当アノテーター",
-      "annotationResults": "アノテーション結果",
-      "annotationIds": "アノテーションID",
-      "predictionScore": "予測スコア",
-      "predictionModelVersions": "予測モデルのバージョン",
-      "predictionResults": "予測結果",
-      "uploadFilename": "アップロードファイル名",
-      "storageFilename": "保存ファイル名",
-      "createdAt": "作成日時",
-      "updatedAt": "更新日時",
-      "updatedBy": "更新者",
-      "leadTime": "リードタイム",
-      "draft": "下書き",
-      "data": "データ",
-      "image": "画像"
+      "innerId": "Inner ID",
+      "completed": "Completed",
+      "annotations": "Annotations",
+      "cancelled": "Cancelled",
+      "predictions": "Predictions",
+      "annotatedBy": "Annotated by",
+      "annotationResults": "Annotation results",
+      "annotationIds": "Annotation IDs",
+      "predictionScore": "Prediction score",
+      "predictionModelVersions": "Prediction model versions",
+      "predictionResults": "Prediction results",
+      "uploadFilename": "Upload filename",
+      "storageFilename": "Storage filename",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at",
+      "updatedBy": "Updated by",
+      "leadTime": "Lead time",
+      "draft": "Draft",
+      "data": "Data",
+      "image": "Image",
+      "prediction_score": "Prediction score",
+      "prediction_model_versions": "Prediction model versions",
+      "prediction_results": "Prediction results",
+      "upload_filename": "Upload filename",
+      "storage_filename": "Storage filename",
+      "created_at": "Created at",
+      "updated_at": "Updated at",
+      "updated_by": "Updated by",
+      "lead_time": "Lead time"
     },
     "export": {
-      "title": "データをエクスポート",
-      "preparing": "ファイルを準備しています。時間がかかる場合があります。",
-      "troubleshoot": "タイムアウトしたり大規模プロジェクトのエクスポートで問題がありますか？",
-      "formatInfo": "データセットは次の形式のいずれかでエクスポートできます:",
+      "title": "Export data",
+      "preparing": "Files are being prepared. It might take long time.",
+      "troubleshoot": "Having a timeout or trouble exporting large projects?",
+      "formatInfo": "You can export dataset in one of the following formats:",
       "aria": {
-        "exportData": "データをエクスポート"
+        "exportData": "Export data"
       },
       "actions": {
-        "export": "エクスポート"
+        "export": "Export"
       },
       "feedback": {
-        "title": "目的のエクスポート形式が見つかりませんか？",
-        "prefix": "ぜひ",
+        "title": "Can't find an export format?",
+        "prefix": "Please let us know in",
         "slack": "Slack",
-        "middle": "でお知らせいただくか、",
-        "repository": "リポジトリ"
+        "middle": "or submit an issue to the",
+        "repository": "Repository"
       },
       "largeProject": {
-        "title": "大規模プロジェクトを検出（{{count}} タスク）",
-        "prefix": "Community Edition で大規模データセットをエクスポートする際のタイムアウトを避けるには、",
-        "cliSdk": "CLI/SDK のエクスポートオプション",
-        "middle": "を使用するか、",
+        "title": "Large project detected ({{count}} tasks)",
+        "prefix": "To avoid timeouts when exporting large datasets in Community Edition, use",
+        "cliSdk": "CLI/SDK export options",
+        "middle": "or consider",
         "enterprise": "Enterprise",
-        "suffix": "の導入をご検討ください。大規模なバックグラウンドエクスポートに対応しています。"
+        "suffix": "for background exports at scale."
       },
       "timeout": {
-        "title": "エクスポートがタイムアウトしました",
-        "body": "このエクスポートは Community Edition の UI で同期処理されるため、大規模データセットでは一般的なリバースプロキシのタイムアウト（多くの場合約90秒）を超えることがあります。",
-        "recommended": "推奨オプション:",
-        "exportUsing": "次を使ってエクスポート:",
-        "consoleCommand": "コンソールコマンド",
-        "copyCommand": "コマンドをコピー",
-        "copied": "コピー済み",
-        "copiedWithBang": "コピーしました！",
-        "use": "または",
-        "sdkSnapshots": "SDK 経由のエクスポートスナップショット",
-        "sdkSuffix": "を使って、単一の UI リクエストに依存せずスナップショットを作成・ダウンロードしてください。",
-        "enterprisePrefix": "UI で大規模エクスポートを行う場合は、",
+        "title": "Export timed out",
+        "body": "This export runs synchronously in the Community Edition UI, so large datasets can exceed common reverse proxy timeouts (often around 90 seconds).",
+        "recommended": "Recommended options:",
+        "exportUsing": "Export using the",
+        "consoleCommand": "console command",
+        "copyCommand": "Copy command",
+        "copied": "Copied",
+        "copiedWithBang": "Copied!",
+        "use": "Use",
+        "sdkSnapshots": "export snapshots via the SDK",
+        "sdkSuffix": "to generate and download snapshots without relying on a single UI request.",
+        "enterprisePrefix": "For large-scale exports in the UI, consider",
         "enterprise": "Label Studio Enterprise",
-        "enterpriseSuffix": "の利用をご検討ください。大規模プロジェクトと非同期エクスポート向けに設計されています。",
-        "moreDetails": "詳細はドキュメントをご覧ください:",
-        "communityEdition": "Community Edition のエクスポートタイムアウト"
+        "enterpriseSuffix": "for large projects and asynchronous exports.",
+        "moreDetails": "For details, see the documentation:",
+        "communityEdition": "Community Edition export timeout"
       },
       "formats": {
         "JSON": {
           "title": "JSON",
-          "description": "1つのJSONファイルに保存された生のJSON形式のアイテム一覧です。データとアノテーションの両方をエクスポートする場合に使用します。Label Studio共通フォーマットです。"
+          "description": "List of items in raw JSON format stored in one JSON file. Use this to export both data and annotations. This is a common Label Studio format."
         },
         "JSON_MIN": {
           "title": "JSON-MIN",
-          "description": "生のJSON形式から \"from_name\" と \"to_name\" の値のみを出力したアイテム一覧です。データセットのアノテーションのみをエクスポートする場合に使用します。"
+          "description": "List of items from raw JSON including only \"from_name\" and \"to_name\" values. Use this when exporting annotations only."
         },
         "CSV": {
           "title": "CSV",
-          "description": "結果はカンマ区切り形式で保存され、列名は \"from_name\" と \"to_name\" の値から指定されます。"
+          "description": "Results are saved in comma-separated format, with column names based on \"from_name\" and \"to_name\" values."
         },
         "TSV": {
           "title": "TSV",
-          "description": "結果はタブ区切りの表形式ファイルで保存され、列名は \"from_name\" と \"to_name\" の値から指定されます。"
+          "description": "Results are saved in tab-separated table format, with column names based on \"from_name\" and \"to_name\" values."
         },
         "COCO": {
           "title": "COCO",
-          "description": "COCOデータセットで使われる代表的な機械学習フォーマットです。ポリゴンや矩形による物体検出・画像セグメンテーションに対応します。"
+          "description": "A common machine-learning format used by COCO datasets. Supports object detection and image segmentation with polygons and rectangles."
         },
         "COCO_WITH_IMAGES": {
-          "title": "画像付き COCO",
-          "description": "画像をダウンロードしたCOCO形式です。"
+          "title": "COCO with images",
+          "description": "COCO format with downloaded images."
         },
         "YOLO": {
           "title": "YOLO",
-          "description": "画像ごとにTXTファイルを生成する代表的な形式です。各txtファイルには、対応画像のクラス、座標、高さ、幅のアノテーションが含まれます。"
+          "description": "A common format that generates a TXT file per image. Each file contains class, coordinates, height, and width annotations for the corresponding image."
         },
         "YOLO_WITH_IMAGES": {
-          "title": "画像付き YOLO",
-          "description": "画像をダウンロードしたYOLO形式です。"
+          "title": "YOLO with images",
+          "description": "YOLO format with downloaded images."
         },
         "YOLO_OBB": {
           "title": "YOLOv8 OBB",
-          "description": "画像ごとにTXTファイルを生成する代表的な形式です。各txtファイルには対応画像のアノテーションが含まれます。YOLO OBB形式は4つの頂点座標（0〜1で正規化）でバウンディングボックスを表すため、回転物体もエクスポートできます。"
+          "description": "A common format that generates a TXT file per image. Each file contains annotations for the corresponding image. YOLO OBB uses 4 corner coordinates (normalized 0–1) to represent bounding boxes, so rotated objects can be exported."
         },
         "YOLO_OBB_WITH_IMAGES": {
-          "title": "画像付き YOLOv8 OBB",
-          "description": "画像をダウンロードしたYOLOv8 OBB形式です。"
+          "title": "YOLOv8 OBB with images",
+          "description": "YOLOv8 OBB format with downloaded images."
         },
         "CONLL2003": {
           "title": "CONLL2003",
-          "description": "CoNLL-2003 固有表現認識チャレンジで使われる代表的な形式です。"
+          "description": "A common format used in the CoNLL-2003 named entity recognition challenge."
         },
         "VOC": {
           "title": "Pascal VOC XML",
-          "description": "物体検出およびポリゴン画像セグメンテーションで使われる代表的なXML形式です。"
+          "description": "A common XML format used for object detection and polygon image segmentation."
         },
         "BRUSH_TO_NUMPY": {
-          "title": "ブラシラベルをNumPyへ",
-          "description": "ブラシラベルをNumPy 2次元配列としてエクスポートします。各ラベルは1枚の画像として出力されます。"
+          "title": "Brush labels to NumPy",
+          "description": "Exports brush labels as NumPy 2D arrays. Each label is saved as one image."
         },
         "BRUSH_TO_PNG": {
-          "title": "ブラシラベルをPNGへ",
-          "description": "ブラシラベルをPNG画像としてエクスポートします。各ラベルは1枚の画像として出力されます。"
+          "title": "Brush labels to PNG",
+          "description": "Exports brush labels as PNG images. Each label is saved as one image."
         },
         "ASR_MANIFEST": {
-          "title": "ASRマニフェスト",
-          "description": "音声認識向けの文字起こしラベルを、NVIDIA NeMoモデルが期待するJSONマニフェスト形式でエクスポートします。"
+          "title": "ASR manifest",
+          "description": "Exports speech-recognition transcription labels in the JSON manifest format expected by NVIDIA NeMo models."
         },
         "BRUSH_TO_COCO": {
-          "title": "ブラシラベルをCOCOへ",
-          "description": "セグメンテーション向けにブラシラベルをCOCO形式でエクスポートします。RLEエンコードされたマスクをCOCOポリゴンへ変換します。"
+          "title": "Brush labels to COCO",
+          "description": "Exports brush labels to COCO format for segmentation. Converts RLE-encoded masks to COCO polygons."
         }
       },
       "tags": {
-        "image_segmentation": "画像セグメンテーション",
-        "object_detection": "物体検出",
-        "keypoints": "キーポイント",
-        "sequence_labeling": "系列ラベリング",
-        "text_tagging": "テキストタグ付け",
-        "named_entity_recognition": "固有表現認識",
-        "speech_recognition": "音声認識",
-        "brush_annotations": "ブラシアノテーション"
+        "image_segmentation": "Image segmentation",
+        "object_detection": "Object detection",
+        "keypoints": "Keypoints",
+        "sequence_labeling": "Sequence labeling",
+        "text_tagging": "Text tagging",
+        "named_entity_recognition": "Named entity recognition",
+        "speech_recognition": "Speech recognition",
+        "brush_annotations": "Brush annotations"
       }
     }
   },
-  "storage.modal.importDataFromCloud": "クラウドストレージプロバイダーからデータをインポート",
-  "storage.modal.chooseProvider": "クラウドストレージプロバイダーを選択",
-  "storage.modal.selectProviderDescription": "データが保存されているクラウドストレージサービスを選択してください",
-  "storage.modal.storageProvider": "ストレージプロバイダー",
-  "storage.modal.step.selectProvider": "プロバイダーを選択",
-  "storage.modal.step.configureConnection": "接続を設定",
-  "storage.modal.step.importSettingsPreview": "インポート設定とプレビュー",
-  "storage.modal.step.reviewConfirm": "確認と実行",
-  "storage.modal.previous": "前へ",
-  "storage.modal.connectionVerified": "接続を確認済み",
-  "storage.modal.testConnection": "接続テスト",
-  "storage.modal.previewLoaded": "✓ プレビューを読み込み済み",
-  "storage.modal.loadPreview": "プレビューを読み込み",
-  "storage.modal.testConnectionBeforeContinuing": "続行する前に接続テストを実行してください",
-  "storage.modal.providerNotAvailable": "このプロバイダーは現在のバージョンでは利用できません",
-  "storage.modal.next": "次へ",
-  "storage.modal.save": "保存",
-  "storage.modal.saveSync": "保存して同期",
-  "storage.modal.edit": "編集",
-  "storage.modal.connect": "接続",
-  "storage.modal.target": "ターゲット",
-  "storage.modal.source": "ソース",
-  "storage.modal.storage": "ストレージ",
-  "storage.modal.deletingStorage": "ストレージを削除",
-  "storage.modal.deleteStorageConfirm": "この操作は元に戻せません。よろしいですか？",
-  "storage.modal.add": "追加"
+  "storage.modal.importDataFromCloud": "Import data from cloud storage provider",
+  "storage.modal.chooseProvider": "Choose cloud storage provider",
+  "storage.modal.selectProviderDescription": "Select the cloud storage service where your data is stored",
+  "storage.modal.storageProvider": "Storage provider",
+  "storage.modal.step.selectProvider": "Select provider",
+  "storage.modal.step.configureConnection": "Configure connection",
+  "storage.modal.step.importSettingsPreview": "Import settings and preview",
+  "storage.modal.step.reviewConfirm": "Review and run",
+  "storage.modal.previous": "Previous",
+  "storage.modal.connectionVerified": "Connection verified",
+  "storage.modal.testConnection": "Test connection",
+  "storage.modal.previewLoaded": "✓ Preview loaded",
+  "storage.modal.loadPreview": "Load preview",
+  "storage.modal.testConnectionBeforeContinuing": "Please test the connection before continuing",
+  "storage.modal.providerNotAvailable": "This provider is not available in the current version",
+  "storage.modal.next": "Next",
+  "storage.modal.save": "Save",
+  "storage.modal.saveSync": "Save and sync",
+  "storage.modal.edit": "Edit",
+  "storage.modal.connect": "Connect",
+  "storage.modal.target": "Target",
+  "storage.modal.source": "Source",
+  "storage.modal.storage": "Storage",
+  "storage.modal.deletingStorage": "Deleting storage",
+  "storage.modal.deleteStorageConfirm": "This action cannot be undone. Are you sure?",
+  "storage.modal.add": "Add"
 }

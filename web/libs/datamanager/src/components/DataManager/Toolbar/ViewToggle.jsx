@@ -2,6 +2,7 @@ import { inject, observer } from "mobx-react";
 import { RadioGroup } from "../../Common/RadioGroup/RadioGroup";
 import { IconGrid, IconList } from "@humansignal/icons";
 import { Tooltip } from "@humansignal/ui";
+import { useTranslation } from "react-i18next";
 
 const viewInjector = inject(({ store }) => ({
   view: store.currentView,
@@ -9,6 +10,7 @@ const viewInjector = inject(({ store }) => ({
 
 export const ViewToggle = viewInjector(
   observer(({ view, size, ...rest }) => {
+    const { t } = useTranslation();
     return (
       <RadioGroup
         size={size}
@@ -17,16 +19,16 @@ export const ViewToggle = viewInjector(
         {...rest}
         style={{ "--button-padding": "0 var(--spacing-tighter)" }}
       >
-        <Tooltip title="List view">
+        <Tooltip title={t("datamanager.toolbar.view.list", "List view")}>
           <div>
-            <RadioGroup.Button value="list" aria-label="Switch to list view">
+            <RadioGroup.Button value="list" aria-label={t("datamanager.toolbar.view.listAria", "Switch to list view")}>
               <IconList />
             </RadioGroup.Button>
           </div>
         </Tooltip>
-        <Tooltip title="Grid view">
+        <Tooltip title={t("datamanager.toolbar.view.grid", "Grid view")}>
           <div>
-            <RadioGroup.Button value="grid" aria-label="Switch to grid view">
+            <RadioGroup.Button value="grid" aria-label={t("datamanager.toolbar.view.gridAria", "Switch to grid view")}>
               <IconGrid />
             </RadioGroup.Button>
           </div>

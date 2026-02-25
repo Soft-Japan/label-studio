@@ -10,6 +10,35 @@ body {
   font-family: 'Hellix', sans-serif;
   background-color: var(--color-neutral-background-bold);
   color: var(--color-neutral-content);
+  position: relative;
+}
+
+.login_page_new_ui #auth-language-form {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: auto;
+  width: auto;
+  display: block;
+  grid-auto-flow: initial;
+  grid-gap: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 1001;
+}
+
+.login_page_new_ui #auth-language-form #auth-language-toggle {
+  width: auto;
+  min-width: 44px;
+  border: 1px solid var(--color-neutral-border);
+  background: var(--color-neutral-surface);
+  color: var(--color-neutral-content);
+  border-radius: 8px;
+  height: 32px;
+  padding: 0 12px;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 .login_page_new_ui .left {
@@ -140,6 +169,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+.login_page_new_ui #auth-language-form #auth-language-toggle {
+  cursor: pointer;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.login_page_new_ui #auth-language-form #auth-language-toggle:hover {
+  background: var(--color-neutral-emphasis-subtle);
+  border-color: var(--color-neutral-border-bold);
 }
 
 .login_page_new_ui .toggle {

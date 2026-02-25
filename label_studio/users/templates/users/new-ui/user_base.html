@@ -77,6 +77,27 @@ gtag('config', 'UA-129877673-1');
 </script>
 
 <div class="login_page_new_ui">
+  <form
+    id="auth-language-form"
+    class="auth-language-form"
+    action="{% url 'set_language' %}"
+    method="post"
+    style="position: fixed; top: 16px; right: 16px; left: auto; z-index: 1001; width: auto; margin: 0;"
+  >
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <input type="hidden" name="language" value="{% if request.LANGUAGE_CODE|lower|slice:':2' == 'ja' %}en{% else %}ja{% endif %}">
+    <button
+      id="auth-language-toggle"
+      type="submit"
+      class="auth-language-toggle"
+      style="width: auto; min-width: 44px;"
+      aria-label="{% if request.LANGUAGE_CODE|lower|slice:':2' == 'ja' %}英語に切り替え{% else %}Switch to Japanese{% endif %}"
+      title="{% if request.LANGUAGE_CODE|lower|slice:':2' == 'ja' %}英語に切り替え{% else %}Switch to Japanese{% endif %}"
+    >
+      {% if request.LANGUAGE_CODE|lower|slice:':2' == 'ja' %}EN{% else %}JP{% endif %}
+    </button>
+  </form>
   <div class="left">
     <svg role="img" aria-label="{% trans "Label Studio Logo" %}" class="ls-logo" width="194" height="30" viewBox="0 0 194 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <title>{% trans "Label Studio Logo" %}</title>

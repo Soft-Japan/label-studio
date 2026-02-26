@@ -1,0 +1,27 @@
+{
+  "projects": {
+    "meta": {
+      "title": "プロジェクト"
+    },
+    "pagination": {
+      "label": "プロジェクト"
+    },
+    "empty": {
+      "imageAlt": "プロジェクトを探しているハイジ",
+      "title": "ここにはプロジェクトが見つかりません！",
+      "description": "プロジェクトを作成してデータのラベリングを始めましょう。",
+      "cta": "プロジェクトを作成",
+      "createAriaLabel": "新しいプロジェクトを作成"
+    },
+    "card": {
+      "untitled": "新しいプロジェクト",
+      "settings": "設定",
+      "label": "ラベル",
+      "optionsAriaLabel": "プロジェクトオプション"
+    },
+    "context": {
+      "create": "作成",
+      "createAriaLabel": "新しいプロジェクトを作成"
+    }
+  }
+}

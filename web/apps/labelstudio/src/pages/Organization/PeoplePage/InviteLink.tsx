@@ -7,6 +7,7 @@ import { useAtomValue } from "jotai";
 import { atomWithQuery } from "jotai-tanstack-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Input } from "../../../components/Form";
+import { useOrganizationI18n } from "../i18n";
 
 const linkAtom = atomWithQuery(() => ({
   queryKey: ["invite-link"],
@@ -36,10 +37,16 @@ export function InviteLink({
     }
   }, [opened]);
 
+  const runtimeLanguage =
+    window.APP_SETTINGS?.language_code ??
+    window.APP_SETTINGS?.user?.language ??
+    window.APP_SETTINGS?.user?.language_code;
+  const { t } = useOrganizationI18n(runtimeLanguage);
+
   return (
     <Modal
       ref={modalRef}
-      title="Invite members"
+      title={t("organization.people.inviteMembers")}
       opened={opened}
       bareFooter={true}
       body={<InvitationModal />}
@@ -53,12 +60,16 @@ export function InviteLink({
 
 const InvitationModal = () => {
   const { data: link } = useAtomValue(linkAtom);
+  const runtimeLanguage =
+    window.APP_SETTINGS?.language_code ??
+    window.APP_SETTINGS?.user?.language ??
+    window.APP_SETTINGS?.user?.language_code;
+  const { t } = useOrganizationI18n(runtimeLanguage);
   return (
     <div className={cn("invite").toClassName()}>
       <Input value={link} style={{ width: "100%" }} readOnly />
       <Typography size="small" className="text-neutral-content-subtler mt-base mb-wider">
-        Invite members to join your Label Studio instance. People that you invite have full access to all of your
-        projects.{" "}
+        {t("organization.people.inviteDescription")} {" "}
         <a
           href="https://labelstud.io/guide/signup.html"
           target="_blank"
@@ -70,7 +81,7 @@ const InvitationModal = () => {
             })
           }
         >
-          Learn more
+          {t("organization.people.learnMore")}
         </a>
         .
       </Typography>
@@ -80,6 +91,11 @@ const InvitationModal = () => {
 
 const InvitationFooter = () => {
   const { copyText, copied } = useTextCopy();
+  const runtimeLanguage =
+    window.APP_SETTINGS?.language_code ??
+    window.APP_SETTINGS?.user?.language ??
+    window.APP_SETTINGS?.user?.language_code;
+  const { t } = useOrganizationI18n(runtimeLanguage);
   const { refetch, data: link } = useAtomValue(linkAtom);
 
   return (
@@ -90,9 +106,9 @@ const InvitationFooter = () => {
           look="outlined"
           style={{ width: 170 }}
           onClick={() => refetch()}
-          aria-label="Refresh invite link"
+          aria-label={t("organization.people.refreshInviteLink")}
         >
-          Reset Link
+          {t("organization.people.resetLink")}
         </Button>
       </Space>
       <Space>
@@ -100,9 +116,9 @@ const InvitationFooter = () => {
           variant={copied ? "positive" : "primary"}
           className="w-[170px]"
           onClick={() => copyText(link!)}
-          aria-label="Copy invite link"
+          aria-label={t("organization.people.copyInviteLink")}
         >
-          {copied ? "Copied!" : "Copy link"}
+          {copied ? t("organization.people.copied") : t("organization.people.copyLink")}
         </Button>
       </Space>
     </Space>

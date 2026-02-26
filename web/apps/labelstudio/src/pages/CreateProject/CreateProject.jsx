@@ -16,8 +16,9 @@ import { useDraftProject } from "./utils/useDraftProject";
 import { Input, TextArea } from "../../components/Form";
 import { FF_LSDV_E_297, isFF } from "../../utils/feature-flags";
 import { createURL } from "../../components/HeidiTips/utils";
+import { useCreateProjectI18n } from "./i18n";
 
-const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, setDescription, show = true }) =>
+const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, setDescription, t, show = true }) =>
   !show ? null : (
     <form
       className={cn("project-name")}
@@ -28,7 +29,7 @@ const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, 
     >
       <div className="w-full flex flex-col gap-2">
         <label className="w-full" htmlFor="project_name">
-          Project Name
+          {t("createProject.form.projectName")}
         </label>
         <Input
           name="name"
@@ -42,12 +43,12 @@ const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, 
       </div>
       <div className="w-full flex flex-col gap-2">
         <label className="w-full" htmlFor="project_description">
-          Description
+          {t("createProject.form.description")}
         </label>
         <TextArea
           name="description"
           id="project_description"
-          placeholder="Optional description of your project"
+          placeholder={t("createProject.form.descriptionPlaceholder")}
           rows="4"
           style={{ minHeight: 100 }}
           value={description}
@@ -58,12 +59,12 @@ const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, 
       {isFF(FF_LSDV_E_297) && (
         <div className="w-full flex flex-col gap-2">
           <label>
-            Workspace
+            {t("createProject.form.workspace")}
             <EnterpriseBadge className="ml-2" />
           </label>
-          <Select placeholder="Select an option" disabled options={[]} triggerClassName="!flex-1" />
+          <Select placeholder={t("createProject.form.workspacePlaceholder")} disabled options={[]} triggerClassName="!flex-1" />
           <Typography size="small" className="mt-tight mb-wider">
-            Simplify project management by organizing projects into workspaces.{" "}
+            {t("createProject.form.workspaceHint")} {" "}
             <a
               href={createURL(
                 "https://docs.humansignal.com/guide/manage_projects#Create-workspaces-to-organize-projects",
@@ -76,7 +77,7 @@ const ProjectName = ({ name, setName, onSaveName, onSubmit, error, description, 
               rel="noreferrer"
               className="underline hover:no-underline"
             >
-              Learn more
+              {t("createProject.form.learnMore")}
             </a>
           </Typography>
           <HeidiTips collection="projectCreation" />
@@ -97,6 +98,7 @@ export const CreateProject = ({ onClose }) => {
   const [error, setError] = React.useState();
   const [description, setDescription] = React.useState("");
   const [sample, setSample] = React.useState(null);
+  const { t } = useCreateProjectI18n();
 
   const setStep = React.useCallback((step) => {
     _setStep(step);
@@ -117,11 +119,10 @@ export const CreateProject = ({ onClose }) => {
   const rootClass = cn("create-project");
   const tabClass = rootClass.elem("tab");
   const steps = {
-    name: <span className={tabClass.mod({ disabled: !!error })}>Project Name</span>,
-    import: <span className={tabClass.mod({ disabled: uploadDisabled })}>Data Import</span>,
-    config: "Labeling Setup",
+    name: <span className={tabClass.mod({ disabled: !!error })}>{t("createProject.tabs.projectName")}</span>,
+    import: <span className={tabClass.mod({ disabled: uploadDisabled })}>{t("createProject.tabs.dataImport")}</span>,
+    config: t("createProject.tabs.labelingSetup"),
   };
-
   // name intentionally skipped from deps:
   // this should trigger only once when we got project loaded
   React.useEffect(() => {
@@ -196,11 +197,12 @@ export const CreateProject = ({ onClose }) => {
     performClose();
   }, [project]);
 
+  
   return (
     <Modal onHide={onDelete} closeOnClickOutside={false} allowToInterceptEscape fullscreen visible bare>
       <div className={rootClass}>
         <Modal.Header>
-          <h1>Create Project</h1>
+          <h1>{t("createProject.title")}</h1>
           <ToggleItems items={steps} active={step} onSelect={setStep} />
 
           <Space>
@@ -209,9 +211,9 @@ export const CreateProject = ({ onClose }) => {
               look="outlined"
               onClick={onDelete}
               waiting={waiting}
-              aria-label="Cancel project creation"
+              aria-label={t("createProject.aria.cancelCreation")}
             >
-              Cancel
+              {t("createProject.actions.cancel")}
             </Button>
             <Button
               look="primary"
@@ -220,7 +222,7 @@ export const CreateProject = ({ onClose }) => {
               waitingClickable={false}
               disabled={!project || uploadDisabled || error}
             >
-              Save
+              {t("createProject.actions.save")}
             </Button>
           </Space>
         </Modal.Header>
@@ -232,6 +234,7 @@ export const CreateProject = ({ onClose }) => {
           onSubmit={onCreate}
           description={description}
           setDescription={setDescription}
+          t={t}
           show={step === "name"}
         />
         <ImportPage
@@ -240,6 +243,7 @@ export const CreateProject = ({ onClose }) => {
           sample={sample}
           onSampleDatasetSelect={setSample}
           openLabelingConfig={() => setStep("config")}
+          t={t}
           {...pageProps}
         />
         <ConfigPage

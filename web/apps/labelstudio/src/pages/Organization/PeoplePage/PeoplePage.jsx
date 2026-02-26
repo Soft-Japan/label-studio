@@ -14,6 +14,7 @@ import { IconPlus } from "@humansignal/icons";
 import { useToast } from "@humansignal/ui";
 import { InviteLink } from "./InviteLink";
 import { SelectedUser } from "./SelectedUser";
+import { getOrganizationT, useOrganizationI18n } from "../i18n";
 
 export const PeoplePage = () => {
   const apiSettingsModal = useRef();
@@ -21,7 +22,13 @@ export const PeoplePage = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [invitationOpen, setInvitationOpen] = useState(false);
 
-  useUpdatePageTitle("People");
+  const runtimeLanguage =
+    window.APP_SETTINGS?.language_code ??
+    window.APP_SETTINGS?.user?.language ??
+    window.APP_SETTINGS?.user?.language_code;
+  const { t } = useOrganizationI18n(runtimeLanguage);
+
+  useUpdatePageTitle(t("organization.people.pageTitle"));
 
   const selectUser = useCallback(
     (user) => {
@@ -34,18 +41,18 @@ export const PeoplePage = () => {
 
   const apiTokensSettingsModalProps = useMemo(
     () => ({
-      title: "API Token Settings",
+      title: t("organization.people.apiTokenSettingsModalTitle"),
       style: { width: 480 },
       body: () => (
         <TokenSettingsModal
           onSaved={() => {
-            toast.show({ message: "API Token settings saved" });
+            toast.show({ message: t("organization.people.apiTokenSettingsSaved") });
             apiSettingsModal.current?.close();
           }}
         />
       ),
     }),
-    [],
+    [t],
   );
 
   const showApiTokenSettingsModal = useCallback(() => {
@@ -65,16 +72,20 @@ export const PeoplePage = () => {
 
           <Space>
             {isFF(FF_AUTH_TOKENS) && (
-              <Button look="outlined" onClick={showApiTokenSettingsModal} aria-label="Show API token settings">
-                API Tokens Settings
+              <Button
+                look="outlined"
+                onClick={showApiTokenSettingsModal}
+                aria-label={t("organization.people.showApiTokenSettings")}
+              >
+                {t("organization.people.apiTokensSettings")}
               </Button>
             )}
             <Button
               leading={<IconPlus className="!h-4" />}
               onClick={() => setInvitationOpen(true)}
-              aria-label="Invite new member"
+              aria-label={t("organization.people.inviteNewMember")}
             >
-              Add Members
+              {t("organization.people.addMembers")}
             </Button>
           </Space>
         </Space>
@@ -103,5 +114,10 @@ export const PeoplePage = () => {
   );
 };
 
-PeoplePage.title = "People";
+const peopleLanguage =
+  window.APP_SETTINGS?.language_code ??
+  window.APP_SETTINGS?.user?.language ??
+  window.APP_SETTINGS?.user?.language_code;
+
+PeoplePage.title = getOrganizationT(peopleLanguage)("organization.people.title");
 PeoplePage.path = "/";

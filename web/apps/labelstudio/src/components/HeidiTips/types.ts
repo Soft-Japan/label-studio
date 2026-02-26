@@ -4,8 +4,9 @@ export type TipLinkParams = Record<string, string> & {
 };
 
 export type Tip = {
+  i18nKey?: string;
   title: string;
-  content: string;
+  content?: string;
   description?: string;
   closable?: boolean;
   link: {
@@ -15,12 +16,22 @@ export type Tip = {
   };
 };
 
-export type TipCollectionKey = "projectCreation" | "organizationPage" | "projectSettings";
+export type RawTip = Omit<Tip, "title" | "link"> & {
+  title?: string;
+  link: {
+    url: string;
+    label?: string;
+    params?: TipLinkParams;
+  };
+};
 
-export type TipsCollection = Record<TipCollectionKey, Tip[]>;
+export type TipCollectionKey = "projectCreation" | "organizationPage" | "projectSettings" | "authPage";
+
+export type TipsCollection = Record<TipCollectionKey, RawTip[]>;
 
 export type HeidiTipsProps = {
   collection: keyof TipsCollection;
+  language?: "en" | "ja";
 };
 
 export type HeidiTipProps = {

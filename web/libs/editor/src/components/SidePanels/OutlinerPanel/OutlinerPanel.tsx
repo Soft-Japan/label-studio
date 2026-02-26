@@ -9,6 +9,8 @@ import { IconInfo } from "@humansignal/icons";
 import { IconLsLabeling } from "@humansignal/ui";
 import { EmptyState } from "../Components/EmptyState";
 import { getDocsUrl } from "../../../utils/docs";
+import { getEnv } from "mobx-state-tree";
+import messages from "../../../utils/messages";
 
 // Local type definitions based on ViewControls and RegionStore
 type GroupingOptions = "manual" | "label" | "type";
@@ -27,6 +29,7 @@ const OutlinerFFClasses: string[] = [];
 OutlinerFFClasses.push("ff_hide_all_regions");
 
 const OutlinerPanelComponent: FC<OutlinerPanelProps> = ({ regions, ...props }) => {
+  const panelMessages = getEnv(regions)?.messages ?? messages;
   const [group, setGroup] = useState<GroupingOptions>(regions.group);
   const onOrderingChange = useCallback(
     (value: OrderingOptions) => {
@@ -50,7 +53,7 @@ const OutlinerPanelComponent: FC<OutlinerPanelProps> = ({ regions, ...props }) =
   regions.setGrouping(group);
 
   return (
-    <PanelBase {...props} name="outliner" mix={OutlinerFFClasses} title="Outliner">
+    <PanelBase {...props} name="outliner" mix={OutlinerFFClasses} title={panelMessages.SIDE_PANEL_TAB_REGIONS}>
       <ViewControls
         ordering={regions.sort}
         regions={regions}
@@ -96,24 +99,25 @@ const OutlinerStandAlone: FC<OutlinerPanelProps> = ({ regions }) => {
   );
 };
 
-const OutlinerEmptyState = () => (
+const OutlinerEmptyState = ({ panelMessages }) => (
   <EmptyState
     icon={<IconLsLabeling width={24} height={24} />}
-    header="Labeled regions will appear here"
+    header={panelMessages.SIDE_PANEL_OUTLINER_EMPTY_HEADER}
     description={
       <>
-        <span>
-          Start labeling and track your results
-          <br />
-          using this panel
-        </span>
+        <span>{panelMessages.SIDE_PANEL_OUTLINER_EMPTY_DESCRIPTION}</span>
       </>
     }
-    learnMore={{ href: getDocsUrl("guide/labeling"), text: "Learn more", testId: "regions-panel-learn-more" }}
+    learnMore={{
+      href: getDocsUrl("guide/labeling"),
+      text: panelMessages.SIDE_PANEL_LEARN_MORE,
+      testId: "regions-panel-learn-more",
+    }}
   />
 );
 
 const OutlinerTreeComponent: FC<OutlinerTreeComponentProps> = observer(({ regions }) => {
+  const panelMessages = getEnv(regions)?.messages ?? messages;
   const allRegionsHidden = regions?.regions?.length > 0 && regions?.filter?.length === 0;
 
   const hiddenRegions = useMemo(() => {
@@ -127,9 +131,11 @@ const OutlinerTreeComponent: FC<OutlinerTreeComponentProps> = observer(({ region
       {allRegionsHidden ? (
         <div className={cn("filters-info").toClassName()}>
           <IconInfo width={21} height={20} />
-          <div className={cn("filters-info").elem("filters-title").toClassName()}>All regions hidden</div>
+          <div className={cn("filters-info").elem("filters-title").toClassName()}>
+            {panelMessages.SIDE_PANEL_OUTLINER_FILTERS_ALL_HIDDEN_TITLE}
+          </div>
           <div className={cn("filters-info").elem("filters-description").toClassName()}>
-            Adjust or remove the filters to view
+            {panelMessages.SIDE_PANEL_OUTLINER_FILTERS_ALL_HIDDEN_DESCRIPTION}
           </div>
         </div>
       ) : regions?.regions?.length > 0 ? (
@@ -141,10 +147,13 @@ const OutlinerTreeComponent: FC<OutlinerTreeComponentProps> = observer(({ region
                 <div className={cn("filters-info").toClassName()}>
                   <IconInfo width={21} height={20} />
                   <div className={cn("filters-info").elem("filters-title").toClassName()}>
-                    There {hiddenRegions === 1 ? "is" : "are"} {hiddenRegions} hidden region{hiddenRegions > 1 && "s"}
+                    {(hiddenRegions === 1
+                      ? panelMessages.SIDE_PANEL_OUTLINER_FILTERS_HIDDEN_REGIONS_SINGLE
+                      : panelMessages.SIDE_PANEL_OUTLINER_FILTERS_HIDDEN_REGIONS_PLURAL
+                    ).replace("{count}", String(hiddenRegions))}
                   </div>
                   <div className={cn("filters-info").elem("filters-description").toClassName()}>
-                    Adjust or remove filters to view
+                    {panelMessages.SIDE_PANEL_OUTLINER_FILTERS_HIDDEN_REGIONS_DESCRIPTION}
                   </div>
                 </div>
               )
@@ -152,7 +161,7 @@ const OutlinerTreeComponent: FC<OutlinerTreeComponentProps> = observer(({ region
           />
         </>
       ) : (
-        <OutlinerEmptyState />
+        <OutlinerEmptyState panelMessages={panelMessages} />
       )}
     </>
   );

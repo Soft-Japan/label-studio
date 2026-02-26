@@ -1,0 +1,39 @@
+{
+  "homepage": {
+    "meta": {
+      "title": "Home"
+    },
+    "header": {
+      "title": "Welcome 👋",
+      "subtitle": "Let's get you started."
+    },
+    "actions": {
+      "createProject": "Create Project",
+      "inviteMembers": "Invite Members"
+    },
+    "projects": {
+      "title": "Recent Projects",
+      "viewAll": "View All",
+      "loadError": "Can't load projects",
+      "emptyState": {
+        "title": "Create your first project",
+        "description": "Import your data and set up the labeling interface to start annotating",
+        "cta": "Create Project",
+        "ariaLabel": "Create new project"
+      },
+      "progress": "{{finished}} of {{total}} Tasks ({{percent}}%)"
+    },
+    "resources": {
+      "title": "Resources",
+      "description": "Learn, explore and get help",
+      "documentation": "Documentation",
+      "apiDocumentation": "API Documentation",
+      "releaseNotes": "Release Notes",
+      "blog": "LabelStud.io Blog",
+      "slackCommunity": "Slack Community"
+    },
+    "version": {
+      "community": "Label Studio Version: Community"
+    }
+  }
+}

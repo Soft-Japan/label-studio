@@ -99,6 +99,7 @@ urlpatterns = [
     ),
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('feature-flags/', views.feature_flags, name='feature_flags'),
     path('heidi-tips/', views.heidi_tips, name='heidi_tips'),
     path('__lsa/', views.collect_metrics, name='collect_metrics'),

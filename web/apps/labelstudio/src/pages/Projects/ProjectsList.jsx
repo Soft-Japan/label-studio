@@ -11,18 +11,18 @@ import { ProjectStateChip } from "@humansignal/app-common";
 
 const DEFAULT_CARD_COLORS = ["#FFFFFF", "#FDFDFC"];
 
-export const ProjectsList = ({ projects, currentPage, totalItems, loadNextPage, pageSize }) => {
+export const ProjectsList = ({ projects, currentPage, totalItems, loadNextPage, pageSize, t }) => {
   return (
     <>
       <div className={cn("projects-page").elem("list").toClassName()}>
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard key={project.id} project={project} t={t} />
         ))}
       </div>
       <div className={cn("projects-page").elem("pages").toClassName()}>
         <Pagination
           name="projects-list"
-          label="Projects"
+          label={t("projects.pagination.label")}
           page={currentPage}
           totalItems={totalItems}
           urlParamName="page"
@@ -35,24 +35,24 @@ export const ProjectsList = ({ projects, currentPage, totalItems, loadNextPage, 
   );
 };
 
-export const EmptyProjectsList = ({ openModal }) => {
+export const EmptyProjectsList = ({ openModal, t }) => {
   return (
     <div className={cn("empty-projects-page").toClassName()}>
       <img
-        alt="Heidi looking for projects"
+        alt={t("projects.empty.imageAlt")}
         className={cn("empty-projects-page").elem("heidi").toClassName()}
         src={absoluteURL("/static/images/opossum_looking.png")}
       />
-      <h1 className={cn("empty-projects-page").elem("header").toClassName()}>Heidi doesn't see any projects here!</h1>
-      <p>Create one and start labeling your data.</p>
-      <Button onClick={openModal} className="my-8" aria-label="Create new project">
-        Create Project
+      <h1 className={cn("empty-projects-page").elem("header").toClassName()}>{t("projects.empty.title")}</h1>
+      <p>{t("projects.empty.description")}</p>
+      <Button onClick={openModal} className="my-8" aria-label={t("projects.empty.createAriaLabel")}>
+        {t("projects.empty.cta")}
       </Button>
     </div>
   );
 };
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, t }) => {
   const color = useMemo(() => {
     return DEFAULT_CARD_COLORS.includes(project.color) ? null : project.color;
   }, [project]);
@@ -82,9 +82,9 @@ const ProjectCard = ({ project }) => {
         <div className={cn("project-card").elem("header").toClassName()}>
           <div className={cn("project-card").elem("title").toClassName()}>
             <div className={cn("project-card").elem("title-text-wrapper").toClassName()}>
-              <Tooltip title={project.title ?? "New project"}>
+              <Tooltip title={project.title ?? t("projects.card.untitled")}>
                 <div className={cn("project-card").elem("title-text").toClassName()}>
-                  {project.title ?? "New project"}
+                  {project.title ?? t("projects.card.untitled")}
                 </div>
               </Tooltip>
             </div>
@@ -99,12 +99,12 @@ const ProjectCard = ({ project }) => {
               <Dropdown.Trigger
                 content={
                   <Menu contextual>
-                    <Menu.Item href={`/projects/${project.id}/settings`}>Settings</Menu.Item>
-                    <Menu.Item href={`/projects/${project.id}/data?labeling=1`}>Label</Menu.Item>
+                    <Menu.Item href={`/projects/${project.id}/settings`}>{t("projects.card.settings")}</Menu.Item>
+                    <Menu.Item href={`/projects/${project.id}/data?labeling=1`}>{t("projects.card.label")}</Menu.Item>
                   </Menu>
                 }
               >
-                <Button size="smaller" look="string" aria-label="Project options">
+                <Button size="smaller" look="string" aria-label={t("projects.card.optionsAriaLabel")}>
                   <IconEllipsis />
                 </Button>
               </Dropdown.Trigger>

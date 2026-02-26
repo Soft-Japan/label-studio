@@ -1,8 +1,68 @@
 import { Button, Checkbox, Dropdown, EnterpriseBadge } from "@humansignal/ui";
 import { inject, observer } from "mobx-react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../../utils/bem";
 import { Menu } from "./Menu/Menu";
+
+export const SYSTEM_COLUMN_TITLE_KEYS = {
+  "ID": "datamanager.columns.id",
+  "Inner ID": "datamanager.columns.innerId",
+  "Completed": "datamanager.columns.completed",
+  "Annotations": "datamanager.columns.annotations",
+  "Cancelled": "datamanager.columns.cancelled",
+  "Canceled": "datamanager.columns.cancelled",
+  "Predictions": "datamanager.columns.predictions",
+  "Annotated by": "datamanager.columns.annotatedBy",
+  "Annotation results": "datamanager.columns.annotationResults",
+  "Annotation IDs": "datamanager.columns.annotationIds",
+  "Prediction score": "datamanager.columns.predictionScore",
+  "Prediction Score": "datamanager.columns.predictionScore",
+  "Prediction model versions": "datamanager.columns.predictionModelVersions",
+  "Prediction model version": "datamanager.columns.predictionModelVersions",
+  "Prediction Model Versions": "datamanager.columns.predictionModelVersions",
+  "Prediction results": "datamanager.columns.predictionResults",
+  "Prediction Results": "datamanager.columns.predictionResults",
+  "Upload filename": "datamanager.columns.uploadFilename",
+  "Upload Filename": "datamanager.columns.uploadFilename",
+  "Storage filename": "datamanager.columns.storageFilename",
+  "Storage Filename": "datamanager.columns.storageFilename",
+  "Created at": "datamanager.columns.createdAt",
+  "Created At": "datamanager.columns.createdAt",
+  "Updated at": "datamanager.columns.updatedAt",
+  "Updated At": "datamanager.columns.updatedAt",
+  "Updated by": "datamanager.columns.updatedBy",
+  "Updated By": "datamanager.columns.updatedBy",
+  "Lead Time": "datamanager.columns.leadTime",
+  "Lead time": "datamanager.columns.leadTime",
+  "Draft": "datamanager.columns.draft",
+  "Drafts": "datamanager.columns.draft",
+  "prediction_score": "datamanager.columns.predictionScore",
+  "prediction_model_versions": "datamanager.columns.predictionModelVersions",
+  "prediction_results": "datamanager.columns.predictionResults",
+  "upload_filename": "datamanager.columns.uploadFilename",
+  "storage_filename": "datamanager.columns.storageFilename",
+  "created_at": "datamanager.columns.createdAt",
+  "updated_at": "datamanager.columns.updatedAt",
+  "updated_by": "datamanager.columns.updatedBy",
+  "lead_time": "datamanager.columns.leadTime",
+  "draft": "datamanager.columns.draft",
+  "data": "datamanager.columns.data",
+  "Data": "datamanager.columns.data",
+  "image": "datamanager.columns.image",
+  "Image": "datamanager.columns.image",
+};
+
+export const translateColumnTitle = (t, title) => {
+  const normalizedTitle = String(title);
+  const key =
+    SYSTEM_COLUMN_TITLE_KEYS[normalizedTitle] ??
+    SYSTEM_COLUMN_TITLE_KEYS[normalizedTitle.toLowerCase()] ??
+    SYSTEM_COLUMN_TITLE_KEYS[normalizedTitle.replace(/\s+/g, "_").toLowerCase()];
+
+  return key ? t(key, normalizedTitle) : normalizedTitle;
+};
+
 
 const injector = inject(({ store }) => {
   return {
@@ -11,11 +71,12 @@ const injector = inject(({ store }) => {
 });
 
 const FieldsMenu = observer(({ columns, WrapperComponent, onClick, onReset, selected, resetTitle }) => {
+  const { t } = useTranslation();
   const MenuItem = (col, onClick) => {
     const enterpriseBadge = col.enterprise_badge ?? col.original?.enterprise_badge;
     const shouldDisable = col.disabled || enterpriseBadge;
 
-    const titleContent = <span>{col.title}</span>;
+    const titleContent = <span>{translateColumnTitle(t, col.title)}</span>;
 
     return (
       <Menu.Item key={col.key} name={col.key} onClick={onClick} disabled={shouldDisable}>
@@ -39,7 +100,7 @@ const FieldsMenu = observer(({ columns, WrapperComponent, onClick, onReset, sele
         MenuItem(
           {
             key: "none",
-            title: resetTitle ?? "Default",
+            title: resetTitle ?? t("datamanager.toolbar.default", "Default"),
             wrap: false,
           },
           onReset,
@@ -48,7 +109,7 @@ const FieldsMenu = observer(({ columns, WrapperComponent, onClick, onReset, sele
       {columns.map((col) => {
         if (col.children) {
           return (
-            <Menu.Group key={col.key} title={col.title}>
+            <Menu.Group key={col.key} title={translateColumnTitle(t, col.title)}>
               {col.children.map((col) => MenuItem(col, () => onClick?.(col)))}
             </Menu.Group>
           );

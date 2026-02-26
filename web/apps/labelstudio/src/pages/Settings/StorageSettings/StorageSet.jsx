@@ -9,6 +9,7 @@ import { Spinner } from "../../../components/Spinner/Spinner";
 import { ApiContext } from "../../../providers/ApiProvider";
 import { projectAtom } from "../../../providers/ProjectProvider";
 import { providers } from "./providers";
+import { useSettingsI18n } from "../i18n";
 import { StorageCard } from "./StorageCard";
 import { StorageForm } from "./StorageForm";
 
@@ -30,15 +31,17 @@ export const StorageSet = forwardRef(
     ref,
   ) => {
     const api = useContext(ApiContext);
+    const { t } = useSettingsI18n();
     const project = useAtomValue(projectAtom);
 
     const useNewStorageScreen = ff.isActive(ff.FF_NEW_STORAGES);
 
     const showStorageFormModal = useCallback(
       (storage) => {
-        const action = storage ? "Edit" : "Connect";
-        const actionTarget = target === "export" ? "Target" : "Source";
-        const title = `${action} ${actionTarget} Storage`;
+        const action = storage ? t("storage.modal.edit", "Edit") : t("storage.modal.connect", "Connect");
+        const actionTarget =
+          target === "export" ? t("storage.modal.target", "Target") : t("storage.modal.source", "Source");
+        const title = `${action} ${actionTarget} ${t("storage.modal.storage", "Storage")}`;
 
         const modalRef = modal({
           title,
@@ -82,7 +85,7 @@ export const StorageSet = forwardRef(
           ),
         });
       },
-      [project, fetchStorages, target, rootClass],
+      [project, fetchStorages, target, rootClass, t],
     );
 
     const onEditStorage = useCallback(
@@ -104,8 +107,8 @@ export const StorageSet = forwardRef(
     const onDeleteStorage = useCallback(
       async (storage) => {
         confirm({
-          title: "Deleting storage",
-          body: "This action cannot be undone. Are you sure?",
+          title: t("storage.modal.deletingStorage", "Deleting storage"),
+          body: t("storage.modal.deleteStorageConfirm", "This action cannot be undone. Are you sure?"),
           buttonLook: "negative",
           onOk: async () => {
             const response = await api.callApi("deleteStorage", {
@@ -120,7 +123,7 @@ export const StorageSet = forwardRef(
           },
         });
       },
-      [fetchStorages],
+      [api, fetchStorages, t, target],
     );
 
     return (
@@ -131,7 +134,7 @@ export const StorageSet = forwardRef(
             disabled={loading}
             look="outlined"
             data-testid={`add-${target === "export" ? "target" : "source"}-storage-button`}
-            aria-label={`Add ${target === "export" ? "Target" : "Source"} Storage`}
+            aria-label={`${t("storage.modal.add", "Add")} ${target === "export" ? t("storage.modal.target", "Target") : t("storage.modal.source", "Source")} ${t("storage.modal.storage", "Storage")}`}
           >
             {buttonLabel}
           </Button>

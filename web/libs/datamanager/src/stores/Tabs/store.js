@@ -9,6 +9,7 @@ import { TabFilterType } from "./tab_filter_type";
 import { TabHiddenColumns } from "./tab_hidden_columns";
 import { serializeJsonForUrl, deserializeJsonFromUrl } from "@humansignal/core";
 import { isEmpty } from "../../utils/helpers";
+import i18n from "i18next";
 
 const storeValue = (name, value) => {
   window.localStorage.setItem(name, value);
@@ -257,7 +258,7 @@ export const TabStore = types
     createDefaultView: flow(function* () {
       self.views.push({
         id: 0,
-        title: "Default",
+        title: i18n.t("datamanager.tabs.default", "Default"),
         hiddenColumns: self.defaultHidden,
       });
 

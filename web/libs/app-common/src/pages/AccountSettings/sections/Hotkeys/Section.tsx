@@ -9,6 +9,7 @@ import {
   CardFooter,
 } from "@humansignal/shad/components/ui/card";
 import { HotkeyItem } from "./Item";
+import { useAccountSettingsI18n } from "../../i18n";
 
 // Type definitions
 interface Hotkey {
@@ -81,6 +82,7 @@ export const HotkeySection = ({
   onToggleHotkey,
   hasChanges,
 }: HotkeySectionProps) => {
+  const { t } = useAccountSettingsI18n();
   /**
    * Groups hotkeys by their subgroup property
    * Hotkeys without a subgroup are placed in the 'default' group
@@ -144,14 +146,14 @@ export const HotkeySection = ({
           ))}
 
           {hotkeys.length === 0 && (
-            <div className="py-8 text-center text-muted-foreground italic">No hotkeys in this section</div>
+            <div className="py-8 text-center text-muted-foreground italic">{t("accountSettings.hotkeys.noHotkeysInSection")}</div>
           )}
         </div>
       </CardContent>
 
       <CardFooter className="flex justify-end">
         <Button variant="primary" onClick={handleSaveSection} disabled={!hasChanges}>
-          Save
+          {t("accountSettings.personalInfo.save")}
         </Button>
       </CardFooter>
     </Card>

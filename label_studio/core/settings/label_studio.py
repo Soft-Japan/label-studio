@@ -5,6 +5,46 @@ import json
 from core.settings.base import *  # noqa
 from core.utils.secret_key import generate_secret_key_if_missing
 
+# =========================
+# i18n / Localization (JA)
+# =========================
+
+# Ensure Django i18n is enabled (usually already True in base)
+USE_I18N = True
+
+# Add Japanese as supported language (keep English as default)
+LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('en', 'English'),
+    ('ja', 'Japanese'),
+]
+
+# Where to store/read translations (.po/.mo)
+# This expects: label_studio/locale/ja/LC_MESSAGES/django.(po|mo)
+try:
+    # BASE_DIR is usually a pathlib.Path in Label Studio
+    LOCALE_PATHS = [BASE_DIR / 'locale']
+except TypeError:
+    # Fallback if BASE_DIR is string
+    import os
+    LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+# Enable language switching via:
+# - Cookie: django_language=ja
+# - Browser header: Accept-Language: ja
+# LocaleMiddleware must come AFTER SessionMiddleware and BEFORE CommonMiddleware
+if 'django.middleware.locale.LocaleMiddleware' not in MIDDLEWARE:
+    insert_index = 0
+
+    # Try to place it right after SessionMiddleware
+    if 'django.contrib.sessions.middleware.SessionMiddleware' in MIDDLEWARE:
+        insert_index = MIDDLEWARE.index('django.contrib.sessions.middleware.SessionMiddleware') + 1
+    else:
+        # SessionMiddleware missing would be unusual, but still insert near top
+        insert_index = min(2, len(MIDDLEWARE))
+
+    MIDDLEWARE.insert(insert_index, 'django.middleware.locale.LocaleMiddleware')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = generate_secret_key_if_missing(BASE_DATA_DIR)
 
@@ -47,6 +87,11 @@ sentry.init_sentry(release_name='label-studio', release_version=__version__)
 from label_studio.core.utils.common import collect_versions
 
 versions = collect_versions()
+
+# Use frontend HMR by default in local development so Python runserver
+# serves the same up-to-date localized bundle as `yarn` dev server.
+FRONTEND_HMR = get_bool_env('FRONTEND_HMR', True)
+FRONTEND_HOSTNAME = get_env('FRONTEND_HOSTNAME', 'http://localhost:8010' if FRONTEND_HMR else HOSTNAME)
 
 # in Label Studio Community version, feature flags are always ON
 FEATURE_FLAGS_DEFAULT_VALUE = True

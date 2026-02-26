@@ -7,25 +7,29 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.utils.translation import gettext_lazy as _
 from users.models import User
 
 EMAIL_MAX_LENGTH = 256
 USERNAME_MAX_LENGTH = 30
 DISPLAY_NAME_LENGTH = 100
-USERNAME_LENGTH_ERR = f'Please enter a username {USERNAME_MAX_LENGTH} characters or fewer in length'
-DISPLAY_NAME_LENGTH_ERR = f'Please enter a display name {DISPLAY_NAME_LENGTH} characters or fewer in length'
-INVALID_USER_ERROR = "The email and password you entered don't match."
+USERNAME_LENGTH_ERR = _('Please enter a username %(username_max_length)s characters or fewer in length') % {
+    'username_max_length': USERNAME_MAX_LENGTH
+}
+DISPLAY_NAME_LENGTH_ERR = _('Please enter a display name %(display_name_length)s characters or fewer in length') % {
+    'display_name_length': DISPLAY_NAME_LENGTH
+}
+INVALID_USER_ERROR = _("The email and password you entered don't match.")
 
-FOUND_US_ELABORATE = 'Other'
+FOUND_US_ELABORATE = _('Other')
 FOUND_US_OPTIONS = (
-    ('Gi', 'Github'),
-    ('Em', 'Email or newsletter'),
-    ('Se', 'Search engine'),
-    ('Fr', 'Friend or coworker'),
-    ('Ad', 'Ad'),
+    ('Gi', _('Github')),
+    ('Em', _('Email or newsletter')),
+    ('Se', _('Search engine')),
+    ('Fr', _('Friend or coworker')),
+    ('Ad', _('Ad')),
     ('Ot', FOUND_US_ELABORATE),
 )
-
 logger = logging.getLogger(__name__)
 
 
@@ -33,7 +37,7 @@ class LoginForm(forms.Form):
     """For logging in to the app and all - session based"""
 
     # use username instead of email when LDAP enabled
-    email = forms.CharField(label='User') if settings.USE_USERNAME_FOR_LOGIN else forms.EmailField(label='Email')
+    email = forms.CharField(label=_('User')) if settings.USE_USERNAME_FOR_LOGIN else forms.EmailField(label=_('Email'))
     password = forms.CharField(widget=forms.PasswordInput())
     persist_session = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
@@ -42,7 +46,7 @@ class LoginForm(forms.Form):
         email = cleaned.get('email', '').lower()
         password = cleaned.get('password', '')
         if len(email) >= EMAIL_MAX_LENGTH:
-            raise forms.ValidationError('Email is too long')
+            raise forms.ValidationError(_('Email is too long'))
 
         # advanced way for user auth
         user = settings.USER_AUTH(User, email, password)
@@ -59,7 +63,7 @@ class LoginForm(forms.Form):
 
 
 class UserSignupForm(forms.Form):
-    email = forms.EmailField(label='Work Email', error_messages={'required': 'Invalid email'})
+    email = forms.EmailField(label=_('Work Email'), error_messages={'required': _('Invalid email')})
     password = forms.CharField(widget=forms.TextInput(attrs={'type': 'password'}))
     allow_newsletters = forms.BooleanField(required=False)
     how_find_us = forms.CharField(required=False)
@@ -76,16 +80,16 @@ class UserSignupForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if username and User.objects.filter(username=username.lower()).exists():
-            raise forms.ValidationError('User with username already exists')
+            raise forms.ValidationError(_('User with username already exists'))
         return username
 
     def clean_email(self):
         email = self.cleaned_data.get('email').lower()
         if len(email) >= EMAIL_MAX_LENGTH:
-            raise forms.ValidationError('Email is too long')
+            raise forms.ValidationError(_('Email is too long'))
 
         if email and User.objects.filter(email=email).exists():
-            raise forms.ValidationError('User with this email already exists')
+            raise forms.ValidationError(_('User with this email already exists'))
 
         return email
 

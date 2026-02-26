@@ -1,0 +1,101 @@
+{
+  "accountSettings": {
+    "title": "マイアカウント",
+    "sections": {
+      "personalInfo": "個人情報",
+      "hotkeys": "ホットキー",
+      "emailPreferences": "メール設定",
+      "membershipInfo": "メンバーシップ情報",
+      "personalAccessToken": "個人アクセストークン",
+      "legacyToken": "レガシートークン",
+      "accessToken": "アクセストークン",
+      "hotkeysDescription": "キーボードショートカットをカスタマイズして作業効率を上げましょう。以下のホットキーをクリックして、最適なキーの組み合わせを設定できます。"
+    },
+    "personalInfo": {
+      "delete": "削除",
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "メール",
+      "phone": "電話番号",
+      "save": "保存",
+      "errorUpdatingAvatar": "アバターの更新に失敗しました",
+      "errorUpdatingUser": "ユーザー情報の更新に失敗しました"
+    },
+    "emailPreferences": {
+      "subscribeWhitelabel": "ニュースとヒントを購読する",
+      "subscribeHeidi": "Heidi からの HumanSignal のニュースとヒントを購読する"
+    },
+    "hotkeys": {
+      "import": "インポート",
+      "export": "エクスポート",
+      "resetToDefaults": "デフォルトにリセット",
+      "settings": "設定",
+      "savedSuccess": "{{sectionName}} のホットキーを保存しました",
+      "failedToSave": "保存に失敗しました: {{error}}",
+      "errorSaving": "保存エラー: {{error}}",
+      "failedToSaveImported": "インポートしたホットキーの保存に失敗しました",
+      "importedSuccessfully": "ホットキーをインポートしました",
+      "errorImporting": "ホットキーのインポートエラー: {{error}}",
+      "unknownError": "不明なエラー",
+      "warningDuplicateTitle": "警告: 重複するホットキーが検出されました",
+      "warningDuplicateDescription": "ホットキーの組み合わせ \"{{newKey}}\" はすでに以下で使用されています:",
+      "warningDuplicateBody": "重複したホットキーは競合や予期しない動作の原因になる可能性があります。続行してもよろしいですか？",
+      "cancel": "キャンセル",
+      "allowDuplicate": "重複を許可",
+      "noHotkeysInSection": "このセクションにはホットキーがありません",
+      "clickToRecord": "キーボードショートカットを記録するにはクリック",
+      "pressKeysNow": "キーを押してください...",
+      "clickToSetShortcut": "クリックしてショートカットを設定",
+      "apply": "適用",
+      "enable": "有効化",
+      "disable": "無効化",
+      "clickToEditHotkey": "クリックしてホットキーを編集"
+    },
+    "membershipInfo": {
+      "userId": "ユーザーID",
+      "registrationDate": "登録日",
+      "annotationsSubmitted": "提出済みアノテーション",
+      "projectsContributedTo": "貢献したプロジェクト",
+      "organization": "組織",
+      "myRole": "自分のロール",
+      "organizationId": "組織ID",
+      "owner": "オーナー",
+      "created": "作成日",
+      "roles": {
+        "owner": "オーナー",
+        "deactivated": "無効化",
+        "administrator": "管理者",
+        "manager": "マネージャー",
+        "annotator": "アノテーター",
+        "reviewer": "レビュアー",
+        "pending": "保留中"
+      }
+    },
+    "personalAccessToken": {
+      "accessToken": "アクセストークン",
+      "copy": "コピー",
+      "copied": "コピー済み！",
+      "reset": "リセット",
+      "exampleCurl": "CURLリクエスト例",
+      "description": "個人アクセストークンを使用してAPIに認証します。",
+      "docs": "ドキュメント",
+      "see": "参照"
+    },
+    "personalJwtToken": {
+      "revokeToken": "トークンを失効",
+      "revokeBody": "このアクセストークンを削除してもよろしいですか？このトークンを使用しているアプリケーションは、{{appName}} にアクセスするために新しいトークンが必要になります。",
+      "revoke": "失効",
+      "newAuthToken": "新しい認証トークン",
+      "loading": "読み込み中...",
+      "expiresOn": "{{date}} に期限切れ",
+      "personalAccessToken": "個人アクセストークン",
+      "unableToLoad": "トークン一覧を読み込めません",
+      "onlyOneToken": "有効なトークンは1つだけ保持できます",
+      "createNewToken": "新しいトークンを作成",
+      "copyNotice": "以下の新しいアクセストークンをコピーして、安全に保管してください。",
+      "tokenExpiryDate": "トークン有効期限",
+      "manageSecurely": "アクセストークンを安全に管理する",
+      "securityBody": "このキーを他人と共有しないでください。キーが漏洩した疑いがある場合は、失効して新しく作成してください。"
+    }
+  }
+}

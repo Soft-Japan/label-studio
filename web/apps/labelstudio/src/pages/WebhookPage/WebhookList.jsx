@@ -7,6 +7,7 @@ import { Toggle } from "../../components/Form";
 import { useAPI } from "../../providers/ApiProvider";
 import { WebhookDeleteModal } from "./WebhookDeleteModal";
 import { ABILITY, useAuth } from "@humansignal/core/providers/AuthProvider";
+import { getSettingsText, useSettingsI18n } from "../Settings/i18n";
 
 const WebhookListItem = ({ webhook, onSelectActive, onActiveChange, onDelete, canChangeWebhooks }) => {
   return (
@@ -67,6 +68,7 @@ const WebhookList = ({ onSelectActive, onAddWebhook, webhooks, fetchWebhooks }) 
   const api = useAPI();
   const { permissions } = useAuth();
   const canChangeWebhooks = permissions.can(ABILITY.can_change_webhooks);
+  const { t } = useSettingsI18n();
 
   if (webhooks === null) return <></>;
 
@@ -88,12 +90,11 @@ const WebhookList = ({ onSelectActive, onAddWebhook, webhooks, fetchWebhooks }) 
     <>
       <header className="mb-base">
         <Typography variant="headline" size="medium" className="mb-tight">
-          Webhooks
+          {t("settings.webhooks.title")}
         </Typography>
         {webhooks.length > 0 && (
           <Typography size="small" className="text-neutral-content-subtler">
-            Setup integrations that subscribe to certain events using Webhooks. When an event is triggered, {"app name"}{" "}
-            sends an HTTP POST request to the configured webhook URL.
+            {t("settings.webhooks.desc")}
           </Typography>
         )}
       </header>
@@ -104,16 +105,16 @@ const WebhookList = ({ onSelectActive, onAddWebhook, webhooks, fetchWebhooks }) 
               size="medium"
               variant="primary"
               icon={<IconWebhook />}
-              title="Add your first webhook"
-              description="Setup integrations that subscribe to certain events using Webhooks. When an event is triggered, Label Studio sends an HTTP POST request to the configured webhook URL."
+              title={t("settings.webhooks.emptyTitle")}
+              description={t("settings.webhooks.desc")}
               actions={
                 canChangeWebhooks ? (
                   <Button variant="primary" look="filled" onClick={onAddWebhook}>
-                    Add Webhook
+                    {t("settings.webhooks.add")}
                   </Button>
                 ) : (
                   <Typography variant="body" size="small">
-                    Contact your administrator to create Webhooks
+                    {t("settings.webhooks.contactAdmin")}
                   </Typography>
                 )
               }
@@ -125,9 +126,9 @@ const WebhookList = ({ onSelectActive, onAddWebhook, webhooks, fetchWebhooks }) 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 hover:underline"
-                      aria-label="Learn more about webhooks (opens in new window)"
+                      aria-label={t("settings.webhooks.learnMoreAria")}
                     >
-                      Learn more
+                      {t("settings.general.learnMore")}
                       <IconExternal width={16} height={16} />
                     </a>
                   </Typography>
@@ -158,7 +159,7 @@ const WebhookList = ({ onSelectActive, onAddWebhook, webhooks, fetchWebhooks }) 
       {webhooks.length > 0 && canChangeWebhooks && (
         <div className="flex justify-end w-full mt-base">
           <Button variant="primary" look="filled" onClick={onAddWebhook}>
-            Add Webhook
+            {t("settings.webhooks.add")}
           </Button>
         </div>
       )}

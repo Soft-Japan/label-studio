@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block head %}
@@ -12,7 +13,7 @@
   {
     breadcrumbs: [
       {
-        title: "Account & Settings"
+        title: "{% trans "Account & Settings" %}"
       }
     ],
   }
@@ -29,7 +30,7 @@
 
     if (typeof f === 'undefined') {
       console.log('smart_submit event target', event.target);
-      alert("Closest form not found for smart_submit")
+      alert("{% trans 'Closest form not found for smart_submit' %}")
     }
     console.log('YYYYYYY' +  $(f).serialize());
     var params = {
@@ -47,9 +48,9 @@
         // default error handle
         else {
           if (typeof result.responseText !== 'undefined') {
-            alert("Error: " + message_from_response(result));
+            alert("{% trans 'Error' %}: " + message_from_response(result));
           } else {
-            alert("Request error: " + errorThrown);
+            alert("{% trans 'Request error' %}: " + errorThrown);
           }
           window.location.reload();
         }
@@ -82,7 +83,7 @@
 
     // result is object from XHR, check responseText first, it is always presented
     if (!result.responseText)
-      return 'Critical error on server';
+      return '{% trans 'Critical error on server' %}';
 
     // grab responseJSON detail
     else if (result.responseJSON && result.responseJSON.hasOwnProperty('detail'))
@@ -103,11 +104,11 @@
   <div class="forms">
     <form action="{% url 'user-detail' pk=user.pk %}" method="patch" class="user__info">
       <input type="hidden" name="_method" value="patch"/>
-      <header>Your Avatar</header>
+    <header>{% trans "Your Avatar" %}</header>
       <div class="user-pic {{ user.avatar|yesno:'can_delete,can_upload' }}">
           <div class="userpic userpic--big">
             {% if user.avatar %}
-              <img src="{{user.avatar_url}}" alt="User photo" width="92" />
+              <img src="{{user.avatar_url}}" alt="{% trans "User photo" %}" width="92" />
             {% endif %}
             
             {% if user.get_initials %}
@@ -119,32 +120,32 @@
 
           <div class="controls">
             <button class="lsf-button-ls lsf-button-ls_look_danger" name="delete-avatar" type="button">
-              Delete
+              {% trans "Delete" %}
             </button>
 
-            <input class="file-input" type="file" name="avatar" value="Choose"
+            <input class="file-input" type="file" name="avatar" value="{% trans 'Choose' %}"
                   accept="image/png, image/jpeg, image/jpg"/>
           </div>
       </div>
-      <header>Personal Information</header>
+      <header>{% trans "Personal Information" %}</header>
       <ul>
         <li class="field">
-          <label for="email">E-mail</label>
+          <label for="email">{% trans "E-mail" %}</label>
           <input type="text" class="lsf-input-ls" id="email" name="email" value="{{user.email}}" disabled />
         </li>
         <li class="field">
-          <label for="first_name">First Name</label>
+          <label for="first_name">{% trans "First Name" %}</label>
           <input type="text" class="lsf-input-ls" id="first_name" name="first_name" value="{{user.first_name}}" />
         </li>
         <li class="field">
-          <label for="last_name">Last Name</label>
+          <label for="last_name">{% trans "Last Name" %}</label>
           <input type="text" class="lsf-input-ls" id="last_name" name="last_name" value="{{user.last_name}}" />
         </li>
         <li class="field">
-          <label for="phone">Phone</label>
+          <label for="phone">{% trans "Phone" %}</label>
           <input type="text" class="lsf-input-ls" id="phone" name="phone" value="{{user.phone}}" />
           <!-- <span>We'll send you sms with code if you change your number</span>
-          <span class="error">Incorrect phone number!</span> -->
+          <span class="error">{% trans "Incorrect phone number!" %}</span> -->
         </li>
       </ul>
       <div class="user-some-actions">
@@ -152,25 +153,25 @@
 
       </div>
       <footer>
-        <p class="secondary">Registered {{ user.date_joined|date:"M j, Y" }}, user ID {{ user.id }}</p>
-        <button class="lsf-button-ls lsf-button-ls_look_primary" onclick="smart_submit()">Save</button>
+        <p class="secondary">{% blocktrans with date_joined=user.date_joined|date:"M j, Y" user_id=user.id %}Registered {{ date_joined }}, user ID {{ user_id }}{% endblocktrans %}</p>
+        <button class="lsf-button-ls lsf-button-ls_look_primary" onclick="smart_submit()">{% trans "Save" %}</button>
       </footer>
     </form>
 
     <!-- Token -->
     <form action="" class="access_token__info">
-      <header>Access Token</header>
+      <header>{% trans "Access Token" %}</header>
       <div class="field field--wide">
-        <label for="access_token">Use this token to authenticate with our API:</label>
+        <label for="access_token">{% trans "Use this token to authenticate with our API:" %}</label>
         <input id="access_token" class="lsf-input-ls" name="access_token" type="text" value="{{token}}" readonly />
         <p class="actions">
-          <button type="button" class="blinking-status lsf-button-ls" data-copy="access_token">Copy</button>
-          <button type="button" class="blinking-status lsf-button-ls" name="renew">Renew</button>
+          <button type="button" class="blinking-status lsf-button-ls" data-copy="access_token">{% trans "Copy" %}</button>
+          <button type="button" class="blinking-status lsf-button-ls" name="renew">{% trans "Renew" %}</button>
         </p>
       </div>
       <!-- Example -->
       <div class="field field--wide">
-        <label for="example_fetch">Example fetch projects data:</label>
+        <label for="example_fetch">{% trans "Example fetch projects data:" %}</label>
         <textarea id="example_fetch" class="example_code ls-textarea" type="text" readonly
                   style="height: 92px; font-size: 14px; padding: 9px 16px">
           {% if settings.HOSTNAME %}
@@ -180,7 +181,7 @@
           {% endif %}
         </textarea>
         <p class="actions">
-          <button type="button" class="blinking-status lsf-button-ls" data-copy="example_fetch">Copy</button>
+          <button type="button" class="blinking-status lsf-button-ls" data-copy="example_fetch">{% trans "Copy" %}</button>
 
           {% block api_docs %}
           <a
@@ -188,7 +189,7 @@
             href="https://labelstud.io/guide/api.html"
             target="_blank"
           >
-            Documentation
+            {% trans "Documentation" %}
           </a>
           {% endblock %}
         </p>
@@ -201,21 +202,21 @@
       <header>
         {{ user.active_organization.title }}
         <br>
-        <sub>Your active organization</sub>
+        <sub>{% trans "Your active organization" %}</sub>
       </header>
 
       <table>
         {% with user.get_pretty_role as role %}
           {% if role %}
-            <tr><td>Your role</td><td>{{ user.get_pretty_role }}</td></tr>
+            <tr><td>{% trans "Your role" %}</td><td>{{ user.get_pretty_role }}</td></tr>
           {% endif %}
         {% endwith %}
-        <tr><td>Annotations completed by you</td><td>{{ user.active_organization_annotations.count }}</td></tr>
-        <tr><td>Projects contributed by you</td><td>{{ user.active_organization_contributed_project_number }}</td></tr>
+        <tr><td>{% trans "Annotations completed by you" %}</td><td>{{ user.active_organization_annotations.count }}</td></tr>
+        <tr><td>{% trans "Projects contributed by you" %}</td><td>{{ user.active_organization_contributed_project_number }}</td></tr>
         <tr><td></td><td></td></tr>
-        <tr><td style="min-width: 75px">Organization ID</td><td>{{ user.active_organization.id }}</td></tr>
-        <tr><td>Organization owner</td><td>{{ user.active_organization.created_by }}</td></tr>
-        <tr><td>Organization created at</td><td>{{ user.active_organization.created_at }}</td></tr>
+        <tr><td style="min-width: 75px">{% trans "Organization ID" %}</td><td>{{ user.active_organization.id }}</td></tr>
+        <tr><td>{% trans "Organization owner" %}</td><td>{{ user.active_organization.created_by }}</td></tr>
+        <tr><td>{% trans "Organization created at" %}</td><td>{{ user.active_organization.created_at }}</td></tr>
       </table>
 
     </form>
@@ -224,9 +225,9 @@
     {% block notifications %}
     <form action="{% url 'user-detail' pk=user.pk %}?update-notifications=1" method="patch" class="notifications block-info" id="notifications">
       <header>
-        Notifications
+        {% trans "Notifications" %}
         <br>
-        <sub>Email and other notifications</sub>
+        <sub>{% trans "Email and other notifications" %}</sub>
       </header>
 
       <table>
@@ -241,7 +242,7 @@
                  onclick="smart_submit()">
 
           <label for="allow_newsletters_visual" style="display: inline-block; cursor: pointer; margin-top: -10px">
-            Get the latest news & tips from Heidi
+            {% trans "Get the latest news & tips from Heidi" %}
             <img src="{{ settings.HOSTNAME }}{% static 'images/heidi.png' %}" alt="Heidi"
                  width="25" style="display: inline; margin: 0; position: relative; top: 5px; left: 0">
           </label>

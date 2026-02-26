@@ -5,6 +5,7 @@ import { Button } from "@humansignal/ui";
 import { FilterLine } from "./FilterLine/FilterLine";
 import { IconChevronRight, IconPlus } from "@humansignal/icons";
 import "./Filters.scss";
+import { useTranslation } from "react-i18next";
 
 const injector = inject(({ store }) => ({
   store,
@@ -15,7 +16,8 @@ const injector = inject(({ store }) => ({
 
 export const Filters = injector(({ views, currentView, filters }) => {
   const { sidebarEnabled } = views;
-
+  const { t } = useTranslation();
+  
   const fields = React.useMemo(
     () =>
       currentView.availableFilters.reduce((res, filter) => {
@@ -65,7 +67,7 @@ export const Filters = injector(({ views, currentView, filters }) => {
             />
           ))
         ) : (
-          <div className={cn("filters").elem("empty").toClassName()}>No filters applied</div>
+          <div className={cn("filters").elem("empty").toClassName()}>{t("datamanager.filters.noFiltersApplied", "No filters applied")}</div>
         )}
       </div>
       <div className={cn("filters").elem("actions").toClassName()}>
@@ -75,7 +77,10 @@ export const Filters = injector(({ views, currentView, filters }) => {
           onClick={() => currentView.createFilter()}
           leading={<IconPlus className="!h-3 !w-3" />}
         >
-          Add {filters.length ? "Another Filter" : "Filter"}
+          {t(
+            filters.length ? "datamanager.filters.addAnotherFilter" : "datamanager.filters.addFilter",
+            filters.length ? "Add Another Filter" : "Add Filter",
+          )}
         </Button>
 
         {!sidebarEnabled ? (
@@ -83,9 +88,9 @@ export const Filters = injector(({ views, currentView, filters }) => {
             look="string"
             type="link"
             size="small"
-            tooltip="Pin to sidebar"
+            tooltip={t("datamanager.filters.pinToSidebar", "Pin to sidebar")}
             onClick={() => views.expandFilters()}
-            aria-label="Pin filters to sidebar"
+            aria-label={t("datamanager.filters.pinFiltersToSidebar", "Pin filters to sidebar")}
           >
             <IconChevronRight className="!w-4 !h-4" />
           </Button>

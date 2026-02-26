@@ -5,6 +5,7 @@ import { useProject } from "../../providers/ProjectProvider";
 import { FF_UNSAVED_CHANGES, isFF } from "../../utils/feature-flags";
 import { isEmptyString } from "../../utils/helpers";
 import { ConfigPage } from "../CreateProject/Config/Config";
+import { getSettingsText, useSettingsI18n } from "./i18n";
 
 export const LabelingSettings = () => {
   const { project, fetchProject, updateProject } = useProject();
@@ -91,5 +92,5 @@ export const LabelingSettings = () => {
   );
 };
 
-LabelingSettings.title = "Labeling Interface";
+LabelingSettings.title = () => getSettingsText("settings.menu.labeling");
 LabelingSettings.path = "/labeling";

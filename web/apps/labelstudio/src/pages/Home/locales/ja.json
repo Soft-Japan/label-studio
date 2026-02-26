@@ -1,0 +1,39 @@
+{
+  "homepage": {
+    "meta": {
+      "title": "ホーム"
+    },
+    "header": {
+      "title": "ようこそ 👋",
+      "subtitle": "さっそく始めましょう。"
+    },
+    "actions": {
+      "createProject": "プロジェクトを作成",
+      "inviteMembers": "メンバーを招待"
+    },
+    "projects": {
+      "title": "最近のプロジェクト",
+      "viewAll": "すべて表示",
+      "loadError": "プロジェクトを読み込めません",
+      "emptyState": {
+        "title": "最初のプロジェクトを作成",
+        "description": "データをインポートし、ラベリング画面を設定してアノテーションを開始しましょう",
+        "cta": "プロジェクトを作成",
+        "ariaLabel": "新しいプロジェクトを作成"
+      },
+      "progress": "{{finished}} / {{total}} タスク ({{percent}}%)"
+    },
+    "resources": {
+      "title": "リソース",
+      "description": "学ぶ・探す・サポートを得る",
+      "documentation": "ドキュメント",
+      "apiDocumentation": "API ドキュメント",
+      "releaseNotes": "リリースノート",
+      "blog": "LabelStud.io ブログ",
+      "slackCommunity": "Slack コミュニティ"
+    },
+    "version": {
+      "community": "Label Studio バージョン: Community"
+    }
+  }
+}

@@ -19,38 +19,39 @@ import {
   sortedProjectsAtom,
   visitedIdsAtom,
 } from "./atoms";
+import { useHomepageI18n } from "./i18n";
 
 const resources = [
   {
-    title: "Documentation",
+    titleKey: "homepage.resources.documentation",
     url: "https://labelstud.io/guide/",
   },
   {
-    title: "API Documentation",
+    titleKey: "homepage.resources.apiDocumentation",
     url: "https://api.labelstud.io/api-reference/introduction/getting-started",
   },
   {
-    title: "Release Notes",
+    titleKey: "homepage.resources.releaseNotes",
     url: "https://labelstud.io/learn/categories/release-notes/",
   },
   {
-    title: "LabelStud.io Blog",
+    titleKey: "homepage.resources.blog",
     url: "https://labelstud.io/blog/",
   },
   {
-    title: "Slack Community",
+    titleKey: "homepage.resources.slackCommunity",
     url: "https://slack.labelstud.io",
   },
 ];
 
 const actions = [
   {
-    title: "Create Project",
+    titleKey: "homepage.actions.createProject",
     icon: IconFolderAdd,
     type: "createProject",
   },
   {
-    title: "Invite Members",
+    titleKey: "homepage.actions.inviteMembers",
     icon: IconUserAdd,
     type: "inviteMembers",
   },
@@ -58,7 +59,20 @@ const actions = [
 
 type Action = (typeof actions)[number]["type"];
 
+function readDjangoLanguageCookie() {
+  return document.cookie
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith("django_language="))
+    ?.split("=")[1];
+}
+
 export const HomePage: Page = () => {
+  const runtimeLanguage =
+    readDjangoLanguageCookie() ??
+    (window as { APP_SETTINGS?: { language_code?: string } }).APP_SETTINGS?.language_code ??
+    document.documentElement.lang;
+  const { t } = useHomepageI18n(runtimeLanguage);
   const api = useAPI();
   const location = useLocation();
   const [modalIsOpen, setModalIsOpen] = useAtom(creationDialogOpen);
@@ -68,7 +82,7 @@ export const HomePage: Page = () => {
   const sortedProjects = useAtomValue(sortedProjectsAtom);
   const visitedIds = useAtomValue(visitedIdsAtom);
 
-  useUpdatePageTitle("Home");
+  useUpdatePageTitle(t("homepage.meta.title"));
 
   // Fetch regular projects
   const { data, isFetching, isSuccess, isError } = useQuery({
@@ -136,24 +150,24 @@ export const HomePage: Page = () => {
         <section className="flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <Typography variant="headline" size="small">
-              Welcome 👋
+              {t("homepage.header.title")}
             </Typography>
             <Typography size="small" className="text-neutral-content-subtler">
-              Let's get you started.
+              {t("homepage.header.subtitle")}
             </Typography>
           </div>
           <div className="flex justify-start gap-4">
             {actions.map((action) => {
               return (
                 <Button
-                  key={action.title}
+                  key={action.type}
                   look="outlined"
                   align="center"
                   className="flex-grow-0 text-16/24 gap-2 text-primary-content text-left min-w-[250px] [&_svg]:w-6 [&_svg]:h-6 pl-2"
                   onClick={handleActions(action.type)}
                   leading={<action.icon />}
                 >
-                  {action.title}
+                  {t(action.titleKey)}
                 </Button>
               );
             })}
@@ -163,9 +177,9 @@ export const HomePage: Page = () => {
             title={
               data && data?.count > 0 ? (
                 <>
-                  Recent Projects{" "}
+                  {t("homepage.projects.title")}{" "}
                   <a href="/projects" className="text-lg font-normal hover:underline">
-                    View All
+                    {t("homepage.projects.viewAll")}
                   </a>
                 </>
               ) : null
@@ -176,7 +190,7 @@ export const HomePage: Page = () => {
                 <Spinner />
               </div>
             ) : isError ? (
-              <div className="h-64 flex justify-center items-center">can't load projects</div>
+              <div className="h-64 flex justify-center items-center">{t("homepage.projects.loadError")}</div>
             ) : isSuccess && data && sortedProjects.length === 0 ? (
               <div className="flex flex-col justify-center items-center border border-primary-border-subtle bg-primary-emphasis-subtle rounded-lg h-64">
                 <div
@@ -187,19 +201,35 @@ export const HomePage: Page = () => {
                   <IconFolderOpen />
                 </div>
                 <Typography variant="headline" size="small">
-                  Create your first project
+                  {t("homepage.projects.emptyState.title")}
                 </Typography>
                 <Typography size="small" className="text-neutral-content-subtler">
-                  Import your data and set up the labeling interface to start annotating
+                  {t("homepage.projects.emptyState.description")}
                 </Typography>
-                <Button className="mt-4" onClick={() => setModalIsOpen(true)} aria-label="Create new project">
-                  Create Project
+                <Button
+                  className="mt-4"
+                  onClick={() => setModalIsOpen(true)}
+                  aria-label={t("homepage.projects.emptyState.ariaLabel")}
+                >
+                  {t("homepage.projects.emptyState.cta")}
                 </Button>
               </div>
             ) : isSuccess && data && sortedProjects.length > 0 ? (
               <div className="flex flex-col gap-1">
                 {sortedProjects.map((project) => {
-                  return <ProjectSimpleCard key={project.id} project={project} />;
+                  return (
+                    <ProjectSimpleCard
+                      key={project.id}
+                      project={project}
+                      progressLabel={(finished, total) =>
+                        t("homepage.projects.progress", {
+                          finished,
+                          total,
+                          percent: total > 0 ? Math.round((finished / total) * 100) : 0,
+                        })
+                      }
+                    />
+                  );
                 })}
               </div>
             ) : null}
@@ -207,18 +237,22 @@ export const HomePage: Page = () => {
         </section>
         <section className="flex flex-col gap-6">
           <HeidiTips collection="projectSettings" />
-          <SimpleCard title="Resources" description="Learn, explore and get help" data-testid="resources-card">
+          <SimpleCard
+            title={t("homepage.resources.title")}
+            description={t("homepage.resources.description")}
+            data-testid="resources-card"
+          >
             <ul>
               {resources.map((link) => {
                 return (
-                  <li key={link.title}>
+                  <li key={link.titleKey}>
                     <a
                       href={link.url}
                       className="py-2 px-1 flex justify-between items-center text-neutral-content"
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {link.title}
+                      {t(link.titleKey)}
                       <IconExternal className="text-primary-icon" />
                     </a>
                   </li>
@@ -228,7 +262,7 @@ export const HomePage: Page = () => {
           </SimpleCard>
           <div className="flex gap-2 items-center">
             <IconHumanSignal />
-            <span className="text-neutral-content-subtle">Label Studio Version: Community</span>
+            <span className="text-neutral-content-subtle">{t("homepage.version.community")}</span>
           </div>
         </section>
       </div>
@@ -238,11 +272,17 @@ export const HomePage: Page = () => {
   );
 };
 
-HomePage.title = "Home";
+HomePage.title = APP_SETTINGS?.language_code?.toLowerCase().startsWith("ja") ? "ホーム" : "Home";
 HomePage.path = "/";
 HomePage.exact = true;
 
-function ProjectSimpleCard({ project }: { project: APIProject }) {
+function ProjectSimpleCard({
+  project,
+  progressLabel,
+}: {
+  project: APIProject;
+  progressLabel: (finished: number, total: number) => string;
+}) {
   const finished = project.finished_task_number ?? 0;
   const total = project.task_number ?? 0;
   const progress = (total > 0 ? finished / total : 0) * 100;
@@ -263,9 +303,7 @@ function ProjectSimpleCard({ project }: { project: APIProject }) {
           <Tooltip title={project.title}>
             <span className="text-neutral-content truncate">{project.title}</span>
           </Tooltip>
-          <div className="text-neutral-content-subtler text-sm">
-            {finished} of {total} Tasks ({total > 0 ? Math.round((finished / total) * 100) : 0}%)
-          </div>
+          <div className="text-neutral-content-subtler text-sm">{progressLabel(finished, total)}</div>
         </div>
         <div className="bg-neutral-surface rounded-full overflow-hidden w-full h-2 shadow-neutral-border-subtle shadow-border-1">
           <div className="bg-positive-surface-hover h-full" style={{ maxWidth: `${progress}%` }} />

@@ -21,6 +21,8 @@ import { SidePanelsContext } from "../SidePanelsContext";
 import "./ViewControls.scss";
 import { observer } from "mobx-react";
 import { FF_DEV_3873, isFF } from "../../../utils/feature-flags";
+import { getEnv } from "mobx-state-tree";
+import messages from "../../../utils/messages";
 
 export type GroupingOptions = "manual" | "label" | "type";
 
@@ -45,6 +47,7 @@ const mediaStartTimeSupportedTags = [
 
 export const ViewControls: FC<ViewControlsProps> = observer(
   ({ ordering, regions, orderingDirection, onOrderingChange, onGroupingChange }) => {
+    const panelMessages = getEnv(regions)?.messages ?? messages;
     const grouping = regions.group;
     const context = useContext(SidePanelsContext);
 
@@ -67,78 +70,90 @@ export const ViewControls: FC<ViewControlsProps> = observer(
       }
     }, [ordering, mediaTimeSupport, onOrderingChange]);
 
-    const getGroupingLabels = useCallback((value: GroupingOptions): LabelInfo => {
-      switch (value) {
-        case "manual":
-          return {
-            label: (
-              <>
-                <IconList /> Group Manually
-              </>
-            ),
-            selectedLabel: isFF(FF_DEV_3873) ? "Manual" : "Manual Grouping",
-            icon: <IconList width={16} height={16} />,
-            tooltip: "Manually Grouped",
-          };
-        case "label":
-          return {
-            label: (
-              <>
-                <IconBoundingBox /> Group by Label
-              </>
-            ),
-            selectedLabel: isFF(FF_DEV_3873) ? "By Label" : "Grouped by Label",
-            icon: <IconBoundingBox width={16} height={16} />,
-            tooltip: "Grouped by Label",
-          };
-        case "type":
-          return {
-            label: (
-              <>
-                <IconCursor /> Group by Tool
-              </>
-            ),
-            selectedLabel: isFF(FF_DEV_3873) ? "By Tool" : "Grouped by Tool",
-            icon: <IconCursor width={16} height={16} />,
-            tooltip: "Grouped by Tool",
-          };
-      }
-    }, []);
+    const getGroupingLabels = useCallback(
+      (value: GroupingOptions): LabelInfo => {
+        switch (value) {
+          case "manual":
+            return {
+              label: (
+                <>
+                  <IconList /> {panelMessages.SIDE_PANEL_OUTLINER_GROUP_MANUALLY}
+                </>
+              ),
+              selectedLabel: isFF(FF_DEV_3873)
+                ? panelMessages.SIDE_PANEL_OUTLINER_MANUAL
+                : panelMessages.SIDE_PANEL_OUTLINER_MANUAL_GROUPING,
+              icon: <IconList width={16} height={16} />,
+              tooltip: panelMessages.SIDE_PANEL_OUTLINER_MANUALLY_GROUPED,
+            };
+          case "label":
+            return {
+              label: (
+                <>
+                  <IconBoundingBox /> {panelMessages.SIDE_PANEL_OUTLINER_GROUP_BY_LABEL}
+                </>
+              ),
+              selectedLabel: isFF(FF_DEV_3873)
+                ? panelMessages.SIDE_PANEL_OUTLINER_BY_LABEL
+                : panelMessages.SIDE_PANEL_OUTLINER_GROUPED_BY_LABEL,
+              icon: <IconBoundingBox width={16} height={16} />,
+              tooltip: panelMessages.SIDE_PANEL_OUTLINER_GROUPED_BY_LABEL,
+            };
+          case "type":
+            return {
+              label: (
+                <>
+                  <IconCursor /> {panelMessages.SIDE_PANEL_OUTLINER_GROUP_BY_TOOL}
+                </>
+              ),
+              selectedLabel: isFF(FF_DEV_3873)
+                ? panelMessages.SIDE_PANEL_OUTLINER_BY_TOOL
+                : panelMessages.SIDE_PANEL_OUTLINER_GROUPED_BY_TOOL,
+              icon: <IconCursor width={16} height={16} />,
+              tooltip: panelMessages.SIDE_PANEL_OUTLINER_GROUPED_BY_TOOL,
+            };
+        }
+      },
+      [panelMessages],
+    );
 
-    const getOrderingLabels = useCallback((value: OrderingOptions): LabelInfo => {
-      switch (value) {
-        case "date":
-          return {
-            label: (
-              <>
-                <IconClockTimeFourOutline /> Order by Time
-              </>
-            ),
-            selectedLabel: "By Time",
-            icon: <IconClockTimeFourOutline width={16} height={16} />,
-          };
-        case "score":
-          return {
-            label: (
-              <>
-                <IconPredictions /> Order by Score
-              </>
-            ),
-            selectedLabel: "By Score",
-            icon: <IconPredictions width={16} height={16} />,
-          };
-        case "mediaStartTime":
-          return {
-            label: (
-              <>
-                <IconTimelineRegion /> Order by Media Start Time
-              </>
-            ),
-            selectedLabel: "By Media Start Time",
-            icon: <IconTimelineRegion width={16} height={16} />,
-          };
-      }
-    }, []);
+    const getOrderingLabels = useCallback(
+      (value: OrderingOptions): LabelInfo => {
+        switch (value) {
+          case "date":
+            return {
+              label: (
+                <>
+                  <IconClockTimeFourOutline /> {panelMessages.SIDE_PANEL_OUTLINER_ORDER_BY_TIME}
+                </>
+              ),
+              selectedLabel: panelMessages.SIDE_PANEL_OUTLINER_BY_TIME,
+              icon: <IconClockTimeFourOutline width={16} height={16} />,
+            };
+          case "score":
+            return {
+              label: (
+                <>
+                  <IconPredictions /> {panelMessages.SIDE_PANEL_OUTLINER_ORDER_BY_SCORE}
+                </>
+              ),
+              selectedLabel: panelMessages.SIDE_PANEL_OUTLINER_BY_SCORE,
+              icon: <IconPredictions width={16} height={16} />,
+            };
+          case "mediaStartTime":
+            return {
+              label: (
+                <>
+                  <IconTimelineRegion /> {panelMessages.SIDE_PANEL_OUTLINER_ORDER_BY_MEDIA_START_TIME}
+                </>
+              ),
+              selectedLabel: panelMessages.SIDE_PANEL_OUTLINER_BY_MEDIA_START_TIME,
+              icon: <IconTimelineRegion width={16} height={16} />,
+            };
+        }
+      },
+      [panelMessages],
+    );
 
     const renderOrderingDirectionIcon = orderingDirection === "asc" ? <IconSortUp /> : <IconSortDown />;
 

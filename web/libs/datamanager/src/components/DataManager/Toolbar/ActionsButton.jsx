@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useActions } from "../../../hooks/useActions";
 import { cn } from "../../../utils/bem";
 import { FF_LOPS_E_3, isFF } from "../../../utils/feature-flags";
+import { useTranslation } from "react-i18next";
 import { Dropdown } from "@humansignal/ui";
 import Form from "../../Common/Form/Form";
 import { Menu } from "../../Common/Menu/Menu";
@@ -227,6 +228,8 @@ export const ActionsButton = injector(
       projectId: store.SDK.projectId,
     });
 
+    const { t } = useTranslation();
+
     const actions = useMemo(() => {
       return [...store.availableActions, ...serverActions].filter((a) => !a.hidden).sort((a, b) => a.order - b.order);
     }, [store.availableActions, serverActions]);
@@ -241,7 +244,7 @@ export const ActionsButton = injector(
           <Menu size="compact">
             {isLoading || isFetching ? (
               <Menu.Item data-testid="loading-actions" disabled>
-                Loading actions...
+                {t("datamanager.toolbar.loadingActions", "Loading actions...")}
               </Menu.Item>
             ) : (
               actionButtons
@@ -258,10 +261,12 @@ export const ActionsButton = injector(
           look="outlined"
           disabled={!hasSelected}
           trailing={<IconChevronDown />}
-          aria-label="Tasks Actions"
+          aria-label={t("datamanager.toolbar.tasksActions", "Tasks Actions")}
           {...rest}
         >
-          {selectedCount > 0 ? `${selectedCount} ${recordTypeLabel}${selectedCount > 1 ? "s" : ""}` : "Actions"}
+          {selectedCount > 0
+            ? `${selectedCount} ${recordTypeLabel}${selectedCount > 1 ? "s" : ""}`
+            : t("datamanager.toolbar.actions", "Actions")}
         </Button>
       </Dropdown.Trigger>
     );

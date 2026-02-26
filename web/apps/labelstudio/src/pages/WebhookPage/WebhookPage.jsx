@@ -7,6 +7,7 @@ import { useProject } from "../../providers/ProjectProvider";
 import WebhookDetail from "./WebhookDetail";
 import WebhookList from "./WebhookList";
 import { createTitleFromSegments, useUpdatePageTitle } from "@humansignal/core";
+import { getSettingsText, useSettingsI18n } from "../Settings/i18n";
 
 const Webhook = () => {
   const [activeWebhook, setActiveWebhook] = useState(null);
@@ -17,8 +18,9 @@ const Webhook = () => {
 
   const api = useAPI();
   const { project } = useProject();
+  const { t } = useSettingsI18n();
 
-  useUpdatePageTitle(createTitleFromSegments([project?.title, "Webhooks Settings"]));
+  useUpdatePageTitle(createTitleFromSegments([project?.title, t("settings.webhooks.title")]));
 
   const projectId = useMemo(() => {
     if (history.location.pathname.startsWith("/projects")) {
@@ -113,7 +115,7 @@ const Webhook = () => {
 };
 
 export const WebhookPage = {
-  title: "Webhooks",
+  title: () => getSettingsText("settings.menu.webhooks"),
   path: "/webhooks",
   component: Webhook,
 };

@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useAPI } from "../../../providers/ApiProvider";
 import { Select } from "../../../components/Form";
 import { ProjectContext } from "../../../providers/ProjectProvider";
+import { useSettingsI18n } from "../i18n";
 
 export const ModelVersionSelector = ({
   name = "model_version",
@@ -16,6 +17,7 @@ export const ModelVersionSelector = ({
   const [models, setModels] = useState([]);
   const [version, setVersion] = useState(null);
   const [placeholder, setPlaceholder] = useState("");
+  const { t } = useSettingsI18n();
 
   useEffect(() => {
     setVersion(project?.[valueName] || null);
@@ -63,7 +65,7 @@ export const ModelVersionSelector = ({
     }
 
     if (!modelVersions?.static?.length && !modelVersions?.live?.length) {
-      setPlaceholder("No model or predictions available");
+      setPlaceholder(t("settings.annotation.noModels"));
     }
 
     setLoading(false);
@@ -75,7 +77,7 @@ export const ModelVersionSelector = ({
 
   return (
     <div>
-      <label>Select which predictions or which model you want to use:</label>
+      <label>{t("settings.annotation.selectPredictionOrModel")}</label>
       <div style={{ display: "flex", alignItems: "center", width: 400 }}>
         <div style={{ flex: 1, paddingRight: 16 }}>
           <Select
@@ -84,7 +86,7 @@ export const ModelVersionSelector = ({
             value={version}
             onChange={setVersion}
             options={[...models, ...versions]}
-            placeholder={placeholder || "Please select model or predictions"}
+            placeholder={placeholder || t("settings.annotation.selectPlaceholder")}
             isInProgress={loading}
             {...props}
           />

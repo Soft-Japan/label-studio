@@ -1,3 +1,4 @@
+import { getEnv, isStateTreeNode } from "mobx-state-tree";
 import { inject, observer } from "mobx-react";
 import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
 
@@ -7,6 +8,7 @@ import styles from "./Controls.module.scss";
 import { Button, Tooltip } from "@humansignal/ui";
 import { IconInfoOutline } from "@humansignal/icons";
 import { cn } from "../../utils/bem";
+import messages from "../../utils/messages";
 
 export default inject("store")(
   observer(({ item, store }) => {
@@ -20,6 +22,7 @@ export default inject("store")(
     };
 
     const { userGenerate, sentUserGenerate, versions } = item;
+    const panelMessages = (isStateTreeNode(store) ? getEnv(store)?.messages : null) ?? messages;
     const { enableHotkeys, enableTooltips } = store.settings;
 
     /**
@@ -100,7 +103,7 @@ export default inject("store")(
             tooltip="Save results: [ Ctrl+Enter ]"
             className={`${styles.submit} ${submitButtonClassName}`}
           >
-            Submit {buttons.submit}
+            {panelMessages.SUBMIT} {buttons.submit}
           </Button>
         );
       }
@@ -115,7 +118,7 @@ export default inject("store")(
             tooltip="Update this task: [ Alt+Enter ]"
             className={updateButtonClassName}
           >
-            {sentUserGenerate || versions.result ? "Update" : "Submit"} {buttons.update}
+            {sentUserGenerate || versions.result ? panelMessages.UPDATE : panelMessages.SUBMIT} {buttons.update}
           </Button>
         );
       }

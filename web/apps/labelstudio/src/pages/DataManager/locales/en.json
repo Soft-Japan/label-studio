@@ -1,0 +1,315 @@
+{
+  "datamanager": {
+    "emptyState": {
+      "import": {
+        "title": "Import data to start the project",
+        "description": "Connect cloud storage or upload files from your computer",
+        "connectCloudStorage": "Connect cloud storage",
+        "import": "Import",
+        "docs": "View documentation about importing data"
+      },
+      "filters": {
+        "clear": "Clear filters",
+        "noTasksFound": "No tasks found",
+        "adjustOrClear": "Try adjusting or clearing the filters to see more results"
+      },
+      "reviewer": {
+        "noTasksTitle": "No tasks available for review or labeling",
+        "noTasksDescription": "Tasks imported to this project will appear here"
+      },
+      "annotator": {
+        "startTitle": "Start labeling tasks",
+        "startDescription": "Tasks you've labeled will appear here",
+        "labelAllTasks": "Label All Tasks",
+        "noTasksTitle": "No tasks available",
+        "assignedDescription": "Tasks assigned to you will appear here",
+        "availableDescription": "Tasks will appear here when they become available"
+      }
+    },
+    "toolbar": {
+      "actions": "Actions",
+      "columns": "Columns",
+      "default": "Default",
+      "export": "Export",
+      "filters": "Filters",
+      "import": "Import",
+      "loadingActions": "Loading actions...",
+      "orderBy": "Order by",
+      "tasksActions": "Task actions",
+      "upgradeToImport": "To import data, you need to upgrade your plan",
+      "density": {
+        "comfortable": "Comfortable density",
+        "compact": "Compact density"
+      },
+      "view": {
+        "list": "List view",
+        "grid": "Grid view",
+        "listAria": "Switch to list view",
+        "gridAria": "Switch to grid view"
+      },
+      "grid": {
+        "columns": "Columns",
+        "decreaseColumns": "Decrease columns number",
+        "increaseColumns": "Increase columns number",
+        "fitImagesToWidth": "Fit images to width",
+        "settings": "Grid settings"
+      },
+      "customizeColumns": "Customize Columns",
+      "labelAllTasks": "Label All Tasks",
+      "labelTasksAsDisplayed": "Label Tasks As Displayed",
+      "labelTasksCount": "Label {{count}} Tasks"
+    },
+    "summary": {
+      "filteredTasks": "Filtered tasks",
+      "predictions": "Predictions",
+      "storageSync": "Storage sync",
+      "submittedAnnotations": "Submitted annotations",
+      "tasks": "Tasks",
+      "totalTasksInProject": "Total tasks in project"
+    },
+    "tabs": {
+      "default": "Default",
+      "unsaved": "unsaved"
+    },
+    "page": {
+      "backToProjects": "Back to projects",
+      "instructions": "Instructions",
+      "labeling": "Labeling",
+      "labelingInstructions": "Labeling Instructions",
+      "projectMissing": "Project was deleted or not yet created",
+      "settings": "Settings"
+    },
+    "filters": {
+      "noFiltersApplied": "No filters applied",
+      "addFilter": "Add filter",
+      "addAnotherFilter": "Add another filter",
+      "pinToSidebar": "Pin to sidebar",
+      "pinFiltersToSidebar": "Pin filters to sidebar"
+    },
+    "columns": {
+      "id": "ID",
+      "innerId": "Inner ID",
+      "completed": "Completed",
+      "annotations": "Annotations",
+      "cancelled": "Cancelled",
+      "predictions": "Predictions",
+      "annotatedBy": "Annotated by",
+      "annotationResults": "Annotation results",
+      "annotationIds": "Annotation IDs",
+      "predictionScore": "Prediction score",
+      "predictionModelVersions": "Prediction model versions",
+      "predictionResults": "Prediction results",
+      "uploadFilename": "Upload filename",
+      "storageFilename": "Storage filename",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at",
+      "updatedBy": "Updated by",
+      "leadTime": "Lead time",
+      "draft": "Draft",
+      "data": "Data",
+      "image": "Image",
+      "prediction_score": "Prediction score",
+      "prediction_model_versions": "Prediction model versions",
+      "prediction_results": "Prediction results",
+      "upload_filename": "Upload filename",
+      "storage_filename": "Storage filename",
+      "created_at": "Created at",
+      "updated_at": "Updated at",
+      "updated_by": "Updated by",
+      "lead_time": "Lead time"
+    },
+    "export": {
+      "title": "Export data",
+      "preparing": "Files are being prepared. It might take long time.",
+      "troubleshoot": "Having a timeout or trouble exporting large projects?",
+      "formatInfo": "You can export dataset in one of the following formats:",
+      "aria": {
+        "exportData": "Export data"
+      },
+      "actions": {
+        "export": "Export"
+      },
+      "feedback": {
+        "title": "Can't find an export format?",
+        "prefix": "Please let us know in",
+        "slack": "Slack",
+        "middle": "or submit an issue to the",
+        "repository": "Repository"
+      },
+      "largeProject": {
+        "title": "Large project detected ({{count}} tasks)",
+        "prefix": "To avoid timeouts when exporting large datasets in Community Edition, use",
+        "cliSdk": "CLI/SDK export options",
+        "middle": "or consider",
+        "enterprise": "Enterprise",
+        "suffix": "for background exports at scale."
+      },
+      "timeout": {
+        "title": "Export timed out",
+        "body": "This export runs synchronously in the Community Edition UI, so large datasets can exceed common reverse proxy timeouts (often around 90 seconds).",
+        "recommended": "Recommended options:",
+        "exportUsing": "Export using the",
+        "consoleCommand": "console command",
+        "copyCommand": "Copy command",
+        "copied": "Copied",
+        "copiedWithBang": "Copied!",
+        "use": "Use",
+        "sdkSnapshots": "export snapshots via the SDK",
+        "sdkSuffix": "to generate and download snapshots without relying on a single UI request.",
+        "enterprisePrefix": "For large-scale exports in the UI, consider",
+        "enterprise": "Label Studio Enterprise",
+        "enterpriseSuffix": "for large projects and asynchronous exports.",
+        "moreDetails": "For details, see the documentation:",
+        "communityEdition": "Community Edition export timeout"
+      },
+      "formats": {
+        "JSON": {
+          "title": "JSON",
+          "description": "List of items in raw JSON format stored in one JSON file. Use this to export both data and annotations. This is a common Label Studio format."
+        },
+        "JSON_MIN": {
+          "title": "JSON-MIN",
+          "description": "List of items from raw JSON including only \"from_name\" and \"to_name\" values. Use this when exporting annotations only."
+        },
+        "CSV": {
+          "title": "CSV",
+          "description": "Results are saved in comma-separated format, with column names based on \"from_name\" and \"to_name\" values."
+        },
+        "TSV": {
+          "title": "TSV",
+          "description": "Results are saved in tab-separated table format, with column names based on \"from_name\" and \"to_name\" values."
+        },
+        "COCO": {
+          "title": "COCO",
+          "description": "A common machine-learning format used by COCO datasets. Supports object detection and image segmentation with polygons and rectangles."
+        },
+        "COCO_WITH_IMAGES": {
+          "title": "COCO with images",
+          "description": "COCO format with downloaded images."
+        },
+        "YOLO": {
+          "title": "YOLO",
+          "description": "A common format that generates a TXT file per image. Each file contains class, coordinates, height, and width annotations for the corresponding image."
+        },
+        "YOLO_WITH_IMAGES": {
+          "title": "YOLO with images",
+          "description": "YOLO format with downloaded images."
+        },
+        "YOLO_OBB": {
+          "title": "YOLOv8 OBB",
+          "description": "A common format that generates a TXT file per image. Each file contains annotations for the corresponding image. YOLO OBB uses 4 corner coordinates (normalized 0–1) to represent bounding boxes, so rotated objects can be exported."
+        },
+        "YOLO_OBB_WITH_IMAGES": {
+          "title": "YOLOv8 OBB with images",
+          "description": "YOLOv8 OBB format with downloaded images."
+        },
+        "CONLL2003": {
+          "title": "CONLL2003",
+          "description": "A common format used in the CoNLL-2003 named entity recognition challenge."
+        },
+        "VOC": {
+          "title": "Pascal VOC XML",
+          "description": "A common XML format used for object detection and polygon image segmentation."
+        },
+        "BRUSH_TO_NUMPY": {
+          "title": "Brush labels to NumPy",
+          "description": "Exports brush labels as NumPy 2D arrays. Each label is saved as one image."
+        },
+        "BRUSH_TO_PNG": {
+          "title": "Brush labels to PNG",
+          "description": "Exports brush labels as PNG images. Each label is saved as one image."
+        },
+        "ASR_MANIFEST": {
+          "title": "ASR manifest",
+          "description": "Exports speech-recognition transcription labels in the JSON manifest format expected by NVIDIA NeMo models."
+        },
+        "BRUSH_TO_COCO": {
+          "title": "Brush labels to COCO",
+          "description": "Exports brush labels to COCO format for segmentation. Converts RLE-encoded masks to COCO polygons."
+        }
+      },
+      "tags": {
+        "image_segmentation": "Image segmentation",
+        "object_detection": "Object detection",
+        "keypoints": "Keypoints",
+        "sequence_labeling": "Sequence labeling",
+        "text_tagging": "Text tagging",
+        "named_entity_recognition": "Named entity recognition",
+        "speech_recognition": "Speech recognition",
+        "brush_annotations": "Brush annotations"
+      }
+    },
+    "editor": {
+      "sidePanel": {
+        "learnMore": "Learn more",
+        "tabs": {
+          "regions": "Regions",
+          "history": "History",
+          "relations": "Relations",
+          "info": "Info"
+        },
+        "info": {
+          "header": "View region details",
+          "description": "Select a region to view its properties, metadata and available actions"
+        },
+        "outliner": {
+          "header": "Labeled regions will appear here",
+          "description": "Start labeling and track your results using this panel",
+          "group": {
+            "manual": "Manual"
+          },
+          "order": {
+            "time": "By Time"
+          }
+        }
+      },
+      "annotations": {
+        "compareAll": "Compare All",
+        "compareAllAria": "Compare all annotations"
+      },
+      "controls": {
+        "submit": "Submit",
+        "update": "Update",
+        "submitAndExit": "Submit and exit",
+        "updateAndExit": "Update and exit",
+        "submitCurrentAnnotation": "Submit current annotation",
+        "submitAnnotation": "Submit annotation",
+        "updateAnnotation": "Update annotation"
+      },
+      "imageTools": {
+        "move": "Move",
+        "panImage": "Pan Image",
+        "zoomIn": "Zoom In",
+        "zoomOut": "Zoom Out",
+        "zoomToFit": "Zoom to fit",
+        "zoomToActualSize": "Zoom to actual size"
+      }
+    }
+  },
+  "storage.modal.importDataFromCloud": "Import data from cloud storage provider",
+  "storage.modal.chooseProvider": "Choose cloud storage provider",
+  "storage.modal.selectProviderDescription": "Select the cloud storage service where your data is stored",
+  "storage.modal.storageProvider": "Storage provider",
+  "storage.modal.step.selectProvider": "Select provider",
+  "storage.modal.step.configureConnection": "Configure connection",
+  "storage.modal.step.importSettingsPreview": "Import settings and preview",
+  "storage.modal.step.reviewConfirm": "Review and run",
+  "storage.modal.previous": "Previous",
+  "storage.modal.connectionVerified": "Connection verified",
+  "storage.modal.testConnection": "Test connection",
+  "storage.modal.previewLoaded": "✓ Preview loaded",
+  "storage.modal.loadPreview": "Load preview",
+  "storage.modal.testConnectionBeforeContinuing": "Please test the connection before continuing",
+  "storage.modal.providerNotAvailable": "This provider is not available in the current version",
+  "storage.modal.next": "Next",
+  "storage.modal.save": "Save",
+  "storage.modal.saveSync": "Save and sync",
+  "storage.modal.edit": "Edit",
+  "storage.modal.connect": "Connect",
+  "storage.modal.target": "Target",
+  "storage.modal.source": "Source",
+  "storage.modal.storage": "Storage",
+  "storage.modal.deletingStorage": "Deleting storage",
+  "storage.modal.deleteStorageConfirm": "This action cannot be undone. Are you sure?",
+  "storage.modal.add": "Add"
+}

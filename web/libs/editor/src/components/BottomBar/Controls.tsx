@@ -4,6 +4,8 @@
  * Only this component should get interface updates, other versions should be removed.
  */
 
+import { getEnv, isStateTreeNode } from "mobx-state-tree";
+
 import { observer } from "mobx-react";
 import type React from "react";
 import { useCallback, useState } from "react";
@@ -13,6 +15,7 @@ import { IconBan, IconChevronDown } from "@humansignal/icons";
 import { Dropdown } from "@humansignal/ui";
 import type { CustomButtonType } from "../../stores/CustomButton";
 import { cn } from "../../utils/bem";
+import messages from "../../utils/messages";
 import { FF_REVIEWER_FLOW, FF_FIT_1304_STRICT_OVERLAP, isFF } from "../../utils/feature-flags";
 import { isDefined, toArray } from "../../utils/utilities";
 import {
@@ -74,6 +77,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
     const { userGenerate, sentUserGenerate, versions, results, editable: annotationEditable } = annotation;
     const dropdownTrigger = cn("dropdown").elem("trigger").toClassName();
     const customButtons: CustomButtonsField = store.customButtons;
+    const panelMessages = (isStateTreeNode(store) ? getEnv(store)?.messages : null) ?? messages;
     const buttons: React.ReactNode[] = [];
 
     const [isInProgress, setIsInProgress] = useState(false);
@@ -230,7 +234,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
               }}
               data-testid={`bottombar-${isUpdate ? "update" : "submit"}-and-exit-button`}
             >
-              {`${isUpdate ? "Update" : "Submit"} and exit`}
+              {isUpdate ? panelMessages.UPDATE_AND_EXIT : panelMessages.SUBMIT_AND_EXIT}
             </Button>
           </div>
         );
@@ -248,7 +252,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
             <div className={cn("controls").elem("tooltip-wrapper").toClassName()}>
               <ButtonGroup>
                 <Button
-                  aria-label="Submit current annotation"
+                  aria-label={panelMessages.SUBMIT_CURRENT_ANNOTATION}
                   name="submit"
                   className="w-[150px]"
                   disabled={isDisabled}
@@ -262,7 +266,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
                   }}
                   data-testid="bottombar-submit-button"
                 >
-                  Submit
+                  {panelMessages.SUBMIT}
                 </Button>
                 {useExitOption ? (
                   <Dropdown.Trigger
@@ -275,7 +279,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
                   >
                     <Button
                       disabled={isDisabled}
-                      aria-label="Submit annotation"
+                      aria-label={panelMessages.SUBMIT_ANNOTATION}
                       data-testid="bottombar-submit-dropdown"
                     >
                       <IconChevronDown />
@@ -314,7 +318,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
                 }}
                 data-testid="bottombar-update-button"
               >
-                {isUpdate ? "Update" : "Submit"}
+                {isUpdate ? panelMessages.UPDATE : panelMessages.SUBMIT}
               </Button>
               {useExitOption ? (
                 <Dropdown.Trigger
@@ -323,7 +327,7 @@ export const Controls = controlsInjector<{ annotation: MSTAnnotation }>(
                 >
                   <Button
                     disabled={isUpdateDisabled}
-                    aria-label="Update annotation"
+                    aria-label={panelMessages.UPDATE_ANNOTATION}
                     data-testid="bottombar-update-dropdown"
                   >
                     <IconChevronDown />

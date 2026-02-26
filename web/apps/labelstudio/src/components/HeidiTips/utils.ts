@@ -1,5 +1,6 @@
 import { defaultTipsCollection } from "./content";
-import type { Tip, TipsCollection } from "./types";
+import { getDefaultHeidiLanguage, i18n } from "./i18n";
+import type { RawTip, Tip, TipsCollection } from "./types";
 
 const STORE_KEY = "heidi_ignored_tips";
 const EVENT_NAMESPACE_KEY = "heidi_tips";
@@ -7,6 +8,58 @@ const CACHE_KEY = "heidi_live_tips_collection";
 const CACHE_FETCHED_AT_KEY = "heidi_live_tips_collection_fetched_at";
 const CACHE_STALE_TIME = 1000 * 60 * 60; // 1 hour
 const MAX_TIMEOUT = 5000; // 5 seconds
+
+const TREATMENT_TO_I18N_BY_COLLECTION: Partial<Record<keyof TipsCollection, Record<string, string>>> = {
+  projectCreation: {
+    databricks_uc_live: "heidiTips.projectCreation.newStorageConnector",
+    starter_cloud_live: "heidiTips.projectCreation.starterCloud",
+    access_to_projects_live: "heidiTips.projectCreation.accessControl",
+    genai_templates_live: "heidiTips.projectCreation.genaiTemplates",
+  },
+  organizationPage: {
+    team_growing_live: "heidiTips.organizationPage.teamGrowth",
+    enable_sso_live: "heidiTips.organizationPage.enableSso",
+    starter_cloud_live: "heidiTips.organizationPage.starterCloud",
+    share_knowledge_live: "heidiTips.organizationPage.communitySlack",
+    integration_points_live: "heidiTips.organizationPage.integrations",
+    compliance_live: "heidiTips.organizationPage.compliance",
+  },
+  projectSettings: {
+    aws_marketplace: "heidiTips.projectSettings.awsMarketplace",
+    auto_labeling_live: "heidiTips.projectSettings.autoLabeling",
+    starter_cloud_live: "heidiTips.projectSettings.starterCloud",
+    evals_live: "heidiTips.projectSettings.evals",
+    connect_ml_models_live: "heidiTips.projectSettings.connectMl",
+    lse_pdf_live: "heidiTips.projectSettings.nativePdf",
+    auto_labeling: "heidiTips.projectSettings.autoLabeling",
+    evals: "heidiTips.projectSettings.evals",
+    connect_ml_models: "heidiTips.projectSettings.connectMl",
+    starter_cloud: "heidiTips.projectSettings.starterCloud",
+  },
+  authPage: {
+    wrapped_webinar_2025_live: "heidiTips.authPage.wrappedEvent",
+    prompts_auto_labeling_live: "heidiTips.authPage.promptsAutoLabeling",
+    legalbench_live: "heidiTips.authPage.behindBenchmark",
+    chat_live: "heidiTips.authPage.chatFeature",
+    starter_cloud_live: "heidiTips.authPage.starterCloud",
+    enterprise_platform_live: "heidiTips.authPage.enterpriseVersion",
+    sync_cloud_data: "heidiTips.authPage.syncCloudData",
+    enterprise_platform: "heidiTips.authPage.enterpriseVersion",
+    templates: "heidiTips.authPage.templates",
+    starter_cloud: "heidiTips.authPage.starterCloud",
+  },
+};
+
+function getTipI18nKey(collection: keyof TipsCollection, rawTip: RawTip) {
+  if (rawTip.i18nKey) return rawTip.i18nKey;
+
+  const treatment = rawTip.link.params?.treatment;
+
+  if (!treatment) return undefined;
+
+  return TREATMENT_TO_I18N_BY_COLLECTION[collection]?.[treatment];
+}
+
 
 function getKey(collection: string) {
   return `${STORE_KEY}:${collection}`;
@@ -30,11 +83,34 @@ export function getTipEvent(collection: string, tip: Tip, event: string) {
   return getTipCollectionEvent(collection, event);
 }
 
-export function getTipMetadata(tip: Tip) {
-  // Everything except the experiment and treatment params as those are part of the event name
-  const { experiment, treatment, ...rest } = tip.link.params ?? {};
+
+function resolveTip(collection: keyof TipsCollection, rawTip: RawTip): Tip {
+  const key = getTipI18nKey(collection, rawTip);
+  const title = key ? i18n.t(`${key}.title`) : rawTip.title;
+  const content = key ? i18n.t(`${key}.content`) : rawTip.content;
+  const description = key ? i18n.t(`${key}.description`) : rawTip.description;
+  const linkLabel = key ? i18n.t(`${key}.linkLabel`) : rawTip.link.label;
+
   return {
-    ...rest,
+    ...rawTip,
+    title: title === `${key}.title` ? (rawTip.title ?? "") : title,
+    content: content === `${key}.content` ? rawTip.content : content,
+    description: description === `${key}.description` ? rawTip.description : description,
+    link: {
+      ...rawTip.link,
+      label: linkLabel === `${key}.linkLabel` ? (rawTip.link.label ?? "") : linkLabel,
+    },
+  };
+}
+
+export function getTipMetadata(tip: Tip) {
+  const params = { ...(tip.link.params ?? {}) };
+
+  delete params.experiment;
+  delete params.treatment;
+
+  return {
+    ...params,
     content: tip.description ?? tip.content ?? "",
     title: tip.title,
     href: tip.link.url,
@@ -43,21 +119,16 @@ export function getTipMetadata(tip: Tip) {
 }
 
 export const loadLiveTipsCollection = () => {
-  // stale while revalidate - we will return the data present in the cache or the default data and fetch updated data to be put into the cache for the next time this function is called without waiting for the promise.
   const cachedData = localStorage.getItem(CACHE_KEY);
   const fetchedAt = localStorage.getItem(CACHE_FETCHED_AT_KEY);
 
-  // Read from local storage if the cachedData is less than CACHE_STALE_TIME milliseconds old
   if (cachedData && fetchedAt && Date.now() - Number.parseInt(fetchedAt) < CACHE_STALE_TIME) {
     return JSON.parse(cachedData);
   }
 
   const abortController = new AbortController();
-
-  // Abort the request after MAX_TIMEOUT milliseconds to ensure we won't wait for too long, something might be wrong with the network or it could be an air-gapped instance
   const abortTimeout = setTimeout(abortController.abort, MAX_TIMEOUT);
 
-  // Fetch from github raw liveContent.json proxied through the server
   fetch("/heidi-tips", {
     headers: {
       "Cache-Control": "no-cache",
@@ -68,8 +139,6 @@ export const loadLiveTipsCollection = () => {
     .then(async (response) => {
       if (response.ok) {
         const data = await response.json();
-
-        // Cache the fetched content
         localStorage.setItem(CACHE_FETCHED_AT_KEY, String(Date.now()));
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
       }
@@ -78,21 +147,21 @@ export const loadLiveTipsCollection = () => {
       console.warn("Failed to load live Heidi tips collection", e);
     })
     .finally(() => {
-      // Wait until the content is fetched to clear the abort timeout
-      // The abort should consider the entire request not just the headers
       clearTimeout(abortTimeout);
     });
 
-  // Serve possibly stale cached content
   if (cachedData) {
     return JSON.parse(cachedData);
   }
 
-  // Default local content
   return defaultTipsCollection;
 };
 
 export function getRandomTip(collection: keyof TipsCollection): Tip | null {
+  if (!i18n.resolvedLanguage) {
+    i18n.changeLanguage(getDefaultHeidiLanguage());
+  }
+
   const tipsCollection = loadLiveTipsCollection();
 
   if (!tipsCollection[collection] || isTipDismissed(collection)) return null;
@@ -101,15 +170,10 @@ export function getRandomTip(collection: keyof TipsCollection): Tip | null {
 
   const index = Math.floor(Math.random() * tips.length);
 
-  return tips[index];
+  return resolveTip(collection, tips[index]);
 }
 
-/**
- * Set a cookie that indicates that a collection of tips is dismissed
- * for 30 days
- */
 export function dismissTip(collection: string) {
-  // will expire in 30 days
   const cookieExpiryTime = 1000 * 60 * 60 * 24 * 30;
   const cookieExpiryDate = new Date();
 

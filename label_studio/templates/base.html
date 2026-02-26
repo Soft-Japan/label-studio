@@ -1,10 +1,11 @@
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% load rules %}
 {% load filters %}
 
 <!doctype html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
   <meta charset="utf-8"/>
   <meta name="author" content="Label Studio"/>
@@ -68,7 +69,6 @@
   {% block head %}
   {% endblock %}
 
-  {% get_current_language as LANGUAGE_CODE %}
   {% get_available_languages as LANGUAGES %}
 
 </head>
@@ -187,6 +187,7 @@
     version_edition: "{{ settings.VERSION_EDITION }}",
     server_id: {{ request.server_id|json_dumps_ensure_ascii|safe }},
     collect_analytics: {{ settings.COLLECT_ANALYTICS|yesno:"true,false" }},
+    language_code: "{{ LANGUAGE_CODE|default:'en' }}",
     local_files_document_root: {{ settings.LOCAL_FILES_DOCUMENT_ROOT|json_dumps_ensure_ascii|safe }},
     local_files_serving_enabled: {{ settings.LOCAL_FILES_SERVING_ENABLED|yesno:"true,false" }},
 

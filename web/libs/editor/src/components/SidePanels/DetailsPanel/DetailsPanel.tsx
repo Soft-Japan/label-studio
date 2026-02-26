@@ -14,6 +14,8 @@ import { RelationsControls } from "./RelationsControls";
 import { EmptyState } from "../Components/EmptyState";
 import { IconCursor, IconRelationLink } from "@humansignal/icons";
 import { getDocsUrl } from "../../../utils/docs";
+import { getEnv } from "mobx-state-tree";
+import messages from "../../../utils/messages";
 
 interface DetailsPanelProps extends PanelProps {
   regions: any;
@@ -22,9 +24,10 @@ interface DetailsPanelProps extends PanelProps {
 
 const DetailsPanelComponent: FC<DetailsPanelProps> = ({ currentEntity, regions, ...props }) => {
   const selectedRegions = regions.selection;
+  const panelMessages = getEnv(currentEntity)?.messages ?? messages;
 
   return (
-    <PanelBase {...props} currentEntity={currentEntity} name="details" title="Details">
+    <PanelBase {...props} currentEntity={currentEntity} name="details" title={panelMessages.SIDE_PANEL_TAB_INFO}>
       <Content selection={selectedRegions} currentEntity={currentEntity} />
     </PanelBase>
   );
@@ -67,10 +70,11 @@ const CommentsTab: FC<any> = inject("store")(
 );
 
 const RelationsTab: FC<any> = inject("store")(
-  observer(function RelationsTab({ currentEntity }: any): JSX.Element {
+  observer(function RelationsTab({ currentEntity, store }: any): JSX.Element {
     const { relationStore } = currentEntity;
     const hasRelations = relationStore.size > 0;
-
+    const panelMessages = getEnv(store)?.messages ?? messages;
+    
     return (
       <>
         <div className={cn("relations").toClassName()}>
@@ -79,7 +83,7 @@ const RelationsTab: FC<any> = inject("store")(
               <>
                 <div className={cn("relations").elem("view-control").toClassName()}>
                   <div className={cn("relations").elem("section-head").toClassName()}>
-                    Relations ({relationStore.size})
+                    {panelMessages.SIDE_PANEL_SECTION_RELATIONS} ({relationStore.size})
                   </div>
                   <RelationsControls relationStore={relationStore} />
                 </div>
@@ -90,11 +94,11 @@ const RelationsTab: FC<any> = inject("store")(
             ) : (
               <EmptyState
                 icon={<IconRelationLink width={24} height={24} />}
-                header="Create relations between regions"
-                description={<>Link regions to define relationships between them</>}
+                header={panelMessages.SIDE_PANEL_RELATIONS_EMPTY_HEADER}
+                description={<>{panelMessages.SIDE_PANEL_RELATIONS_EMPTY_DESCRIPTION}</>}
                 learnMore={{
                   href: getDocsUrl("guide/labeling#Add-relations-between-annotations"),
-                  text: "Learn more",
+                  text: panelMessages.SIDE_PANEL_LEARN_MORE,
                   testId: "relations-panel-learn-more",
                 }}
               />
@@ -109,7 +113,8 @@ const RelationsTab: FC<any> = inject("store")(
 const HistoryTab: FC<any> = inject("store")(
   observer(function HistoryTab({ store, currentEntity }: any): JSX.Element {
     const showAnnotationHistory = store.hasInterface("annotations:history");
-
+    const panelMessages = getEnv(store)?.messages ?? messages;
+    
     return (
       <>
         <div className={cn("history").toClassName()}>
@@ -119,7 +124,7 @@ const HistoryTab: FC<any> = inject("store")(
               enabled={showAnnotationHistory}
               sectionHeader={
                 <>
-                  Annotation History
+                  {panelMessages.SIDE_PANEL_SECTION_ANNOTATION_HISTORY}
                   <span>#{currentEntity.pk ?? currentEntity.id}</span>
                 </>
               }
@@ -132,8 +137,9 @@ const HistoryTab: FC<any> = inject("store")(
 );
 
 const InfoTab: FC<any> = inject("store")(
-  observer(function InfoTab({ selection }: any): JSX.Element {
+  observer(function InfoTab({ selection, store }: any): JSX.Element {
     const nothingSelected = !selection || selection.size === 0;
+    const panelMessages = getEnv(store)?.messages ?? messages;
     return (
       <>
         <div className={cn("info").toClassName()}>
@@ -141,8 +147,8 @@ const InfoTab: FC<any> = inject("store")(
             {nothingSelected ? (
               <EmptyState
                 icon={<IconCursor width={24} height={24} />}
-                header="View region details"
-                description={<>Select a region to view its properties, metadata and available actions</>}
+                header={panelMessages.SIDE_PANEL_INFO_EMPTY_HEADER}
+                description={<>{panelMessages.SIDE_PANEL_INFO_EMPTY_DESCRIPTION}</>}
               />
             ) : (
               <>
@@ -172,6 +178,7 @@ const GeneralPanel: FC<any> = inject("store")(
   observer(function GeneralPanel({ store, currentEntity }: any): JSX.Element {
     const { relationStore } = currentEntity;
     const showAnnotationHistory = store.hasInterface("annotations:history");
+    const panelMessages = getEnv(store)?.messages ?? messages;
     return (
       <>
         <div className={cn("details").elem("section").toClassName()}>
@@ -180,7 +187,7 @@ const GeneralPanel: FC<any> = inject("store")(
             enabled={showAnnotationHistory}
             sectionHeader={
               <>
-                Annotation History
+                {panelMessages.SIDE_PANEL_SECTION_ANNOTATION_HISTORY}
                 <span>#{currentEntity.pk ?? currentEntity.id}</span>
               </>
             }
@@ -188,7 +195,9 @@ const GeneralPanel: FC<any> = inject("store")(
         </div>
         <div className={cn("details").elem("section").toClassName()}>
           <div className={cn("details").elem("view-control").toClassName()}>
-            <div className={cn("details").elem("section-head").toClassName()}>Relations ({relationStore.size})</div>
+            <div className={cn("details").elem("section-head").toClassName()}>
+              {panelMessages.SIDE_PANEL_SECTION_RELATIONS} ({relationStore.size})
+            </div>
             <RelationsControls relationStore={relationStore} />
           </div>
           <div className={cn("details").elem("section-content").toClassName()}>
@@ -197,7 +206,9 @@ const GeneralPanel: FC<any> = inject("store")(
         </div>
         {store.hasInterface("annotations:comments") && store.commentStore.isCommentable && (
           <div className={cn("details").elem("section").toClassName()}>
-            <div className={cn("details").elem("section-head").toClassName()}>Comments</div>
+            <div className={cn("details").elem("section-head").toClassName()}>
+              {panelMessages.SIDE_PANEL_SECTION_COMMENTS}
+            </div>
             <div className={cn("details").elem("section-content").toClassName()}>
               <CommentsComponent
                 annotationStore={store.annotationStore}

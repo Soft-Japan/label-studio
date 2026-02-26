@@ -1,0 +1,362 @@
+{
+  "createProject": {
+    "title": "Create Project",
+    "tabs": {
+      "projectName": "Project Name",
+      "dataImport": "Data Import",
+      "labelingSetup": "Labeling Setup"
+    },
+    "form": {
+      "projectName": "Project Name",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description of your project",
+      "workspace": "Workspace",
+      "workspacePlaceholder": "Select an option",
+      "workspaceHint": "Simplify project management by organizing projects into workspaces.",
+      "learnMore": "Learn more"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "aria": {
+      "cancelCreation": "Cancel project creation",
+      "addUrl": "Add URL",
+      "uploadFile": "Upload file",
+      "videoLearnMore": "Learn more about video format support (opens in a new tab)"
+    },
+    "import": {
+      "errors": {
+        "fileTooBig": "Imported file is too big"
+      },
+      "datasetUrl": "Dataset URL",
+      "actions": {
+        "addUrl": "Add URL",
+        "uploadFiles": "Upload Files",
+        "uploadMoreFiles": "Upload More Files"
+      },
+      "or": "or",
+      "csvHandling": {
+        "label": "Treat CSV/TSV as",
+        "tasks": "List of tasks",
+        "ts": "Time Series or Whole Text File"
+      },
+      "status": {
+        "filesUploaded": "{{count}} files uploaded"
+      },
+      "dropzone": {
+        "dragDrop": "Drag & drop files here",
+        "orClick": "or click to browse"
+      },
+      "supported": {
+        "images": "Images",
+        "audio": "Audio",
+        "video": "Video",
+        "videoTooltip": "Video format support depends on your browser. Click to learn more.",
+        "html": "HTML / HyperText",
+        "text": "Text",
+        "structured": "Structured data",
+        "pdf": "PDF"
+      },
+      "important": "Important:",
+      "recommendPrefix": "We recommend",
+      "cloudStorage": "Cloud Storage",
+      "recommendMiddle": "over direct uploads due to",
+      "uploadLimitations": "upload limitations",
+      "pdfPrefix": "For PDFs, use",
+      "multiImage": "multi-image labeling",
+      "pdfSuffix": ". JSONL or Parquet (Enterprise only) files require cloud storage.",
+      "preannotatedPrefix": "Check the documentation to",
+      "preannotatedLink": "import preannotated data",
+      "filesTitle": "Files",
+      "sample": "Sample",
+      "expectedInputPreview": "Expected Input Preview",
+      "sampleLoadError": "Something went wrong, the sample data could not be loaded.",
+      "viewJson": "View JSON input format",
+      "setupYour": "Setup your",
+      "labelingConfig": "labeling configuration",
+      "previewSuffix": "first to preview the expected JSON data format",
+      "aria": {
+        "addUrl": "Add URL",
+        "uploadFile": "Upload file",
+        "videoLearnMore": "Learn more about video format support (opens in a new tab)"
+      },
+      "modal": {
+        "title": "Import Data",
+        "cancel": "Cancel",
+        "import": "Import",
+        "aria": {
+          "cancelImport": "Cancel import",
+          "finishImport": "Finish import"
+        }
+      }
+    },
+    "config": {
+      "enterpriseOnly": "Enterprise feature - Available in Label Studio Enterprise",
+      "customTemplate": "Custom template",
+      "customTemplateAria": "Create custom template",
+      "contributePrefix": "See the documentation to",
+      "contributeLink": "contribute a template",
+      "groups": {
+        "computer_vision": "Computer Vision",
+        "natural_language_processing": "Natural Language Processing",
+        "audio_speech_processing": "Audio/Speech Processing",
+        "conversational_ai_chat": "Conversational AI Chat",
+        "ranking_scoring": "Ranking & Scoring",
+        "structured_data_parsing": "Structured Data Parsing",
+        "time_series_analysis": "Time Series Analysis",
+        "videos": "Videos",
+        "generative_ai": "Generative AI",
+        "community_contributions": "Community Contributions",
+        "audio_and_speech_processing": "Audio/Speech Processing",
+        "chat": "Chat",
+        "conversational_ai": "Conversational AI",
+        "llm_evaluations": "LLM Evaluations",
+        "llm_fine_tuning": "LLM Fine-tuning",
+        "programmable_interfaces": "Programmable Interfaces",
+        "ranking_and_scoring": "Ranking and Scoring"
+      },
+      "templates": {
+        "speaker_segmentation": "Speaker Segmentation",
+        "speech_transcription": "Speech Transcription",
+        "intent_classification_and_slot_filling": "Intent Classification and Slot Filling",
+        "video_object_tracking": "Video Object Tracking",
+        "supervised_language_model_fine_tuning": "Supervised Language Model Fine-tuning",
+        "human_preference_collection_for_rlhf": "Human Preference Collection for RLHF",
+        "chat_model_assessment": "Chat Model Assessment",
+        "llm_reranker": "LLM Reranker",
+        "conversational_analysis": "Conversational Analysis",
+        "semantic_segmentation_with_polygons": "Semantic Segmentation with Polygons",
+        "semantic_segmentation_with_masks": "Semantic Segmentation with Masks",
+        "object_detection_with_bounding_boxes": "Object Detection with Bounding Boxes",
+        "ocr_labeling_for_pdfs": "OCR Labeling for PDFs",
+        "keypoint_labeling": "Keypoint Labeling",
+        "visual_genome": "Visual Genome",
+        "multi_page_document_annotation": "Multi-page document annotation",
+        "medical_image_classification_with_bounding_boxes": "Medical Image Classification with Bounding Boxes",
+        "image_classification": "Image Classification",
+        "visual_question_answering": "Visual Question Answering",
+        "asr_hypotheses_selection": "ASR Hypotheses Selection",
+        "activity_recognition": "Activity Recognition",
+        "agentic_tracing_for_claims": "Agentic Tracing for Claims 🔒",
+        "audio_classification": "Audio Classification",
+        "audio_classification_with_segments": "Audio Classification with Segments",
+        "automatic_speech_recognition": "Automatic Speech Recognition",
+        "automatic_speech_recognition_using_segments": "Automatic Speech Recognition using Segments",
+        "breast_cancer_mammogram_classification": "Breast Cancer Mammogram Classification",
+        "change_point_detection": "Change Point Detection",
+        "chatbot_evaluation": "Chatbot Evaluation 🔒",
+        "content_moderation": "Content Moderation",
+        "content_based_image_retrieval": "Content-based Image Retrieval",
+        "contextual_scrolling": "Contextual Scrolling",
+        "coreference_resolution_and_entity_linking": "Coreference Resolution and Entity Linking",
+        "dialogue_analysis": "Dialogue Analysis",
+        "document_retrieval": "Document Retrieval",
+        "evaluate_production_conversations_for_rlhf": "Evaluate Production Conversations for RLHF 🔒",
+        "evaluate_rag_with_human_feedback": "Evaluate RAG with Human Feedback",
+        "evaluate_rag_with_ragas": "Evaluate RAG with Ragas",
+        "fine_tune_an_agent_with_an_llm": "Fine-Tune an Agent with an LLM 🔒",
+        "fine_tune_an_agent_without_an_llm": "Fine-tune an Agent without an LLM 🔒",
+        "freeform_metadata": "Freeform Metadata",
+        "get_started_with_label_studio_templates": "Get Started with Label Studio Templates",
+        "html_classification": "HTML Classification",
+        "html_entity_recognition": "HTML Entity Recognition",
+        "html_ner_tagging": "HTML NER Tagging",
+        "human_preferences_collection_for_rlhf": "Human Preferences collection for RLHF",
+        "image_captioning": "Image Captioning",
+        "intent_classification": "Intent Classification",
+        "inventory_tracking": "Inventory Tracking",
+        "llm_response_grading": "LLM Response Grading",
+        "llm_response_moderation": "LLM Response Moderation",
+        "machine_translation": "Machine Translation",
+        "multi_channel_audio_transcription": "Multi-Channel Audio Transcription 🔒",
+        "multi_image_classification": "Multi-Image Classification",
+        "multi_turn_chat_evaluation": "Multi-Turn Chat Evaluation",
+        "ner_tagging_for_invoices_bio_format": "NER Tagging for Invoices (BIO Format)",
+        "named_entity_recognition": "Named Entity Recognition",
+        "ocr_invoices_pre_ner_bio_format": "OCR Invoices Pre-NER BIO Format",
+        "object_detection_with_bounding_boxes_for_autonomous_vehicles": "Object Detection with Bounding Boxes for Autonomous Vehicles",
+        "object_detection_with_bounding_boxes_for_fashion_retail": "Object Detection with Bounding Boxes for Fashion Retail",
+        "object_detection_with_bounding_boxes_for_medical_imaging": "Object Detection with Bounding Boxes for Medical Imaging",
+        "object_detection_with_bounding_boxes_for_quality_control": "Object Detection with Bounding Boxes for Quality Control",
+        "object_detection_with_bounding_boxes_for_security_systems": "Object Detection with Bounding Boxes for Security Systems",
+        "object_detection_with_bounding_boxes_for_smart_agriculture": "Object Detection with Bounding Boxes for Smart Agriculture",
+        "object_detection_with_bounding_boxes_for_smart_home_devices": "Object Detection with Bounding Boxes for Smart Home Devices",
+        "object_detection_with_bounding_boxes_for_sports_analytics": "Object Detection with Bounding Boxes for Sports Analytics",
+        "object_detection_with_bounding_boxes_for_traffic_monitoring": "Object Detection with Bounding Boxes for Traffic Monitoring",
+        "object_detection_with_bounding_boxes_for_urban_planning": "Object Detection with Bounding Boxes for Urban Planning",
+        "object_detection_with_ellipses": "Object Detection with Ellipses",
+        "optical_character_recognition": "Optical Character Recognition",
+        "optical_character_recognition_for_document_digitization": "Optical Character Recognition for Document Digitization",
+        "optical_character_recognition_for_educational_assessment": "Optical Character Recognition for Educational Assessment",
+        "optical_character_recognition_for_license_plate_recognition": "Optical Character Recognition for License Plate Recognition",
+        "optical_character_recognition_for_market_research_surveys": "Optical Character Recognition for Market Research Surveys",
+        "outliers_and_anomaly_detection": "Outliers and Anomaly Detection",
+        "pdf_classification": "PDF Classification",
+        "pairwise_classification": "Pairwise Classification",
+        "pairwise_regression": "Pairwise Regression",
+        "question_answering": "Question Answering",
+        "rag_retrieval": "RAG Retrieval",
+        "red_teaming_in_chat": "Red-Teaming in Chat 🔒",
+        "relation_extraction": "Relation Extraction",
+        "response_generation": "Response Generation",
+        "response_selection": "Response Selection",
+        "search_page_ranking": "Search Page Ranking",
+        "semantic_segmentation_with_polygons_for_medical_image_analysis": "Semantic Segmentation with Polygons for Medical Image Analysis",
+        "semantic_segmentation_with_polygons_for_sports_analytics": "Semantic Segmentation with Polygons for Sports Analytics",
+        "semantic_segmentation_with_polygons_for_wildlife_conservation": "Semantic Segmentation with Polygons for Wildlife Conservation",
+        "text_classification": "Text Classification",
+        "side_by_side_llm_output_comparison": "Side-by-Side LLM Output Comparison",
+        "signal_quality": "Signal Quality",
+        "signal_quality_detection": "Signal Quality Detection",
+        "slot_filling_and_intent_classification": "Slot Filling and Intent Classification",
+        "sound_event_detection": "Sound Event Detection",
+        "speaker_diarization": "Speaker Diarization",
+        "spreadsheet_editor": "Spreadsheet Editor 🔒",
+        "supervised_llm_fine_tuning": "Supervised LLM Fine-Tuning",
+        "tabular_data": "Tabular Data",
+        "taxonomy": "Taxonomy",
+        "text_summarization": "Text Summarization",
+        "text_to_image_generation": "Text-to-Image Generation",
+        "time_series_classification": "Time Series Classification",
+        "time_series_forecasting": "Time Series Forecasting",
+        "time_series_labeling": "Time Series Labeling",
+        "time_series_labeling_with_audio_and_video_synchronization": "Time Series Labeling with Audio and Video Synchronization",
+        "two_level_sentiment_analysis_of_x_and_twitter_posts": "Two-Level Sentiment Analysis of X / Twitter posts",
+        "video_classification": "Video Classification",
+        "video_frame_classification": "Video Frame Classification",
+        "video_object_detection_and_tracking": "Video Object Detection and Tracking",
+        "video_timeline_segmentation": "Video Timeline Segmentation",
+        "visual_ranker": "Visual Ranker",
+        "voice_activity_detection": "Voice Activity Detection",
+        "website_rating": "Website Rating"
+      },
+      "configureSettings": "Configure settings",
+      "settingsOptions": {
+        "width_of_region_borders": "Width of region borders",
+        "allow_image_zoom_ctrlwheel": "Allow image zoom (ctrl+wheel)",
+        "show_controls_to_zoom_in_and_out": "Show controls to zoom in and out",
+        "show_controls_to_rotate_image": "Show controls to rotate image",
+        "select_text_by_words": "Select text by words",
+        "display_labels": "Display labels:",
+        "add_filter_for_long_list_of_labels": "Add filter for long list of labels",
+        "allow_image_zoom_ctrl_wheel": "Allow image zoom (ctrl+wheel)"
+      },
+      "labelingInterface": "Labeling Interface",
+      "browseTemplates": "Browse Templates",
+      "modes": {
+        "code": "Code",
+        "visual": "Visual"
+      },
+      "actions": {
+        "saving": "Saving...",
+        "updatingPreview": "Updating...",
+        "updatePreview": "Update Preview"
+      },
+      "tagsLink": {
+        "prefix": "Configure the labeling interface with tags.",
+        "link": "See all tags"
+      },
+      "empty": {
+        "title": "Your labeling configuration is empty. It is required to label your data.",
+        "descriptionPrefix": "Start from one of our predefined templates or create your own config on the Code panel. The labeling config is XML-based and you can",
+        "descriptionLink": "read about the available tags in our documentation"
+      },
+      "labels": {
+        "addChoices": "Add choices",
+        "addLabelNames": "Add label names",
+        "addHint": "Use new line as a separator to add multiple labels",
+        "addAria": "Add labels",
+        "add": "Add",
+        "choices": "Choices",
+        "labels": "Labels"
+      },
+      "data": {
+        "configureData": "Configure data",
+        "moreDataRequired": "This template requires more data then you have for now",
+        "uploadDataHint": "To select which field(s) to label you need to upload the data. Alternatively, you can provide it using Code mode.",
+        "useObject": "Use",
+        "for": "for",
+        "from": "from",
+        "field": "field",
+        "importedFile": "<imported file>",
+        "setManually": "<set manually>"
+      },
+      "preview": {
+        "title": "Preview",
+        "defaultInstruction": "Select label and click the image to start",
+        "sidePanel": {
+          "tabs": {
+            "regions": "Regions",
+            "history": "History",
+            "relations": "Relations",
+            "info": "Info",
+            "comments": "Comments",
+            "custom": "Custom"
+          },
+          "info": {
+            "empty": {
+              "header": "View region details",
+              "description": "Select a region to view its properties, metadata and available actions"
+            }
+          },
+          "outliner": {
+            "empty": {
+              "header": "Labeled regions will appear here",
+              "description": "Start labeling and track your results using this panel"
+            },
+            "group": {
+              "manually": "Group Manually",
+              "manual": "Manual",
+              "manualGrouping": "Manual Grouping",
+              "manuallyGrouped": "Manually Grouped",
+              "byLabel": "Group by Label",
+              "label": "By Label",
+              "groupedByLabel": "Grouped by Label",
+              "byTool": "Group by Tool",
+              "tool": "By Tool",
+              "groupedByTool": "Grouped by Tool"
+            },
+            "order": {
+              "byTime": "Order by Time",
+              "time": "By Time",
+              "byScore": "Order by Score",
+              "score": "By Score",
+              "byMediaStartTime": "Order by Media Start Time",
+              "mediaStartTime": "By Media Start Time"
+            },
+            "filters": {
+              "allHidden": {
+                "title": "All regions hidden",
+                "description": "Adjust or remove the filters to view"
+              },
+              "hiddenRegions": {
+                "single": "There is {count} hidden region",
+                "plural": "There are {count} hidden regions",
+                "description": "Adjust or remove filters to view"
+              }
+            }
+          },
+          "learnMore": "Learn more",
+          "sections": {
+            "annotationHistory": "Annotation History",
+            "relations": "Relations",
+            "comments": "Comments"
+          },
+          "relations": {
+            "empty": {
+              "header": "Create relations between regions",
+              "description": "Link regions to define relationships between them"
+            }
+          },
+          "history": {
+            "empty": {
+              "header": "View annotation activity",
+              "description": "See a log of user actions for this annotation"
+            }
+          }
+        }
+      }
+    }
+  }
+}

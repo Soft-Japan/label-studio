@@ -84,3 +84,6 @@ docker-compose.override.yml
 CLAUDE.local.md
 web/libs/editor/tests/coverage
 .cache
+
+# Django compiled locale artifacts
+*.mo

@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { getApiInstance, useCopyText } from "@humansignal/core";
 import styles from "./PersonalJWTToken.module.scss";
 import { Button } from "@humansignal/ui";
+import { useAccountSettingsI18n } from "../i18n";
 
 /**
  * FIXME: This is legacy imports. We're not supposed to use such statements
@@ -16,6 +17,7 @@ import { Button } from "@humansignal/ui";
 import { modal, confirm } from "@humansignal/ui/lib/modal";
 import { Input, Label } from "apps/labelstudio/src/components/Form/Elements";
 import { Tooltip } from "@humansignal/ui";
+import { create } from "domain";
 
 type Token = {
   token: string;
@@ -98,6 +100,7 @@ const revokeTokenAtom = atomWithMutation((get) => {
 });
 
 export function PersonalJWTToken() {
+  const { t } = useAccountSettingsI18n();
   const [dialogOpened, setDialogOpened] = useState(false);
   const tokens = useAtomValue(tokensListAtom);
   const revokeToken = useAtomValue(revokeTokenAtom);
@@ -111,18 +114,18 @@ export function PersonalJWTToken() {
   const revoke = useCallback(
     async (token: string) => {
       confirm({
-        title: "Revoke Token",
-        body: `Are you sure you want to delete this access token? Any application using this token will need a new token to be able to access ${
-          window?.APP_SETTINGS?.app_name || "Label Studio"
-        }`,
-        okText: "Revoke",
+        title: t("accountSettings.personalJwtToken.revokeToken"),
+        body: t("accountSettings.personalJwtToken.revokeBody", {
+          appName: window?.APP_SETTINGS?.app_name || "Label Studio",
+        }),
+        okText: t("accountSettings.personalJwtToken.revoke"),
         buttonLook: "negative",
         onOk: async () => {
           await revokeToken.mutateAsync({ token });
         },
       });
     },
-    [revokeToken],
+    [revokeToken, t],
   );
 
   const disallowAddingTokens = useMemo(() => {
@@ -134,7 +137,7 @@ export function PersonalJWTToken() {
     setDialogOpened(true);
     modal({
       visible: true,
-      title: "New Auth Token",
+      title: t("accountSettings.personalJwtToken.newAuthToken"),
       style: { width: 680 },
       body: CreateTokenForm,
       closeOnClickOutside: false,
@@ -149,10 +152,10 @@ export function PersonalJWTToken() {
     <div className={styles.personalAccessToken}>
       <div className={tokensListClassName}>
         {tokens.isLoading ? (
-          <div>loading...</div>
+          <div>{t("accountSettings.personalJwtToken.loading")}</div>
         ) : tokens.isSuccess && tokens.data && tokens.data.length ? (
           <div>
-            <Label text="Access Token" className={styles.label} />
+            <Label text={t("accountSettings.personalAccessToken.accessToken")} className={styles.label} />
             <div className="flex flex-col gap-2">
               {tokens.data.map((token, index) => {
                 return (
@@ -160,13 +163,15 @@ export function PersonalJWTToken() {
                     <div className={styles.tokenWrapper}>
                       <div className={styles.expirationDate}>
                         {token.expires_at
-                          ? `Expires on ${format(new Date(token.expires_at), "MMM dd, yyyy HH:mm")}`
-                          : "Personal access token"}
+                          ? t("accountSettings.personalJwtToken.expiresOn", {
+                              date: format(new Date(token.expires_at), "MMM dd, yyyy HH:mm"),
+                            })
+                          : t("accountSettings.personalJwtToken.personalAccessToken")}
                       </div>
                       <div className={styles.tokenString}>{token.token}</div>
                     </div>
                     <Button variant="negative" look="outlined" onClick={() => revoke(token.token)}>
-                      Revoke
+                      {t("accountSettings.personalJwtToken.revoke")}
                     </Button>
                   </div>
                 );
@@ -174,13 +179,13 @@ export function PersonalJWTToken() {
             </div>
           </div>
         ) : tokens.isError ? (
-          <div>Unable to load tokens list</div>
+          <div>{t("accountSettings.personalJwtToken.unableToLoadTokensList")}</div>
         ) : null}
       </div>
-      <Tooltip title="You can only have one active token" disabled={!disallowAddingTokens}>
+      <Tooltip title={t("accountSettings.personalJwtToken.oneActiveToken")} disabled={!disallowAddingTokens}>
         <div style={{ width: "max-content" }}>
           <Button disabled={disallowAddingTokens || dialogOpened} onClick={openDialog}>
-            Create New Token
+            {t("accountSettings.personalJwtToken.createNewToken")}
           </Button>
         </div>
       </Tooltip>
@@ -189,33 +194,34 @@ export function PersonalJWTToken() {
 }
 
 function CreateTokenForm() {
+  const { t } = useAccountSettingsI18n();
   const { data, mutate: createToken } = useAtomValue(refreshTokenAtom);
   const [copy, copied] = useCopyText({ defaultText: data ?? "" });
 
   useEffect(() => {
     createToken();
-  }, []);
+  }, [createToken]);
 
   return (
     <div className="flex flex-col gap-2">
-      <p>Copy your new access token from below and keep it secure. </p>
+      <p>{t("accountSettings.personalJwtToken.copyNotice")}</p>
 
       <div className="flex items-end w-full gap-2">
         <Input
-          label="Access Token"
+          label={t("accountSettings.personalJwtToken.accessToken")}
           labelProps={{ className: "flex-1", rawClassName: "flex-1" }}
           className="w-full"
           readOnly
           value={data ?? ""}
         />
         <Button onClick={() => copy()} disabled={copied} variant="neutral" look="outlined">
-          {copied ? "Copied!" : "Copy"}
+          {copied ? t("accountSettings.personalAccessToken.copied") : t("accountSettings.personalAccessToken.copy")}
         </Button>
       </div>
 
       {data?.expires_at && (
         <div>
-          <Label text="Token Expiry Date" />
+          <Label text={t("accountSettings.personalJwtToken.tokenExpiryDate")} />
           {data && format(new Date(data?.expires_at), "MMM dd, yyyy HH:mm z")}
         </div>
       )}
@@ -225,12 +231,9 @@ function CreateTokenForm() {
           <CalloutIcon>
             <IconWarning />
           </CalloutIcon>
-          <CalloutTitle>Manage your access tokens securely</CalloutTitle>
+          <CalloutTitle>{t("accountSettings.personalJwtToken.manageSecurely")}</CalloutTitle>
         </CalloutHeader>
-        <CalloutContent>
-          Do not share this key with anyone. If you suspect any keys have been compromised, you should revoke them and
-          create new ones.
-        </CalloutContent>
+        <CalloutContent>{t("accountSettings.personalJwtToken.securityBody")}</CalloutContent>
       </Callout>
     </div>
   );

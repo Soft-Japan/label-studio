@@ -47,6 +47,12 @@
       align-items: center;
   }
 
+  &__language {
+    display: flex;
+    align-items: center;
+    padding-right: var(--spacing-base);
+  }
+
   &__hotkeys-button {
       button {
         svg {

@@ -44,6 +44,8 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+
+      i18nKey: "heidiTips.projectCreation.accessControl",
       title: "Did you know?",
       content:
         "You can control access to specific projects and workspaces for internal team members and external annotators using Label Studio Enterprise.",
@@ -72,6 +74,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.projectCreation.genaiTemplates",
       title: "Labeling for GenAI",
       content:
         "Label Studio has templates available for supervised LLM fine-tuning, RAG retrieval ranking, RLHF, chatbot evaluation, and more.",
@@ -88,6 +91,7 @@ export const defaultTipsCollection: TipsCollection = {
   ],
   organizationPage: [
     {
+      i18nKey: "heidiTips.organizationPage.teamGrowth",
       title: "It looks like your team is growing!",
       content:
         "Assign roles to your team using Label Studio Enterprise and control access to sensitive data at the project and workspace levels.",
@@ -102,6 +106,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.organizationPage.enableSso",
       title: "Want to simplify and secure logging in?",
       content: "Enable Single Sign-On for your team using SAML, SCIM2 or LDAP with Label Studio Enterprise.",
       closable: true,
@@ -115,6 +120,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.organizationPage.starterCloud",
       title: "Did you know?",
       content: "Try Label Studio Starter Cloud, optimized for small teams and projects.",
       closable: true,
@@ -142,6 +148,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.organizationPage.communitySlack",
       title: "Share knowledge with the community",
       content:
         "Have questions or a tip to share with other Label Studio users? Join the community slack channel for the latest updates. ",
@@ -156,6 +163,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.organizationPage.integrations",
       title: "Did you know?",
       content:
         "Label Studio supports multiple points of integration with cloud storage, machine learning models, and popular tools to automate your machine learning pipeline.",
@@ -172,6 +180,7 @@ export const defaultTipsCollection: TipsCollection = {
   ],
   projectSettings: [
     {
+      i18nKey: "heidiTips.projectSettings.awsMarketplace",
       title: "Apply your AWS spend to Label Studio Enterprise",
       content:
         "Label Studio Enterprise is now available on the AWS Marketplace so you can use your committed spend to streamline data labeling workflows.",
@@ -186,6 +195,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.projectSettings.autoLabeling",
       title: "Save time with Auto-Labeling",
       content:
         "Use automation to instantly label large-scale datasets without sacrificing quality in the Enterprise platform.",
@@ -214,6 +224,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.projectSettings.evals",
       title: "Evaluate GenAI models",
       content:
         "Combine automation plus human supervision to evaluate and ensure LLM quality in the Enterprise platform.",
@@ -242,6 +253,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.projectSettings.starterCloud",
       title: "Did you know?",
       content: "Try Label Studio Starter Cloud, optimized for small teams and projects.",
       link: {
@@ -254,6 +266,7 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
     {
+      i18nKey: "heidiTips.projectSettings.connectMl",
       title: "Did you know?",
       content: "You can connect ML models using the backend SDK to save time with pre-labeling or active learning.",
       closable: true,
@@ -267,4 +280,5 @@ export const defaultTipsCollection: TipsCollection = {
       },
     },
   ],
+  authPage: [],
 };

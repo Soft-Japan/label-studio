@@ -1,0 +1,49 @@
+services:
+  db:
+    image: pgautoupgrade/pgautoupgrade:17-alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+    volumes:
+      - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  app:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - ./mydata:/label-studio/data:rw
+      - ./:/label-studio
+    environment:
+      - DJANGO_DB=default
+      - POSTGRE_NAME=postgres
+      - POSTGRE_USER=postgres
+      - POSTGRE_PASSWORD=
+      - POSTGRE_PORT=5432
+      - POSTGRE_HOST=db
+
+      # ✅ DEV: backend points to frontend dev server
+      - FRONTEND_HMR=true
+      - FRONTEND_HOSTNAME=http://localhost:8010
+
+      - LABEL_STUDIO_HOST=http://localhost:8080
+    command: sh -lc "poetry install && python label_studio/manage.py migrate && python label_studio/manage.py compilemessages && python label_studio/manage.py runserver 0.0.0.0:8080"
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./web:/app
+    environment:
+      - PORT=8010
+      - VITE_API_URL=http://localhost:8080
+    command: sh -lc "yarn install && yarn dev --host 0.0.0.0 --port 8010"
+    ports:
+      - "8010:8010"
+    stdin_open: true
+    tty: true

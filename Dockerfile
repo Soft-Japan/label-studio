@@ -81,7 +81,8 @@ RUN apk add --no-cache \
     git \
     linux-headers \
     python3-dev \
-    pcre2-dev
+    pcre2-dev \
+    gettext
 
 ADD https://install.python-poetry.org /tmp/install-poetry.py
 RUN python /tmp/install-poetry.py
@@ -103,9 +104,9 @@ ARG INCLUDE_DEV=false
 RUN --mount=type=cache,target=/.poetry-cache,id=poetry-cache-alpine,sharing=locked \
     poetry check --lock && \
     if [ "$INCLUDE_DEV" = "true" ]; then \
-        poetry install --no-root --extras uwsgi --with test; \
+    poetry install --no-root --extras uwsgi --with test; \
     else \
-        poetry install --no-root --without test --extras uwsgi; \
+    poetry install --no-root --without test --extras uwsgi; \
     fi
 
 # Install LS
@@ -113,6 +114,7 @@ COPY label_studio label_studio
 RUN --mount=type=cache,target=/.poetry-cache,id=poetry-cache-alpine,sharing=locked \
     # `--extras uwsgi` is mandatory here due to poetry bug: https://github.com/python-poetry/poetry/issues/7302
     poetry install --only-root --extras uwsgi && \
+    python3 label_studio/manage.py compilemessages && \
     python3 label_studio/manage.py collectstatic --no-input
 
 ################################ Stage: py-version-generator
@@ -144,31 +146,31 @@ RUN apk add --no-cache \
     mesa-gl \
     glib \
     curl \
-    nginx \
+    caddy \
     bash \
-    procps
+    procps \
+    gettext \
+    pcre2
 
 RUN set -eux; \
     mkdir -p $LS_DIR $LABEL_STUDIO_BASE_DATA_DIR $OPT_DIR && \
-    chown -R 1001:0 $LS_DIR $LABEL_STUDIO_BASE_DATA_DIR $OPT_DIR /var/log/nginx /etc/nginx
-
-COPY --chown=1001:0 deploy/default.conf /etc/nginx/nginx.conf
+    chown -R 1001:0 $LS_DIR $LABEL_STUDIO_BASE_DATA_DIR $OPT_DIR
 
 # Copy essential files for installing Label Studio and its dependencies
-COPY --chown=1001:0 pyproject.toml .
-COPY --chown=1001:0 poetry.lock .
-COPY --chown=1001:0 README.md .
-COPY --chown=1001:0 LICENSE LICENSE
-COPY --chown=1001:0 licenses licenses
-COPY --chown=1001:0 deploy deploy
+COPY --link --chown=1001:0 pyproject.toml .
+COPY --link --chown=1001:0 poetry.lock .
+COPY --link --chown=1001:0 README.md .
+COPY --link --chown=1001:0 LICENSE LICENSE
+COPY --link --chown=1001:0 licenses licenses
+COPY --link --chown=1001:0 deploy deploy
 
 # Copy files from build stages
-COPY --chown=1001:0 --from=venv-builder               $LS_DIR                                           $LS_DIR
-COPY --chown=1001:0 --from=py-version-generator       $LS_DIR/label_studio/core/version_.py             $LS_DIR/label_studio/core/version_.py
-COPY --chown=1001:0 --from=frontend-builder           $LS_DIR/web/dist                                  $LS_DIR/web/dist
-COPY --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/apps/labelstudio/version.json    $LS_DIR/web/dist/apps/labelstudio/version.json
-COPY --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/libs/editor/version.json         $LS_DIR/web/dist/libs/editor/version.json
-COPY --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/libs/datamanager/version.json    $LS_DIR/web/dist/libs/datamanager/version.json
+COPY --link --chown=1001:0 --from=venv-builder               $LS_DIR                                           $LS_DIR
+COPY --link --chown=1001:0 --from=py-version-generator       $LS_DIR/label_studio/core/version_.py             $LS_DIR/label_studio/core/version_.py
+COPY --link --chown=1001:0 --from=frontend-builder           $LS_DIR/web/dist                                  $LS_DIR/web/dist
+COPY --link --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/apps/labelstudio/version.json    $LS_DIR/web/dist/apps/labelstudio/version.json
+COPY --link --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/libs/editor/version.json         $LS_DIR/web/dist/libs/editor/version.json
+COPY --link --chown=1001:0 --from=frontend-version-generator $LS_DIR/web/dist/libs/datamanager/version.json    $LS_DIR/web/dist/libs/datamanager/version.json
 
 USER 1001
 

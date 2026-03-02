@@ -1,0 +1,30 @@
+<View>
+
+  <Header value="AS-IS" />
+  <Text name="as1" value="L1: $as_is_lv1"/>
+  <Text name="as2" value="L2: $as_is_lv2"/>
+  <Text name="as3" value="L3: $as_is_lv3"/>
+
+  <Header value="TO-BE (Proposed)" />
+  <Text name="tb1" value="L1: $to_be_lv1"/>
+  <Text name="tb2" value="L2: $to_be_lv2"/>
+  <Text name="tb3" value="L3: $to_be_lv3"/>
+  <Text name="tb4" value="L4: $to_be_lv4"/>
+
+  <Header value="Is this mapping correct?" />
+  <Choices name="validation" toName="as1" choice="single-radio">
+    <Choice value="Correct"/>
+    <Choice value="Incorrect"/>
+  </Choices>
+
+  <View visibleWhen="choice-selected" whenTagName="validation" whenChoiceValue="Incorrect">
+    <Header value="Fix TO-BE" />
+
+    <TextArea name="fix_lv1" toName="as1" placeholder="Correct L1"/>
+    <TextArea name="fix_lv2" toName="as1" placeholder="Correct L2"/>
+    <TextArea name="fix_lv3" toName="as1" placeholder="Correct L3"/>
+    <TextArea name="fix_lv4" toName="as1" placeholder="Correct L4"/>
+
+  </View>
+
+</View>

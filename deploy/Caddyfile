@@ -1,0 +1,88 @@
+{
+	# Listen on this address; overridden at runtime by entrypoint
+	# admin off in production for security
+	admin off
+	auto_https off
+}
+
+:{$CADDY_PORT:8085} {
+	# ── Request-ID header ──────────────────────────────────────
+	header X-Request-ID {http.request.uuid}
+
+	# ── Security headers ───────────────────────────────────────
+	header Strict-Transport-Security "max-age=31536000"
+	header X-Frame-Options "SAMEORIGIN"
+
+	# ── CORS headers ───────────────────────────────────────────
+	header Access-Control-Allow-Origin *
+	header Access-Control-Max-Age 3600
+	header Access-Control-Expose-Headers Content-Length
+	header Access-Control-Allow-Headers Range
+
+	# Block unsupported methods
+	@bad_method {
+		not method GET POST PUT PATCH DELETE HEAD CONNECT OPTIONS
+	}
+	respond @bad_method 405
+
+	# Preflight
+	@options method OPTIONS
+	respond @options 204
+
+	# ── Static files ───────────────────────────────────────────
+	handle_path /static/* {
+		root * /label-studio/label_studio/core/static_build
+		file_server {
+			precompressed gzip
+		}
+	}
+
+	# ── React frontend SPA ─────────────────────────────────────
+	handle_path /react-app/* {
+		root * /label-studio/web/dist/apps/labelstudio
+		file_server {
+			precompressed gzip
+		}
+	}
+
+	# ── Health check ────────────────────────────────────────────
+	handle /caddy_health {
+		respond 200
+	}
+
+	# ── Favicon ─────────────────────────────────────────────────
+	handle /favicon.ico {
+		rewrite * /images/favicon.ico
+		root * /label-studio/label_studio/core/static_build
+		file_server
+	}
+
+	# ── Reverse proxy to uwsgi / Django ─────────────────────────
+	handle {
+		reverse_proxy {$APP_HOST:localhost}:{$APP_PORT:8000} {
+			header_up X-Real-IP {remote_host}
+			header_up X-Request-ID {http.request.uuid}
+
+			transport http {
+				read_timeout 300s
+				write_timeout 300s
+				dial_timeout 90s
+			}
+		}
+	}
+
+	# ── Request body limit (match Django DATA_UPLOAD_MAX_MEMORY_SIZE) ──
+	request_body {
+		max_size 250MB
+	}
+
+	# ── Compression ─────────────────────────────────────────────
+	encode gzip
+
+	# ── Logging (JSON) ──────────────────────────────────────────
+	log {
+		output stderr
+		format json
+		level {$CADDY_LOG_LEVEL:WARN}
+	}
+}

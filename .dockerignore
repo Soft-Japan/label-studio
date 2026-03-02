@@ -7,10 +7,14 @@
 !deploy/heroku_run.sh
 !deploy/uwsgi.ini
 !deploy/default.conf
+!deploy/Caddyfile
 !label_studio/**
-# Re-ignore pyc files and frontend
+# Re-ignore pyc files, frontend, caches, and test fixtures
 label_studio/frontend
 label_studio/**/*.pyc
+label_studio/**/__pycache__
+label_studio/tests
+label_studio/**/tests
 
 # FRONTEND
 !web
@@ -18,6 +22,7 @@ label_studio/**/*.pyc
 # Re-ignore node_modules and nx cache
 **/node_modules
 **/.nx
+**/.yarn/cache
 
 !README.md
 !licenses/**

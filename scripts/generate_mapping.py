@@ -57,14 +57,40 @@ def build_mapping_json(
             print(f"Error: Could not read sheet '{sheet}' — {e}")
             continue
 
-        missing_cols = [c for c in (as_is + to_be) if c not in df.columns]
-        if missing_cols:
-            print(f"Warning: Sheet '{sheet}' is missing columns: {missing_cols}. Skipping.")
+        # Only use as_is / to_be columns that actually exist in this sheet
+        sheet_as_is = [c for c in as_is if c in df.columns]
+        sheet_to_be = [c for c in to_be if c in df.columns]
+
+        if not sheet_as_is:
+            print(
+                f"Warning: Sheet '{sheet}' has none of the as_is columns {as_is}. Skipping."
+            )
+            continue
+        if not sheet_to_be:
+            print(
+                f"Warning: Sheet '{sheet}' has none of the to_be columns {to_be}. Skipping."
+            )
             continue
 
+        # Inform when not all columns are present
+        missing_as_is = [c for c in as_is if c not in df.columns]
+        missing_to_be = [c for c in to_be if c not in df.columns]
+        if missing_as_is:
+            print(
+                f"Info: Sheet '{sheet}' missing as_is columns {missing_as_is}; they will be blank."
+            )
+        if missing_to_be:
+            print(
+                f"Info: Sheet '{sheet}' missing to_be columns {missing_to_be}; they will be blank."
+            )
+
         for _, row in df.iterrows():
-            k = make_key(row, as_is, delimiter)
-            v = {c: safe_str(row[c]) for c in to_be}
+            # Build key using ALL configured as_is columns (blank for missing)
+            k = delimiter.join(
+                safe_str(row[c]) if c in df.columns else "" for c in as_is
+            )
+            # Build value dict using ALL configured to_be columns (blank for missing)
+            v = {c: (safe_str(row[c]) if c in df.columns else "") for c in to_be}
 
             if k in mapping and mapping[k] != v:
                 conflicts.append(
@@ -83,7 +109,9 @@ def build_mapping_json(
         sys.exit(1)
 
     if conflicts:
-        print(f"Error: Found {len(conflicts)} conflicting mappings. Fix the gold Excel.")
+        print(
+            f"Error: Found {len(conflicts)} conflicting mappings. Fix the gold Excel."
+        )
         print("Example conflict:")
         print(json.dumps(conflicts[0], ensure_ascii=False, indent=2))
         sys.exit(1)
@@ -97,9 +125,15 @@ def build_mapping_json(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build AS-IS → TO-BE mapping JSON.")
-    parser.add_argument("--file", default=mcfg.file, help="Path to the gold Excel file.")
-    parser.add_argument("--sheets", nargs="+", default=mcfg.sheets, help="Sheet names to read.")
-    parser.add_argument("--output", default=mcfg.output, help="Output mapping JSON path.")
+    parser.add_argument(
+        "--file", default=mcfg.file, help="Path to the gold Excel file."
+    )
+    parser.add_argument(
+        "--sheets", nargs="+", default=mcfg.sheets, help="Sheet names to read."
+    )
+    parser.add_argument(
+        "--output", default=mcfg.output, help="Output mapping JSON path."
+    )
     return parser.parse_args()
 
 

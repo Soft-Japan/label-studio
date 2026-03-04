@@ -11,11 +11,14 @@ mapping:
       - as_is_lv1
       - as_is_lv2
       - as_is_lv3
+      - as_is_lv4
+      - as_is_lv5
     to_be:
       - to_be_lv1
       - to_be_lv2
       - to_be_lv3
       - to_be_lv4
+      - to_be_lv5
   output: ./input_data/processed/as-is_to-be_information.json
 
 ### Conversion input (real-world Excel, may use different column names)
@@ -36,6 +39,8 @@ conversion:
     NewName1: as_is_lv1
     NewName2: as_is_lv2
     NewName3: as_is_lv3
+    NewName4: as_is_lv4
+    NewName5: as_is_lv5
   output: ./input_data/processed/converted_demo_data.json
   on_missing: blank # blank | skip | error
 
@@ -53,6 +58,8 @@ apply_mapping:
     - NewName1
     - NewName2
     - NewName3
+    - NewName4
+    - NewName5
 
   # JSON (Label Studio export) file
   source_json: ./input_data/processed/labelstudio_export.json
@@ -62,6 +69,8 @@ apply_mapping:
     - as_is_lv1
     - as_is_lv2
     - as_is_lv3
+    - as_is_lv4
+    - as_is_lv5
 
   # JSON values used to overwrite NewName*
   json_value_columns:
@@ -69,6 +78,7 @@ apply_mapping:
     - to_be_lv2
     - to_be_lv3
     - to_be_lv4
+    - to_be_lv5
 
   # Excel columns to overwrite (same length/order as json_value_columns)
   excel_target_columns:
@@ -76,6 +86,7 @@ apply_mapping:
     - NewName2
     - NewName3
     - NewName4
+    - NewName5
 
   excel_out: ./input_data/processed/demo_data_overwritten.xlsx
   on_missing: keep # keep | blank | error

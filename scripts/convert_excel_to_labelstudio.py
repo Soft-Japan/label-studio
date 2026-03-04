@@ -26,6 +26,7 @@ ccfg = cfg.conversion  # shorthand for the conversion section
 
 ON_MISSING_CHOICES = ("blank", "skip", "error")
 
+
 def convert_excel_to_json(
     file_path: str = ccfg.file,
     sheets: list[str] | None = None,
@@ -47,14 +48,14 @@ def convert_excel_to_json(
 
     # input_col → standard as_is name  (e.g. NewName1 → as_is_lv1)
     col_map = ccfg.column_mapping
-    input_cols = list(col_map.keys())       # columns in the Excel file
-    as_is_names = list(col_map.values())    # standard names in the mapping key
+    input_cols = list(col_map.keys())  # columns in the Excel file
+    as_is_names = list(col_map.values())  # standard names in the mapping key
 
     to_be = cfg.mapping.columns.to_be
     columns_out = as_is_names + to_be
     delimiter = cfg.key_delimiter
 
-    # Load mapping 
+    # Load mapping
     try:
         with open(mapping_path, "r", encoding="utf-8") as f:
             mapping: dict[str, dict[str, str]] = json.load(f)
@@ -79,14 +80,23 @@ def convert_excel_to_json(
             continue
 
         missing_cols = [c for c in input_cols if c not in df.columns]
-        if missing_cols:
-            print(f"Warning: Sheet '{sheet}' is missing columns: {missing_cols}. Skipping.")
+        # Only require at least one input column to be present
+        present_input_cols = [c for c in input_cols if c in df.columns]
+        if not present_input_cols:
+            print(
+                f"Warning: Sheet '{sheet}' has none of the input columns {input_cols}. Skipping."
+            )
             continue
+        if missing_cols:
+            print(
+                f"Info: Sheet '{sheet}' missing columns {missing_cols}; they will be blank."
+            )
 
         for _, row in df.iterrows():
-            # Read input columns → translate to standard as_is names
+            # Read input columns → translate to standard as_is names (blank for missing)
             as_is_values = {
-                col_map[in_col]: safe_str(row[in_col]) for in_col in input_cols
+                col_map[in_col]: (safe_str(row[in_col]) if in_col in df.columns else "")
+                for in_col in input_cols
             }
             k = make_key_from_values(*as_is_values.values(), delimiter=delimiter)
 
@@ -117,7 +127,9 @@ def convert_excel_to_json(
 
     print(f"Converted {len(all_tasks)} tasks → {output_path}")
     if missing_count:
-        print(f"Warning: {missing_count} rows had no mapping (on_missing={on_missing}).")
+        print(
+            f"Warning: {missing_count} rows had no mapping (on_missing={on_missing})."
+        )
 
 
 def parse_args() -> argparse.Namespace:
@@ -125,8 +137,12 @@ def parse_args() -> argparse.Namespace:
         description="Convert Excel → Label Studio JSON using a mapping file.",
     )
     parser.add_argument("--file", default=ccfg.file, help="Path to the Excel file.")
-    parser.add_argument("--sheets", nargs="+", default=ccfg.sheets, help="Sheet names to read.")
-    parser.add_argument("--mapping", default=cfg.mapping.output, help="Path to the mapping JSON.")
+    parser.add_argument(
+        "--sheets", nargs="+", default=ccfg.sheets, help="Sheet names to read."
+    )
+    parser.add_argument(
+        "--mapping", default=cfg.mapping.output, help="Path to the mapping JSON."
+    )
     parser.add_argument("--output", default=ccfg.output, help="Output JSON path.")
     parser.add_argument(
         "--on-missing",

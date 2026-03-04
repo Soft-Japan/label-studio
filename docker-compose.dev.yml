@@ -23,7 +23,7 @@ services:
       - POSTGRE_PORT=5432
       - POSTGRE_HOST=db
 
-      # ✅ DEV: backend points to frontend dev server
+      # DEV: backend points to frontend dev server
       - FRONTEND_HMR=true
       - FRONTEND_HOSTNAME=http://localhost:8010
 

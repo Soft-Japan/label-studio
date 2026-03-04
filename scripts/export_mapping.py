@@ -30,7 +30,12 @@ def load_ls_json_mapping(
     json_value_cols: list[str],
     delimiter: str,
 ) -> dict[str, list[str]]:
-    """Build dict: key -> [to_be_lv1..4]. Conflicts raise error."""
+    """Build dict: key -> [to_be_lv1..5]. Conflicts raise error.
+
+    Columns listed in json_key_cols / json_value_cols that do not exist
+    in the JSON data are treated as blank, so the pipeline works even
+    when a file has fewer levels than the maximum configured.
+    """
     try:
         with open(json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -42,13 +47,16 @@ def load_ls_json_mapping(
         sys.exit(1)
 
     df = pd.DataFrame(data)
-    required = json_key_cols + json_value_cols
-    missing = [c for c in required if c not in df.columns]
-    if missing:
-        print(f"Error: JSON missing columns: {missing}")
-        sys.exit(1)
 
-    for c in required:
+    # Fill missing columns with blank instead of raising an error
+    all_expected = json_key_cols + json_value_cols
+    missing = [c for c in all_expected if c not in df.columns]
+    if missing:
+        print(f"Info: JSON missing columns {missing}; they will be treated as blank.")
+        for c in missing:
+            df[c] = ""
+
+    for c in all_expected:
         df[c] = df[c].apply(safe_str)
 
     # conflict check: same key -> different values
@@ -90,7 +98,9 @@ def apply_mapping_to_excel() -> None:
         sys.exit(1)
 
     if len(excel_target_cols) != len(json_value_cols):
-        print("Error: excel_target_columns and json_value_columns must have the same length/order.")
+        print(
+            "Error: excel_target_columns and json_value_columns must have the same length/order."
+        )
         sys.exit(1)
 
     # Load mapping once
@@ -121,10 +131,19 @@ def apply_mapping_to_excel() -> None:
                 print(f"Warning: Could not read sheet '{sheet}' — {e}. Skipping.")
                 continue
 
-            missing = [c for c in excel_key_cols if c not in df.columns]
-            if missing:
-                print(f"Warning: Sheet '{sheet}' missing key columns: {missing}. Skipping.")
+            present_key_cols = [c for c in excel_key_cols if c in df.columns]
+            if not present_key_cols:
+                print(
+                    f"Warning: Sheet '{sheet}' has none of the key columns {excel_key_cols}. Skipping."
+                )
                 continue
+            missing_key = [c for c in excel_key_cols if c not in df.columns]
+            if missing_key:
+                print(
+                    f"Info: Sheet '{sheet}' missing key columns {missing_key}; they will be blank."
+                )
+                for c in missing_key:
+                    df[c] = ""
 
             # Ensure targets exist, and force dtype to object so strings can be assigned
             for c in excel_target_cols:

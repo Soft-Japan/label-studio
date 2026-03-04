@@ -65,11 +65,11 @@ if [ -f "$OPT_DIR"/config_env ]; then
   rm -f "$OPT_DIR"/config_env
 fi
 
-if [ "$1" = "nginx" ]; then
+if [ "$1" = "caddy" ]; then
   # in this mode we're running in a separate container
   export APP_HOST=${APP_HOST:=app}
-  exec_entrypoint "$ENTRYPOINT_PATH/nginx/"
-  exec nginx -c $OPT_DIR/nginx/nginx.conf -e /dev/stderr
+  exec_entrypoint "$ENTRYPOINT_PATH/caddy/"
+  exec caddy run --config $OPT_DIR/caddy/Caddyfile --adapter caddyfile
 elif [ "$1" = "label-studio-uwsgi" ]; then
   exec_entrypoint "$ENTRYPOINT_PATH/app/"
   exec_or_wrap_n_exec uwsgi --ini /label-studio/deploy/uwsgi.ini

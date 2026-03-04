@@ -1,0 +1,142 @@
+[
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "AEON RETAIL",
+      "as_is_lv3": "AEON NORTH KANTO",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "AEON RETAIL",
+      "to_be_lv3": "AEON RETAIL",
+      "to_be_lv4": "AEON NORTH KANTO",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "AEON RETAIL",
+      "as_is_lv3": "AEON SOUTH KANTO",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "AEON RETAIL",
+      "to_be_lv3": "AEON RETAIL",
+      "to_be_lv4": "AEON SOUTH KANTO",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "AEON RETAIL",
+      "as_is_lv3": "AEON TOKAI",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "AEON RETAIL",
+      "to_be_lv3": "AEON RETAIL",
+      "to_be_lv4": "AEON TOKAI",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "MAXVALUE KANTO",
+      "as_is_lv3": "MAXVALUE KANTO",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "MAXVALUE KANTO",
+      "to_be_lv3": "MAXVALUE KANTO",
+      "to_be_lv4": "MAXVALUE KANTO",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "MAXVALUE TOKAI",
+      "as_is_lv3": "MAXVALUE CHUBU",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "MAXVALUE TOKAI",
+      "to_be_lv3": "MAXVALUE TOKAI",
+      "to_be_lv4": "MAXVALUE CHUBU",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(OTHER)",
+      "as_is_lv2": "MEGA SPORTS",
+      "as_is_lv3": "SPORTS AUTHORITY",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "MEGA SPORTS",
+      "to_be_lv3": "MEGA SPORTS",
+      "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "AEON BIG",
+      "as_is_lv3": "AEON BIG",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "AEON BIG",
+      "to_be_lv3": "AEON BIG",
+      "to_be_lv4": "AEON BIG",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)OTHER",
+      "as_is_lv2": "ACOLLE",
+      "as_is_lv3": "ACOLLE",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "ACOLLE",
+      "to_be_lv3": "ACOLLE",
+      "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(OTHER)",
+      "as_is_lv2": "MEGA SPORTS",
+      "as_is_lv3": "SPORTS AUTHORITY",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "MEGA SPORTS",
+      "to_be_lv3": "MEGA SPORTS",
+      "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+      "to_be_lv5": ""
+    }
+  },
+  {
+    "data": {
+      "as_is_lv1": "AEON(SMDD)PROCUREMENT",
+      "as_is_lv2": "MY BASKET",
+      "as_is_lv3": "MYBASKET",
+      "as_is_lv4": "",
+      "as_is_lv5": "",
+      "to_be_lv1": "AEON HOLDINGS",
+      "to_be_lv2": "MY BASKET",
+      "to_be_lv3": "MY BASKET",
+      "to_be_lv4": "MYBASKET",
+      "to_be_lv5": ""
+    }
+  }
+]

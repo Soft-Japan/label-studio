@@ -1,0 +1,4 @@
+pandas
+openpyxl
+omegaconf
+hydra-core

@@ -1,0 +1,92 @@
+### Mapping source (gold-standard Excel with AS-IS + TO-BE columns)
+#    Used by: build_mapping.py
+mapping:
+  file: ./input_data/raw/as-is_to-be_information.xlsx
+  sheets:
+    - AEON
+    - PPIH
+    - SUKAIRAKU
+  columns:
+    as_is:
+      - as_is_lv1
+      - as_is_lv2
+      - as_is_lv3
+      - as_is_lv4
+      - as_is_lv5
+    to_be:
+      - to_be_lv1
+      - to_be_lv2
+      - to_be_lv3
+      - to_be_lv4
+      - to_be_lv5
+  output: ./input_data/processed/as-is_to-be_information.json
+
+### Conversion input (real-world Excel, may use different column names)
+#    Used by: excel_to_labelstudio_json.py
+
+#    Demo_data.xlsx columns:
+#      ホールディングス対象 | NewCode1 | NewName1 | NewCode2 | NewName2 |
+#      NewCode3 | NewName3 | NewCode4 | NewName4 | BAPC
+
+#    column_mapping translates Excel column → standard AS-IS name
+#    so the script can look up each row in the mapping.
+
+conversion:
+  file: ./input_data/raw/demo_data.xlsx
+  sheets:
+    - Sheet1
+  column_mapping:
+    NewName1: as_is_lv1
+    NewName2: as_is_lv2
+    NewName3: as_is_lv3
+    NewName4: as_is_lv4
+    NewName5: as_is_lv5
+  output: ./input_data/processed/converted_demo_data.json
+  on_missing: blank # blank | skip | error
+
+# General
+key_delimiter: "||"
+
+### Mapping to original
+apply_mapping:
+  excel_in: ./input_data/raw/demo_data.xlsx
+  sheets:
+    - Sheet1
+
+  # Excel columns used as key (match to JSON as_is)
+  excel_key_columns:
+    - NewName1
+    - NewName2
+    - NewName3
+    - NewName4
+    - NewName5
+
+  # JSON (Label Studio export) file
+  source_json: ./input_data/processed/labelstudio_export.json
+
+  # JSON columns used as key
+  json_key_columns:
+    - as_is_lv1
+    - as_is_lv2
+    - as_is_lv3
+    - as_is_lv4
+    - as_is_lv5
+
+  # JSON values used to overwrite NewName*
+  json_value_columns:
+    - to_be_lv1
+    - to_be_lv2
+    - to_be_lv3
+    - to_be_lv4
+    - to_be_lv5
+
+  # Excel columns to overwrite (same length/order as json_value_columns)
+  excel_target_columns:
+    - NewName1
+    - NewName2
+    - NewName3
+    - NewName4
+    - NewName5
+
+  excel_out: ./input_data/processed/demo_data_overwritten.xlsx
+  on_missing: keep # keep | blank | error

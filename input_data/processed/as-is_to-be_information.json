@@ -1,0 +1,793 @@
+{
+  "AEON(SMDD)PROCUREMENT||PALETTE||PALETTE||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "PALETTE",
+    "to_be_lv3": "PALETTE",
+    "to_be_lv4": "PALETTE",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||FUJI||FUJI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "FUJI",
+    "to_be_lv3": "FUJI",
+    "to_be_lv4": "FUJI",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON_NEXT||AEON_NEXT||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON_NEXT",
+    "to_be_lv3": "AEON_NEXT",
+    "to_be_lv4": "AEON_NEXT",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||ﾏﾙﾅｶﾌｰﾄﾞｺｰﾄ||ﾏﾙﾅｶﾌｰﾄﾞｺｰﾄ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ﾏﾙﾅｶﾌｰﾄﾞｺｰﾄ",
+    "to_be_lv3": "ﾏﾙﾅｶﾌｰﾄﾞｺｰﾄ",
+    "to_be_lv4": "ﾏﾙﾅｶﾌｰﾄﾞｺｰﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE KANTO||MAXVALUE KANTO||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE KANTO",
+    "to_be_lv3": "MAXVALUE KANTO",
+    "to_be_lv4": "MAXVALUE KANTO",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE HOKURIKU||MAXVALUE HOKURIKU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE HOKURIKU",
+    "to_be_lv3": "MAXVALUE HOKURIKU",
+    "to_be_lv4": "MAXVALUE HOKURIKU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE TOKAI||MAXVALUE TOKAI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE TOKAI",
+    "to_be_lv3": "MAXVALUE TOKAI",
+    "to_be_lv4": "MAXVALUE TOKAI",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE TOKAI||MAXVALUE CHUBU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE TOKAI",
+    "to_be_lv3": "MAXVALUE TOKAI",
+    "to_be_lv4": "MAXVALUE CHUBU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE WEST JAPAN||MAXVALUE WEST JAPAN SM||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE WEST JAPAN",
+    "to_be_lv3": "MAXVALUE WEST JAPAN",
+    "to_be_lv4": "MAXVALUE WEST JAPAN SM",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE WEST JAPAN||MAXVALUE WEST JAPAN DS||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE WEST JAPAN",
+    "to_be_lv3": "MAXVALUE WEST JAPAN",
+    "to_be_lv4": "MAXVALUE WEST JAPAN DS",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE WEST JAPAN||MARUNAKA||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE WEST JAPAN",
+    "to_be_lv3": "MAXVALUE WEST JAPAN",
+    "to_be_lv4": "MARUNAKA",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MAXVALUE KYUSHU||RED CABBAGE||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MAXVALUE KYUSHU",
+    "to_be_lv3": "MAXVALUE KYUSHU",
+    "to_be_lv4": "RED CABBAGE",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON TOHOKU||AEON TOHOKU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON TOHOKU",
+    "to_be_lv3": "AEON TOHOKU",
+    "to_be_lv4": "AEON TOHOKU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON TOHOKU||AEON SUPERCENTER||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON TOHOKU",
+    "to_be_lv3": "AEON TOHOKU",
+    "to_be_lv4": "AEON SUPERCENTER",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON TOHOKU||MAXVALUE TOHOKU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON TOHOKU",
+    "to_be_lv3": "AEON TOHOKU",
+    "to_be_lv4": "MAXVALUE TOHOKU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||MY BASKET||MYBASKET||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MY BASKET",
+    "to_be_lv3": "MY BASKET",
+    "to_be_lv4": "MYBASKET",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON BIG||AEON BIG||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON BIG",
+    "to_be_lv3": "AEON BIG",
+    "to_be_lv4": "AEON BIG",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON KYUSHU||AEON KYUSHU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON KYUSHU",
+    "to_be_lv3": "AEON KYUSHU",
+    "to_be_lv4": "AEON KYUSHU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||KOHYO||KOHYO||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "KOHYO",
+    "to_be_lv3": "KOHYO",
+    "to_be_lv4": "KOHYO",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||ﾏﾙﾅｶ||ﾏﾙﾅｶ_ｼｺｸ(VM)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ﾏﾙﾅｶ",
+    "to_be_lv3": "ﾏﾙﾅｶ",
+    "to_be_lv4": "ﾏﾙﾅｶ_ｼｺｸ(VM)",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON HOKUSHINETSU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON HOKUSHINETSU",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON NORTH KANTO||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON NORTH KANTO",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON SOUTH KANTO||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON SOUTH KANTO",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON TOKAI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON TOKAI",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON KINKI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON KINKI",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)PROCUREMENT||AEON RETAIL||AEON CHUSHIKOKU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "AEON CHUSHIKOKU",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾘﾃｰﾙ(株)||ｲｵﾝﾘﾃｰﾙ(株)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON RETAIL",
+    "to_be_lv3": "AEON RETAIL",
+    "to_be_lv4": "ｲｵﾝﾘﾃｰﾙ(株)",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝ九州(FDS)||ｲｵﾝ九州(FDS)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝ九州",
+    "to_be_lv3": "ｲｵﾝ九州",
+    "to_be_lv4": "ｲｵﾝ九州(FDS)",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝ||ｲｵﾝｴﾌﾞﾘ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝ",
+    "to_be_lv3": "ｲｵﾝ",
+    "to_be_lv4": "ｲｵﾝｴﾌﾞﾘ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝ||ｲｵﾝその他(東海)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝ",
+    "to_be_lv3": "ｲｵﾝ",
+    "to_be_lv4": "ｲｵﾝその他(東海)",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾍﾞｰｶﾘｰ||ｲｵﾝﾍﾞｰｶﾘｰ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾍﾞｰｶﾘｰ",
+    "to_be_lv3": "ｲｵﾝﾍﾞｰｶﾘｰ",
+    "to_be_lv4": "ｲｵﾝﾍﾞｰｶﾘｰ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾏﾙｼｪ||ｲｵﾝﾏﾙｼｪ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾏﾙｼｪ",
+    "to_be_lv3": "ｲｵﾝﾏﾙｼｪ",
+    "to_be_lv4": "ｲｵﾝﾏﾙｼｪ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_東海_FV||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_東京_FV||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_富士_FV||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_栃木_茨城||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_栃木_茨城_FV||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_愛知||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_岐阜||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_三重||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_千葉||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_三国||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_東京||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_東海||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_富士||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_仙台||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_九州||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_中国||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_関西||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ｲｵﾝﾃﾞｨﾗｲﾄ_四国||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾃﾞｨﾗｲﾄ||ﾁｪﾙﾄ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv3": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｾｲﾌｰ||ｾｲﾌｰ_千葉||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｾｲﾌｰ",
+    "to_be_lv3": "ｾｲﾌｰ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾌｧﾝﾀｼﾞｰ||ｲｵﾝﾌｧﾝﾀｼﾞｰ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾌｧﾝﾀｼﾞｰ",
+    "to_be_lv3": "ｲｵﾝﾌｧﾝﾀｼﾞｰ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾌｧﾝﾀｼﾞｰ_VM||ｲｵﾝﾌｧﾝﾀｼﾞｰ_富士||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾌｧﾝﾀｼﾞｰ",
+    "to_be_lv3": "ｲｵﾝﾌｧﾝﾀｼﾞｰ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝﾏﾙｼｪ_南東北||ｲｵﾝﾏﾙｼｪ_南東北||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝﾏﾙｼｪ",
+    "to_be_lv3": "ｲｵﾝﾏﾙｼｪ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ｲｵﾝｶﾝﾃﾎﾟｰﾚ||ｲｵﾝｶﾝﾃﾎﾟｰﾚ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝｶﾝﾃﾎﾟｰﾚ",
+    "to_be_lv3": "ｲｵﾝｶﾝﾃﾎﾟｰﾚ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ﾀﾞｲｴｰ_VM||ﾀﾞｲｴｰ_VM_千葉||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "DAIEI",
+    "to_be_lv3": "DAIEI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ﾀﾞｲｴｰ_VM||ﾀﾞｲｴｰ_VM_三国||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "DAIEI",
+    "to_be_lv3": "DAIEI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝ||ﾀﾞｲｴｰ_VM||ﾀﾞｲｴｰ_VM_富士||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "DAIEI",
+    "to_be_lv3": "DAIEI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||DAIEI||DAIEI(KANTO)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "DAIEI",
+    "to_be_lv3": "DAIEI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||DAIEI||DAIEI(KINKI)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "DAIEI",
+    "to_be_lv3": "DAIEI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||ﾄｰﾎｰﾌｰﾄﾞｻｰﾋﾞｽ(ﾌｼﾞFF)||ﾄｰﾎｰﾌｰﾄﾞｻｰﾋﾞｽ(ﾌｼﾞFF)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ﾄｰﾎｰﾌｰﾄﾞｻｰﾋﾞｽ(ﾌｼﾞFF)",
+    "to_be_lv3": "ﾄｰﾎｰﾌｰﾄﾞｻｰﾋﾞｽ(ﾌｼﾞFF)",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||YAMAYA||YAMAYA||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "YAMAYA",
+    "to_be_lv3": "YAMAYA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||MARUETSU||MARUETSU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MARUETSU",
+    "to_be_lv3": "MARUETSU",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||いなげや_CS||いなげや_CS||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "いなげや",
+    "to_be_lv3": "いなげや",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||ACOLLE||ACOLLE||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ACOLLE",
+    "to_be_lv3": "ACOLLE",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||AEON MARKET||AEON MARKET(PEACOCK STORE)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON MARKET",
+    "to_be_lv3": "AEON MARKET",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||KASUMI||KASUMI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "KASUMI",
+    "to_be_lv3": "KASUMI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||KASUMI||SEIBU||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "KASUMI",
+    "to_be_lv3": "KASUMI",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||BIG-A||BIG-A||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "BIG-A",
+    "to_be_lv3": "BIG-A",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||WELCIA||ｳｪﾙﾊﾟｰｸ_CS||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "WELCIA",
+    "to_be_lv3": "WELCIA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||WELCIA||WELCIA||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "WELCIA",
+    "to_be_lv3": "WELCIA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||WELCIA||ｺｸﾐﾝ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "WELCIA",
+    "to_be_lv3": "WELCIA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(SMDD)OTHER||WELCIA||PUPULE HIMAWARI||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "WELCIA",
+    "to_be_lv3": "WELCIA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(CVS)||MINISTOP||MINISTOP||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MINISTOP",
+    "to_be_lv3": "MINISTOP",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(DRUG)||WELCIA||YODOYA||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "WELCIA",
+    "to_be_lv3": "WELCIA",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||AEON OTHER||AEONLIQUOR||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON OTHER",
+    "to_be_lv3": "AEON OTHER",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||AEON FOR CENTER STOCK||AEON FOR CENTER STOCK||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "AEON FOR CENTER STOCK",
+    "to_be_lv3": "AEON FOR CENTER STOCK",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||MEGA SPORTS||SPORTS AUTHORITY||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "MEGA SPORTS",
+    "to_be_lv3": "MEGA SPORTS",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||ｷｬﾝﾄﾞｩ_ｵﾝﾗｲﾝ||ｷｬﾝﾄﾞｩ_ｵﾝﾗｲﾝ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv3": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||ｷｬﾝﾄﾞｩ||ｷｬﾝﾄﾞｩ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv3": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||ｷｬﾝﾄﾞｩ||ｷｬﾝﾄﾞｩ_CCW||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv3": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||ｷｬﾝﾄﾞｩ||ｷｬﾝﾄﾞｩ(九州)||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv3": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "AEON(OTHER)||ｷｬﾝﾄﾞｩ||ｷｬﾝﾄﾞｩ_四国||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv3": "ｷｬﾝﾄﾞｩ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝｲｰﾊｰﾄ||ｲｵﾝｲｰﾊｰﾄ||ｲｵﾝｲｰﾊｰﾄ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝｲｰﾊｰﾄ",
+    "to_be_lv3": "ｲｵﾝｲｰﾊｰﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "ｲｵﾝｴﾝﾀｰﾃｲﾒﾝﾄ||ｲｵﾝｴﾝﾀｰﾃｲﾒﾝﾄ||ｲｵﾝｴﾝﾀｰﾃｲﾒﾝﾄ||||": {
+    "to_be_lv1": "AEON HOLDINGS",
+    "to_be_lv2": "ｲｵﾝｴﾝﾀｰﾃｲﾒﾝﾄ",
+    "to_be_lv3": "ｲｵﾝｴﾝﾀｰﾃｲﾒﾝﾄ",
+    "to_be_lv4": "ｲｵﾝﾃﾞｨﾗｲﾄ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||ﾄﾞﾝ･ｷﾎｰﾃ_VM||ﾄﾞﾝ･ｷﾎｰﾃ_関西_VM||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||ﾄﾞﾝ･ｷﾎｰﾃ_VM||ﾄﾞﾝ･ｷﾎｰﾃ_中四国_VM||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||ﾄﾞﾝ･ｷﾎｰﾃ_VM||ﾄﾞﾝ･ｷﾎｰﾃ_九州_VM||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||ﾄﾞﾝ･ｷﾎｰﾃ_VM||ﾄﾞﾝ･ｷﾎｰﾃ_VM||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||ﾄﾞﾝ･ｷﾎｰﾃ_VM||ﾄﾞﾝ･ｷﾎｰﾃ_FV||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(KANTO)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(TOKAI)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(SOUTH TOHOKU)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(KANSAI)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(KYUSHU)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "PAN PACIFIC INTERNATIONAL HOLDINGS||DON QUIJOTE||DON QUIJOTE(CHUSHIKOKU)||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv3": "ﾄﾞﾝ･ｷﾎｰﾃ",
+    "to_be_lv4": "DON QUIJOTE_DD",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_VM_関東||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_VM_東海||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_VM_仙台||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_CCW||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_関東_FV||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "ﾕﾆｰ||ﾕﾆｰ_VM||ﾕﾆｰ_中京_FV||||": {
+    "to_be_lv1": "PAN PACIFIC INTERNATIONAL HOLDINGS",
+    "to_be_lv2": "ﾕﾆｰ",
+    "to_be_lv3": "ﾕﾆｰ",
+    "to_be_lv4": "ﾕﾆｰ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ﾄﾏﾄ&ｱｿｼｴｲﾂ||ﾄﾏﾄ&ｱｿｼｴｲﾂ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ﾄﾏﾄ&ｱｿｼｴｲﾂ",
+    "to_be_lv3": "ﾄﾏﾄ&ｱｿｼｴｲﾂ",
+    "to_be_lv4": "ﾄﾏﾄ&ｱｿｼｴｲﾂ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ﾊﾞｰﾐﾔﾝ||ﾊﾞｰﾐﾔﾝ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ﾊﾞｰﾐﾔﾝ",
+    "to_be_lv3": "ﾊﾞｰﾐﾔﾝ",
+    "to_be_lv4": "ﾊﾞｰﾐﾔﾝ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||夢庵||夢庵_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "夢庵",
+    "to_be_lv3": "夢庵",
+    "to_be_lv4": "夢庵",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ｵｰﾙ･ﾌｰﾄﾞ･ﾃﾞﾘﾊﾞﾘｰｶﾝﾊﾟﾆｰ||ｵｰﾙ･ﾌｰﾄﾞ･ﾃﾞﾘﾊﾞﾘｰｶﾝﾊﾟﾆｰ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ｵｰﾙ･ﾌｰﾄﾞ･ﾃﾞﾘﾊﾞﾘｰｶﾝﾊﾟﾆｰ",
+    "to_be_lv3": "ｵｰﾙ･ﾌｰﾄﾞ･ﾃﾞﾘﾊﾞﾘｰｶﾝﾊﾟﾆｰ",
+    "to_be_lv4": "ｵｰﾙ･ﾌｰﾄﾞ･ﾃﾞﾘﾊﾞﾘｰｶﾝﾊﾟﾆｰ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||しゃぶ葉||しゃぶ葉_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "しゃぶ葉",
+    "to_be_lv3": "しゃぶ葉",
+    "to_be_lv4": "しゃぶ葉",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ﾌﾛｼﾞｬﾎﾟﾝ||ﾌﾛｼﾞｬﾎﾟﾝ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ﾌﾛｼﾞｬﾎﾟﾝ",
+    "to_be_lv3": "ﾌﾛｼﾞｬﾎﾟﾝ",
+    "to_be_lv4": "ﾌﾛｼﾞｬﾎﾟﾝ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||資さん_FDS||資さん_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "資さん_FDS",
+    "to_be_lv3": "資さん",
+    "to_be_lv4": "資さん",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ｼﾞｮﾅｻﾝ||ｼﾞｮﾅｻﾝ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ｼﾞｮﾅｻﾝ",
+    "to_be_lv3": "ｼﾞｮﾅｻﾝ",
+    "to_be_lv4": "ｼﾞｮﾅｻﾝ",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||藍屋||藍屋_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "藍屋",
+    "to_be_lv3": "藍屋",
+    "to_be_lv4": "藍屋",
+    "to_be_lv5": ""
+  },
+  "すかいらｰく||ｸﾞﾗｯﾁｪｶﾞｰﾃﾞﾝｽﾞ||ｸﾞﾗｯﾁｪｶﾞｰﾃﾞﾝｽﾞ_FDS||||": {
+    "to_be_lv1": "すかいらｰく",
+    "to_be_lv2": "ｸﾞﾗｯﾁｪｶﾞｰﾃﾞﾝｽﾞ",
+    "to_be_lv3": "ｸﾞﾗｯﾁｪｶﾞｰﾃﾞﾝｽﾞ",
+    "to_be_lv4": "ｸﾞﾗｯﾁｪｶﾞｰﾃﾞﾝｽﾞ",
+    "to_be_lv5": ""
+  }
+}

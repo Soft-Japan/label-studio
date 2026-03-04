@@ -95,28 +95,31 @@ services:
       # Production
       - FRONTEND_HMR=false
       - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-http://localhost:8080}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+      - USE_NGINX_FOR_UPLOADS=false
       - JSON_LOG=1
       # Optional but recommended: set your own secret key
       # - SECRET_KEY=${SECRET_KEY}
     volumes:
-      - ./mydata:/label-studio/data:rw
+      - ls-data:/label-studio/data
     expose:
       - "8000"
     command: label-studio-uwsgi
 
-  nginx:
-    build: .
+  caddy:
     image: heartexlabs/label-studio:latest
     restart: unless-stopped
     depends_on:
       - app
     environment:
       - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-http://localhost:8080}
-      # Optional: reduce noisy logs
-      # - NGINX_ERROR_LOG_LEVEL=warn
+      # Optional: set log level (DEBUG, INFO, WARN, ERROR)
+      # - CADDY_LOG_LEVEL=WARN
     volumes:
-      - ./mydata:/label-studio/data:rw
-      - ./deploy/nginx/certs:/certs:ro
+      - ls-data:/label-studio/data
     ports:
       - "8080:8085"
-    command: nginx
+    command: caddy
+
+volumes:
+  ls-data:

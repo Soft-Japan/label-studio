@@ -101,12 +101,23 @@ configure-hooks:
 generate-swagger:
 	DJANGO_DB=sqlite LOG_DIR=tmp DEBUG=true LOG_LEVEL=DEBUG DJANGO_SETTINGS_MODULE=core.settings.label_studio poetry run python label_studio/manage.py generate_swagger swagger.json
 
-# ── Docker Fast Build (pre-build frontend locally for speed) ───
+# ── Docker Build (for non-dev users, everything inside Docker) ─
+# No Node/Yarn needed on host — Docker handles everything
+docker-build:
+	@echo "=> Building app image (includes frontend build inside Docker)..."
+	DOCKER_BUILDKIT=1 docker compose build app
+	@echo "=> Building lightweight Caddy image..."
+	DOCKER_BUILDKIT=1 docker compose build caddy
+	@echo "=> Done! Run 'make docker-up' to start."
+
+# ── Docker Fast Build (for developers with Node/Yarn installed) ─
 # Builds frontend on the host (native I/O) then builds Docker images
 # Saves ~5-15 minutes vs building frontend inside Docker on macOS
 docker-fast: frontend-build
 	@echo "=> Building Docker images with pre-built frontend..."
-	DOCKER_BUILDKIT=1 docker compose build --build-arg BUILDKIT_INLINE_CACHE=1
+	DOCKER_BUILDKIT=1 docker compose build app --build-arg SKIP_FRONTEND_BUILD=true --build-arg BUILDKIT_INLINE_CACHE=1
+	@echo "=> Building lightweight Caddy image..."
+	DOCKER_BUILDKIT=1 docker compose build caddy
 	@echo "=> Done! Run 'make docker-up' to start."
 
 docker-up:

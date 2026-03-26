@@ -12,35 +12,35 @@ For docker that take long time to build.
 
 ### Option A: Run with Docker (Recommended)
 
+To run Label Studio with optimized performance (using Caddy and fast-build targets):
+
+**Fastest Build (Mac/Linux)**:
+This pre-builds the frontend on your host machine (native speed) before starting Docker.
 ```bash
-docker compose --build
-docker compose up
+# Recommended for local development
+make docker-fast
+make docker-up
 ```
 
-or
-
+**Standard Build**:
+If you don't have Node/Yarn installed locally, use the standard build:
 ```bash
-docker-compose --build
-docker-compose up
+docker compose build
+docker compose up -d
 ```
 
-Open in browser:
+**Common Commands**:
+| Action | Command |
+| --- | --- |
+| View logs | `make docker-logs` |
+| Stop services | `make docker-down` |
+| Full reset (delete all history/data) | `make docker-clean` |
 
+**Access in browser**:
 ```
 http://localhost:8080
 ```
 
-To stop:
-
-```bash
-docker compose down
-```
-
-or
-
-```bash
-docker-compose down
-```
 
 ### Option B: Run Locally (two terminals required)
 

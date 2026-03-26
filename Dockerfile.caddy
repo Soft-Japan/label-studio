@@ -1,0 +1,31 @@
+# Lightweight Caddy reverse proxy for Label Studio
+# This image only contains Caddy + static frontend assets,
+# NOT the full Python/Django backend.
+FROM caddy:2-alpine AS caddy-base
+
+ENV LS_DIR=/label-studio \
+    OPT_DIR=/opt/heartex/instance-data/etc
+
+RUN set -eux; \
+    apk add --no-cache bash; \
+    mkdir -p $LS_DIR $OPT_DIR; \
+    chown -R 1001:0 $LS_DIR $OPT_DIR
+
+WORKDIR $LS_DIR
+
+# Copy Caddy configuration and entrypoint scripts
+COPY --chown=1001:0 deploy/Caddyfile deploy/Caddyfile
+COPY --chown=1001:0 deploy/docker-entrypoint.d/caddy/ deploy/docker-entrypoint.d/caddy/
+COPY --chown=1001:0 deploy/docker-entrypoint.sh deploy/docker-entrypoint.sh
+
+# Copy static files from the main build (will be populated by docker compose)
+# These are mounted via volumes or copied at build time from the app image
+COPY --chown=1001:0 label_studio/core/static_build/ label_studio/core/static_build/
+COPY --chown=1001:0 web/dist/ web/dist/
+
+USER 1001
+
+EXPOSE 8085
+
+ENTRYPOINT ["/label-studio/deploy/docker-entrypoint.sh"]
+CMD ["caddy"]

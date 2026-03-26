@@ -62,7 +62,7 @@ apply_mapping:
     - NewName5
 
   # JSON (Label Studio export) file
-  source_json: ./input_data/processed/labelstudio_export.json
+  source_json: ./input_data/processed/project-68-at-2026-03-26-11-31-7886f23a.json
 
   # JSON columns used as key
   json_key_columns:

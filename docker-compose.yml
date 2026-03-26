@@ -77,13 +77,23 @@ services:
       - POSTGRES_DB=postgres
     volumes:
       - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILDKIT_INLINE_CACHE=1
     image: heartexlabs/label-studio:latest
     restart: unless-stopped
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DJANGO_DB=default
       - POSTGRE_NAME=postgres
@@ -98,6 +108,8 @@ services:
       - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
       - USE_NGINX_FOR_UPLOADS=false
       - JSON_LOG=1
+      # Reduced workers for local development (default was 4)
+      - UWSGI_PROCESSES=2
       # Optional but recommended: set your own secret key
       # - SECRET_KEY=${SECRET_KEY}
     volumes:
@@ -107,7 +119,9 @@ services:
     command: label-studio-uwsgi
 
   caddy:
-    image: heartexlabs/label-studio:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
     restart: unless-stopped
     depends_on:
       - app
@@ -116,7 +130,7 @@ services:
       # Optional: set log level (DEBUG, INFO, WARN, ERROR)
       # - CADDY_LOG_LEVEL=WARN
     volumes:
-      - ls-data:/label-studio/data
+      - ls-data:/label-studio/data:ro
     ports:
       - "8080:8085"
     command: caddy

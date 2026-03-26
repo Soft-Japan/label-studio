@@ -100,3 +100,26 @@ configure-hooks:
 # Generate swagger.json
 generate-swagger:
 	DJANGO_DB=sqlite LOG_DIR=tmp DEBUG=true LOG_LEVEL=DEBUG DJANGO_SETTINGS_MODULE=core.settings.label_studio poetry run python label_studio/manage.py generate_swagger swagger.json
+
+# ── Docker Fast Build (pre-build frontend locally for speed) ───
+# Builds frontend on the host (native I/O) then builds Docker images
+# Saves ~5-15 minutes vs building frontend inside Docker on macOS
+docker-fast: frontend-build
+	@echo "=> Building Docker images with pre-built frontend..."
+	DOCKER_BUILDKIT=1 docker compose build --build-arg BUILDKIT_INLINE_CACHE=1
+	@echo "=> Done! Run 'make docker-up' to start."
+
+docker-up:
+	docker compose up -d
+	@echo "=> Services started. Visit http://localhost:8080"
+
+docker-down:
+	docker compose down
+
+docker-logs:
+	docker compose logs -f
+
+docker-clean:
+	docker compose down -v --rmi local
+	@echo "=> Cleaned up containers, volumes, and local images."
+
